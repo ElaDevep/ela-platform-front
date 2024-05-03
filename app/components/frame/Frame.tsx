@@ -3,10 +3,11 @@
 import styler from "./Frame.module.sass"
 import Image from "next/image";
 import { StaticImageData, StaticImport } from "next/dist/shared/lib/get-img-props";
-import { useProps } from "@/ela-hooks";
+import { useDevice, useProps } from "@/ela-hooks";
 
 export default function Frame({
     src,
+    darkSrc,
     alt,
     className,
     contain,
@@ -18,6 +19,7 @@ export default function Frame({
     onMouseUp,
 }: Readonly<{
     src:StaticImageData|string
+    darkSrc?:StaticImport|string
     alt:string
     className?:string
     contain?:boolean
@@ -28,6 +30,8 @@ export default function Frame({
     onMouseDown?:()=>any
     onMouseUp?:()=>any
 }>){
+    const device = useDevice()
+
     const container = useProps([
         {
             props:{
@@ -49,7 +53,8 @@ export default function Frame({
                 style:{
                     width:'100%',
                     height:'100%'
-                }
+                },
+                src:src
             }
         },
         {
@@ -84,6 +89,14 @@ export default function Frame({
                 exist:fill,
                 noExist:[contain,cover]
             }
+        },{
+            props:{
+                src:darkSrc
+            },
+            conditions:{
+                exist:[darkSrc],
+                allTrue:[device.colorScheme == 'dark']
+            }
         }
     ])
     
@@ -96,8 +109,8 @@ export default function Frame({
             {...onMouseUp && {onMouseUp:onMouseUp}}    
         >
             <div className={styler.filter}></div>
+                {/*@ts-ignore */}
                 <Image
-                src = {src}
                 alt = {alt}
                 sizes={"1000px"}
                 {...image.props}

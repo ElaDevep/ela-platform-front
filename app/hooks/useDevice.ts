@@ -9,6 +9,7 @@ const useDevice = () =>{
     const [desk,setDesk] = useState<boolean>(false)
     const [relation,setRelation] = useState<number>(0)
     const [relationChange,setRelationChange] = useState<boolean>(false)
+    const [colorScheme,setColorScheme] = useState<'dark'|'light'>()
 
     useEffect(()=>{
         if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
@@ -18,6 +19,9 @@ const useDevice = () =>{
             //@ts-ignore
             setDesk(true)
         }
+
+        setColorScheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+
         
         if(width && height)
             setRelation(width/height)
@@ -66,6 +70,7 @@ const useDevice = () =>{
         relationMinorThan,
         width,
         height,
+        colorScheme,
         relationChange}
 }
 

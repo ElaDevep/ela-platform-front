@@ -1,1 +1,58 @@
-@import '@/style-provider'
+@import '@/style_provider'
+
+.front_div
+    position: relative
+    z-index: 1
+
+    width: 100%
+    height: 100%
+
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    gap:5rem
+
+    padding-right: 4em
+
+    .welcomeTitle_div
+        position: relative
+
+        width: 40vw
+        height: 100%
+
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: flex-start
+
+        font-size: 1.7rem
+        @include setAllTextColor(palete('contrast'))
+
+
+        .ElaLogotipo_img
+            width: auto
+            height: 2em
+    
+    .logInFrom_div
+        position: relative
+
+        width: 25vw
+        height: 100%
+
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+        background: palete('contrast')
+        box-shadow: palete('uncontrast') 0 0 20px 0px
+
+        color: palete('primary')
+
+        .ElaLogoForm_img
+            width: 3em
+            height: auto
+
+            margin-bottom: 2em
+
+        

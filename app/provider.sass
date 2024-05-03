@@ -18,7 +18,7 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
 
 
 @function palete($tag)
-    $able-colors: primary,primary-dark,primary-light,general-text,contrast
+    $able-colors: primary,primary-dark,primary-light,general-text,contrast,uncontrast
     @if list.index($able-colors,$tag) == null
         @error 'Color no found'
         @return #757575

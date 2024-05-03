@@ -1,6 +1,6 @@
 @import '@/style_provider'
 
-@media (prefers-color-scheme: dark) 
+@media (prefers-color-scheme: light) 
     :root
         --contrast:white
         --primary:#0597f2
@@ -8,18 +8,22 @@
         --primary-light:#05aff2
         --secondary:#f2bc1b
         --general-text: #2F2F2F
+        --uncontrast: #3d3d3d
     
 
-@media (prefers-color-scheme: light) 
+@media (prefers-color-scheme: dark) 
     :root
         --contrast:#303030
-        --primary:#007ac5
-        --primary-dark:#0066c0
+        --primary:#0597f2
+        --primary-dark:#005197
         --primary-light:#05aff2
         --secondary:#c29100
         --text: #d8d8d8
+        --uncontrast: #838383
         
 *
+    box-sizing: border-box
+
     padding: 0
 
     margin: 0
@@ -34,16 +38,19 @@
     @include breakPointAtribute(font-size,$font-sizes)
 
 h1
-    font-size: 2rem
+    font-size: 2em
 
 h2
-    font-size: 1.8rem
+    font-size: 1.8em
 
 h3
-    font-size: 1.5rem
+    font-size: 1.5em
 
 h4
-    font-size: 1.3rem
+    font-size: 1.3em
+
+html
+    color-scheme: dark
 
 body
     width: 100vw
