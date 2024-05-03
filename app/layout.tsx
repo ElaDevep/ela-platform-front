@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
-import "./globals.css";
+import "./globals.sass";
 
-const quicksand = Quicksand({ subsets: ["latin"] });
+const quicksand = Quicksand({ 
+  subsets: ["latin"],
+  weight:['300','400','500','700'] 
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -10,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {

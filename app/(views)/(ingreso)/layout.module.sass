@@ -1,0 +1,31 @@
+@import '@/style_provider'
+
+
+.main
+    position: relative
+
+    width: 100vw
+    height: 100vh
+
+    overflow: hidden
+
+    .background_img
+        position: absolute
+        top:0
+        left: -50vh
+
+        width: 100vh
+        height: 100vh
+
+    .upLayer_div
+        position: absolute
+        top:0
+        left: 0
+
+        z-index: 1
+
+        width: 100vw
+        height: 100vh
+        
+        background: linear-gradient(90deg,transparent ,palete(primary) 25vw,palete(primary-dark) 100vw)
+

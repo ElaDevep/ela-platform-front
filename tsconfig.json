@@ -18,7 +18,11 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/style_provider":["./app/provider.sass"],
+      "@/ela-components":["./app/components/ela-components"],
+      "@/public/*":["./public/*"],
+      "@/ela-hooks":["./app/hooks/ela-hooks"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

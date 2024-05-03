@@ -1,0 +1,34 @@
+@import '@/style_provider'
+
+@media (prefers-color-scheme: dark) 
+    :root
+        --contrast:white
+        --primary:#0597f2
+        --primary-dark:#0583f2
+        --primary-light:#05aff2
+        --secondary:#f2bc1b
+        --general-text: #2F2F2F
+    
+
+@media (prefers-color-scheme: light) 
+    :root
+        --contrast:#303030
+        --primary:#007ac5
+        --primary-dark:#0066c0
+        --primary-light:#05aff2
+        --secondary:#c29100
+        --text: #d8d8d8
+        
+*
+    padding: 0
+
+    margin: 0
+
+    border: none
+
+body
+    width: 100vw
+    height: 100vh
+    
+
+    background-color: palete(primary)

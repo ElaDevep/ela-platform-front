@@ -1,0 +1,11 @@
+@use 'sass:list'
+@use 'sass:color'
+
+
+@function palete($tag)
+    $able-colors: primary,primary-dark,primary-light,general-text,contrast
+    @if list.index($able-colors,$tag) == null
+        @error 'Color no found'
+        @return #757575
+    @else 
+        @return var(--#{$tag})
