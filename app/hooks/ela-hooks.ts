@@ -1,3 +1,5 @@
 import useProps from "./useProps";
+import useDevice from "./useDevice";
+import useScreenSize from "./useScreenSize";
 
-export { useProps } 
+export { useProps,useDevice,useScreenSize } 

@@ -86,8 +86,6 @@ export default function Frame({
             }
         }
     ])
-
-    console.log(image)
     
     return <>
         <div 

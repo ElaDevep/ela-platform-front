@@ -1,6 +1,21 @@
 @use 'sass:list'
 @use 'sass:color'
 
+//Puntos de corte de pantallas
+$break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
+
+@mixin setAllTextColor($color)
+    $texts:h1,h2,h3,h4,h5,h6,p,label
+    @each $element in $texts
+        #{$element}
+            color:$color
+
+
+@mixin setSomeTextColor($color,$texts)
+    @each $element in $texts
+        #{$element}
+            color:$color
+
 
 @function palete($tag)
     $able-colors: primary,primary-dark,primary-light,general-text,contrast
@@ -9,3 +24,16 @@
         @return #757575
     @else 
         @return var(--#{$tag})
+
+@mixin breakPointAtribute($atribute,$values)
+    @if length($values) != length($break-points)
+        @error "Se debe asignar valor a cada punto de corte ["+length($break-points)+"]"
+
+    @for $i from 1 through length($break-points)
+        @media screen and (min-width: list.nth($break-points,$i))
+            #{$atribute}: list.nth($values,$i)
+
+@mixin specificBreakPointsAtribute($atribute,$values)
+    @each $break, $value in $values
+        @media screen and (min-width: $break)
+            #{$atribute}: $value

@@ -1,8 +1,11 @@
+'use client'
+
 import enter_background from '@/public/jpg/enter_background.jpg'
 
-import { Frame } from '@/ela-components'
+import { BreakPoint, Frame } from '@/ela-components'
 
 import styler from './layout.module.sass'
+import { useEffect } from 'react'
 
 export default function Layout({
     children
@@ -10,7 +13,10 @@ export default function Layout({
     children: React.ReactNode
 }>) {
     return <>
-    
+        <BreakPoint
+            className={styler.vertical_relation}
+            relation={[4,5]}
+        >
         <main className={styler.main}>
             <Frame
                 src={enter_background}
@@ -21,5 +27,6 @@ export default function Layout({
             <div className={styler.upLayer_div}/>
             {children}
         </main>
+        </BreakPoint>
     </>
 }

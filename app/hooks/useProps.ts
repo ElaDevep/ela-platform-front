@@ -71,6 +71,7 @@ function useProps(initialProps:Array<{
                 if(items!=undefined && items!='' ){ 
                     return false
                 }
+                break
         }
         return true
     }
@@ -107,16 +108,24 @@ function useProps(initialProps:Array<{
     }
 
     //Add or overwrite a prop
-    const set = (props:{[key:string]:any},conditions:PropsConditioner|void) =>{
+    const set = (props:{[key:string]:any},conditions:PropsConditioner|void,remove:boolean|void) =>{
         if(conditions){
             if(conditioner(conditions)){
-                setProps(Object.assign(props,thisProps))
+                setProps(Object.assign({},thisProps,props))
+            }
+            else if(remove){
+                for(let prop in props){
+                    props[prop] = undefined
+                }
+                setProps(Object.assign({},thisProps,props))
             }
         }
         else{
-            setProps(Object.assign(props,thisProps))
+            setProps(Object.assign({},thisProps,props))
         }
+        
     }
+
 
     //Mix the classes   
     const mixClasses = (nameClasses:Array<string>|string,conditions:PropsConditioner|undefined) =>{
@@ -158,11 +167,11 @@ function useProps(initialProps:Array<{
                 if(prop.conditions){
                     if(conditioner(prop.conditions)){
                         if(prop.props){
-                            initialPropsSet = Object.assign(prop.props,initialPropsSet)
+                            initialPropsSet = Object.assign({},prop.props,initialPropsSet)
                         }
                         if(prop.mix){
                             for(let mixProp in prop.mix){
-                                initialPropsSet[mixProp] = Object.assign(prop.mix[mixProp],initialPropsSet[mixProp])
+                                initialPropsSet[mixProp] = Object.assign({},prop.mix[mixProp],initialPropsSet[mixProp])
                             }
                         }
                         if(prop.mixClass){
@@ -179,13 +188,23 @@ function useProps(initialProps:Array<{
                 }
                 else{
                     if(prop.props){
-                        initialPropsSet = Object.assign(prop.props,initialPropsSet)
+                        initialPropsSet = Object.assign({},prop.props,initialPropsSet)
                     }
-                    // if(prop.mix){
-                    //     for(let mixProp in prop.mix){
-                    //         Object.assign(initialPropsSet[mixProp],prop.mix[mixProp])
-                    //     }
-                    // }
+                    if(prop.mix){
+                        for(let mixProp in prop.mix){
+                            initialPropsSet[mixProp] = Object.assign(prop.mix[mixProp],initialPropsSet[mixProp])
+                        }
+                    }
+                    if(prop.mixClass){
+                        switch(typeof prop.mixClass){
+                            case 'object':
+                                initialPropsSet.className += ' '+prop.mixClass.join(' ')
+                                break
+                            case 'string':
+                                initialPropsSet.className += ' '+prop.mixClass
+                                break
+                        }
+                    }
                 }
             }
         }

@@ -1,3 +1,4 @@
 import Frame from "./frame/Frame";
+import BreakPoint from "./BreakPoint";
 
-export {Frame}
+export {Frame,BreakPoint}

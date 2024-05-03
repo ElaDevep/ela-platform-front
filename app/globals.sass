@@ -26,6 +26,25 @@
 
     border: none
 
+    font-family: inherit
+    font-size: inherit
+    
+:root
+    $font-sizes: 10px,13px,14px,12px,14px,16px,20px,24px,42px
+    @include breakPointAtribute(font-size,$font-sizes)
+
+h1
+    font-size: 2rem
+
+h2
+    font-size: 1.8rem
+
+h3
+    font-size: 1.5rem
+
+h4
+    font-size: 1.3rem
+
 body
     width: 100vw
     height: 100vh
