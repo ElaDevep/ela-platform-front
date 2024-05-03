@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 export interface PropsConditioner{
-    allTrue?:Array<boolean>
-    someTrue?:Array<boolean>
+    allTrue?:Array<boolean|undefined>
+    someTrue?:Array<boolean|undefined>
     exist?:Array<any>|any
     noExist?:Array<any>|any
 }
@@ -12,7 +12,7 @@ export interface PropsConditioner{
 function useProps(initialProps:Array<{
         props?:{[key:string]:any},
         mix?:{[key:string]:any},
-        mixClass?:Array<string>|string,
+        mixClass?:Array<string|undefined>|string|undefined,
         conditions?:PropsConditioner
     }>|void){
     const [thisProps,setProps] = useState<{[key:string]:any}>({})
@@ -20,7 +20,7 @@ function useProps(initialProps:Array<{
     
 
     //Needs that all conditions are true
-    const allValidation = (items:Array<boolean>) =>{
+    const allValidation = (items:Array<boolean|undefined>) =>{
         for(let item of items){
             if(!item){ 
                 return false
@@ -30,7 +30,7 @@ function useProps(initialProps:Array<{
     }
 
     //Enough with some right condition
-    const someValidation = (items:Array<boolean>) =>{
+    const someValidation = (items:Array<boolean|undefined>) =>{
         for(let item of items){
             if(item){ 
                 return true
@@ -126,27 +126,33 @@ function useProps(initialProps:Array<{
         
     }
 
-
     //Mix the classes   
-    const mixClasses = (nameClasses:Array<string>|string,conditions:PropsConditioner|undefined) =>{
+    const mixClasses = (nameClasses:Array<string|undefined>|string|undefined,conditions:PropsConditioner|undefined) =>{
         let returnClassName:string = ''
         
+
         if(thisProps.className){
             returnClassName = thisProps.className
         }
 
         switch(typeof nameClasses){
             case 'object':
-                returnClassName += ' '+nameClasses.join(' ')
+                for(let nameClass in nameClasses){
+                    if(!returnClassName.match(new RegExp('^.*('+nameClass+')+.*$'))){
+                        returnClassName += ' '+nameClass
+                    }
+                }
                 break
             case 'string':
-                returnClassName += ' '+nameClasses
+                if(!returnClassName.match(new RegExp('^.*('+nameClasses+')+.*$'))){
+                    returnClassName += ' '+nameClasses
+                }
                 break
         }
 
         if(conditions){
             if(conditioner(conditions)){
-                setProps(Object.assign({className:returnClassName},thisProps))
+                setProps(Object.assign(thisProps,{className:returnClassName}))
             }
         }
     }
@@ -161,7 +167,6 @@ function useProps(initialProps:Array<{
 
     useEffect(()=>{
         let initialPropsSet:{[key:string]:any} = {}
-
         if(initialProps){
             for(let prop of initialProps){
                 if(prop.conditions){
@@ -177,9 +182,21 @@ function useProps(initialProps:Array<{
                         if(prop.mixClass){
                             switch(typeof prop.mixClass){
                                 case 'object':
-                                    initialPropsSet.className += ' '+prop.mixClass.join(' ')
+                                    for(let nameClass in prop.mixClass){
+                                        if(thisProps.className){
+                                            if(thisProps.className.match('/^.*('+nameClass+'.*)+$/')){
+                                                continue
+                                            }
+                                        }
+                                        initialPropsSet.className += ' '+nameClass
+                                    }
                                     break
                                 case 'string':
+                                    if(thisProps.className){
+                                        if(thisProps.className.match('/^.*('+prop.mixClass+'.*)+$/')){
+                                            continue
+                                        }
+                                    }
                                     initialPropsSet.className += ' '+prop.mixClass
                                     break
                             }
@@ -207,8 +224,8 @@ function useProps(initialProps:Array<{
                     }
                 }
             }
+            setProps(initialPropsSet)
         }
-        setProps(initialPropsSet)
     },[])
 
     return {props:thisProps,getAll,get,set,mixClasses}

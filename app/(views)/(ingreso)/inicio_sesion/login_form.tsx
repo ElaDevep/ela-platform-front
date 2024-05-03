@@ -1,6 +1,6 @@
 
 
-export default function LogIn({}:Readonly<{}>){
+export default function LogInForm({}:Readonly<{}>){
     return <>
     </>
 }

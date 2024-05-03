@@ -4,8 +4,8 @@
     position: relative
     z-index: 1
 
-    width: 100%
-    height: 100%
+    width: 100vw
+    height: 100vh
 
     display: flex
     justify-content: flex-end
@@ -30,10 +30,10 @@
 
 
         .ElaLogotipo_img
-            width: auto
-            height: 2em
+            width: 4em
+            height: 2em 
     
-    .logInFrom_div
+    .logInForm_div
         position: relative
 
         width: 25vw
@@ -51,8 +51,36 @@
 
         .ElaLogoForm_img
             width: 3em
-            height: auto
+            height: 3em
 
             margin-bottom: 2em
-
         
+        .logIn_form
+            position: relative
+
+            width: 80%
+
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            gap: 1em
+
+            margin-top: 2em
+
+            .logIn_submit
+                width: 70%
+
+            .guest_link
+                @include button('secondary')
+                width: 70%
+
+.vertical_relation
+    .front_div
+        display: block
+
+        background: red
+
+        .welcomeTitle_div, .logInForm_div
+            height: 100vh
+            width: 100vh

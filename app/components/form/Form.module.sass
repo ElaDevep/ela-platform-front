@@ -1,0 +1,124 @@
+@import '@/style_provider'
+
+.apiError
+    color: red
+    text-align: center
+
+.textField, .passwordField
+    position: relative
+
+    width: 100%
+    height: min-content
+
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: flex-start
+
+    color: inherit
+
+    .label
+        width: inherit
+
+        span
+            color: palete('primary')
+
+    .input
+
+        all: unset
+
+        width: inherit
+        height: 2em
+        box-sizing: border-box
+
+        padding: 0 0.5em
+
+        background: palete(contrast-light)
+        
+        border-bottom: palete(contrast-light) 2px solid
+        border-radius: 2px
+
+        color: palete(general-text)
+
+        transition: border-color 0.5s ease-in-out
+        
+        &:autofill
+            appearance: none
+            color: palete(general-text) !important
+            background-color: white !important
+
+        &:focus
+            border-color: palete(primary)
+
+.errorInput
+    .label, p
+        color: red
+
+    .input
+        border-color: red
+    
+
+    
+
+
+.textfield_error 
+    .label
+        span
+            color: red
+    
+    .input
+        border-color: red
+    
+
+.passwordField
+    &:hover
+        .image_button
+            opacity: 50%
+
+            &:hover
+                opacity: 100%
+
+        .image_button:active + .visiblePassword_text
+            opacity: 100%
+
+        .image_button + .visiblePassword_text
+            opacity: 0
+    
+
+        
+
+    .visiblePassword_text
+        position: absolute
+        top: 1.6em
+
+        width: 100%
+
+        background: white
+        opacity: 0
+
+        //@include fadeIn()
+        transition: opacity 1s ease-in-out
+
+    .image_button
+        position: absolute
+        right: 0
+        top: 1em
+        z-index: 1
+
+        margin: 0.5em
+
+        width: 1.5em
+        height: 1.5em
+
+        opacity: 0
+
+        transition: opacity 1s ease-in-out
+
+
+
+
+
+.submit
+    position: relative
+
+    @include button('main')

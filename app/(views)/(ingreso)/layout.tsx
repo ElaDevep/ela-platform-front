@@ -16,8 +16,8 @@ export default function Layout({
         <BreakPoint
             className={styler.vertical_relation}
             relation={[4,5]}
+            element={<main className={styler.main}/>}
         >
-        <main className={styler.main}>
             <Frame
                 src={enter_background}
                 alt={'fondo'}
@@ -26,7 +26,6 @@ export default function Layout({
             />
             <div className={styler.upLayer_div}/>
             {children}
-        </main>
         </BreakPoint>
     </>
 }

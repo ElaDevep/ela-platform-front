@@ -18,7 +18,7 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
 
 
 @function palete($tag)
-    $able-colors: primary,primary-dark,primary-light,general-text,contrast,uncontrast
+    $able-colors: primary,primary-dark,primary-light,general-text,contrast,uncontrast,contrast-light
     @if list.index($able-colors,$tag) == null
         @error 'Color no found'
         @return #757575
@@ -37,3 +37,58 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
     @each $break, $value in $values
         @media screen and (min-width: $break)
             #{$atribute}: $value
+
+@mixin button($type)
+    width: 2em
+    height: 2em
+
+    padding: 0.4em 0
+        
+    border-radius: 0.5rem
+
+    text-decoration: none
+    text-align: center
+
+    transition: transform 1s ease-in-out, background-color 1s ease-in-out, border-color 1s ease-in-out, color 1s ease-in-out
+
+    &:hover
+        transform: scale(1.05)
+
+    &:active
+        transform: scale(0.99)
+    @if $type == 'main'
+        position: relative
+
+        background-color: palete('primary')
+
+        color: #FFFFFF
+        
+        &:hover
+            background-color: palete('primary-light')
+
+        &:active
+            background-color: palete('primary-dark')
+        
+
+    @if $type == 'secondary'
+        position: relative
+
+        background-color: palete('contrast')
+        
+        border-color: palete('primary') 
+        border-width: 1px 
+        border-style: solid
+        
+        color: palete('primary')
+    
+        &:hover
+            background-color: palete('contrast-light')
+            box-shadow: palete('primary-dark') 0 0 5px 0
+            border-color: palete('primary-light') 
+            color: palete('primary-light')
+
+        &:active
+            background-color: palete('primary-light')
+            background-color: palete('primary-dark')
+            border-color: palete('uncontrast') 
+            color: palete('uncontrast')

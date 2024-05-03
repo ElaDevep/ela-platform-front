@@ -1,10 +1,11 @@
 'use client'
 
 import {useDevice,useProps} from "@/ela-hooks"
-import { useEffect, useState } from "react"
+import { DetailedHTMLProps, DetailedReactHTMLElement, HTMLAttributes, cloneElement, useEffect, useState } from "react"
 
 export default function BreakPoint({
     children,
+    element,
     className,
     hide,
     isMobile,
@@ -16,6 +17,7 @@ export default function BreakPoint({
     maxHeight
 }:Readonly<{
     children:React.ReactNode
+    element:{type: any} & {[key:string]:any}
     className?:string
     hide?:string
     isMobile?:boolean
@@ -28,25 +30,11 @@ export default function BreakPoint({
 }>){
     const device = useDevice()
     const [hidden,setHidden] = useState<boolean>()
-    const responsiver = useProps([{
-        props:{
-            className:className
-        },
-        conditions:{
-            exist:[isMobile],
-            noExist:[isDesk],
-            allTrue:[device.mobile]
+    const responsiver = useProps([
+        {
+            props:{...element.props}
         }
-    },{
-        props:{
-            className:className
-        },
-        conditions:{
-            exist:[isDesk],
-            noExist:[isMobile],
-            allTrue:[device.desk]
-        }
-    }])
+    ])
 
     const breakCheckSetter = ()=> {
         if(device.width){
@@ -75,13 +63,19 @@ export default function BreakPoint({
     }
 
     useEffect(()=>{
-        if(hide) setHidden(breakCheckSetter())
-        responsiver.set({className:className},{
-            allTrue:[breakCheckSetter()],
+        if(hide) {
+            setHidden(breakCheckSetter())
+            return
+        }
+        responsiver.mixClasses(className,{
+            someTrue:[breakCheckSetter(),(device.desk && isDesk),(device.mobile && isMobile)],
             exist:[className],
             noExist:[hide]
-        },true)
-    },[,device.relation])
+        })
+        responsiver.set({className:element.props.className},{
+            allTrue:[!breakCheckSetter(),!(device.desk && isDesk),!(device.mobile && isMobile)]
+        })
+    },[,device])
 
 
 
@@ -96,13 +90,15 @@ export default function BreakPoint({
         }
     },[])
 
+    //cloneElement(element.type,element.props,children)
+
     return <>
-        <div {...responsiver.props}>
+        <element.type {...responsiver.props}>
             {!hidden &&
             <>
                 {children}
             </>
             }
-        </div>
+        </element.type>
     </>
 }

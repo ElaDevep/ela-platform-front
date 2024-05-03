@@ -4,6 +4,7 @@ import styler from "./Frame.module.sass"
 import Image from "next/image";
 import { StaticImageData, StaticImport } from "next/dist/shared/lib/get-img-props";
 import { useDevice, useProps } from "@/ela-hooks";
+import { useEffect } from "react";
 
 export default function Frame({
     src,
@@ -53,11 +54,9 @@ export default function Frame({
                 style:{
                     width:'100%',
                     height:'100%'
-                },
-                src:src
+                }
             }
-        },
-        {
+        },{
             mix:{
                 style:{
                     objectFit:'contain'
@@ -67,8 +66,7 @@ export default function Frame({
                 exist:contain,
                 noExist:[fill,cover]
             }
-        },
-        {
+        },{
             mix:{
                 style:{
                     objectFit:'cover'
@@ -78,8 +76,7 @@ export default function Frame({
                 exist:cover,
                 noExist:[fill,contain]
             }
-        },
-        {
+        },{
             mix:{
                 style:{
                     objectFit:'fill'
@@ -88,14 +85,6 @@ export default function Frame({
             conditions:{
                 exist:fill,
                 noExist:[contain,cover]
-            }
-        },{
-            props:{
-                src:darkSrc
-            },
-            conditions:{
-                exist:[darkSrc],
-                allTrue:[device.colorScheme == 'dark']
             }
         }
     ])
@@ -109,10 +98,11 @@ export default function Frame({
             {...onMouseUp && {onMouseUp:onMouseUp}}    
         >
             <div className={styler.filter}></div>
-                {/*@ts-ignore */}
                 <Image
+                src={device.colorScheme && darkSrc?darkSrc:src}
                 alt = {alt}
                 sizes={"1000px"}
+                fill
                 {...image.props}
                 />
         </div>
