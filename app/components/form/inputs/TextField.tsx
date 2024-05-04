@@ -15,9 +15,16 @@ export default function TextField({
     name,
     className,
     require,
+    pattern,
+    otherValidation,
     form
 }:Readonly<{
     label?:string
+    pattern?:{
+        value:RegExp
+        message?:string
+    }
+    otherValidation?:(values:string)=>string|undefined
     name:string
     placeholder?:string
     className?:string,
@@ -26,7 +33,9 @@ export default function TextField({
 }>){
     const inputState = useInput(form,{
         name:name,
-        require:require
+        require:require,
+        pattern:pattern,
+        otherValidation:otherValidation
     })
 
     const inputContainer = useProps([{

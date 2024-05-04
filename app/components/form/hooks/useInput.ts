@@ -2,7 +2,6 @@
 
 import { error } from "console"
 import { useEffect, useRef, useState } from "react"
-import useProps, { InitialProps } from "../../../hooks/useProps"
 import { UseForm } from "./useForm"
 
 interface InputParams{
@@ -16,7 +15,6 @@ interface InputParams{
         message?:string
     },
     otherValidation?:(values:string)=>string|undefined
-    props?:InitialProps
 }
 
 export interface UseInput{
