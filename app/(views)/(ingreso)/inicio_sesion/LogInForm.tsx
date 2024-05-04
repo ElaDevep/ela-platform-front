@@ -33,12 +33,12 @@ export default function LogInForm({}:Readonly<{}>){
 
     useEffect(()=>{
         console.log(form)
-    })
+    },[form])
 
     return <>
         <Form 
             className={styler.logIn_form} 
-            submit = {form.onSubmit}
+            form = {form}
             response = {response}
             success={{
                 title:'Bienvenido!',

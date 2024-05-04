@@ -7,12 +7,25 @@ import useInput, { UseInput } from "./useInput"
 
 interface useFormAction{
     type:string
-    input?:{[key:string]:() => void}
+    input?:{
+        [key:string]:{
+            value:string|undefined
+            onSubmit:() => void}
+    }
     assign?:{[key:string]:any}
 }
 
 export interface UseForm{
-    setInput:(input:{[key:string]:() => void})=>void
+    inputs: {
+        [key: string]: any;
+    }
+    onSubmit:()=>any
+    setInput:(input: {
+        [key: string]: {
+            value: string|undefined;
+            onSubmit: () => void;
+        };
+    }) => void
 }
 
 class Form{
@@ -37,21 +50,26 @@ export default function useForm(){
 
     const onSubmit =()=>{
         for(let input in inputs){
-            console.log(input)
-            inputs[input]()
+            console.log(inputs[input])
+            inputs[input].onSubmit()
         }   
     }
 
-    const setInput = (input:{[key:string]:() => void}) =>{
+    const setInput = (input:{
+        [key:string]:{
+            value:string|undefined
+            onSubmit:() => void}
+    }) =>{
         setInputs({
             type:'setInput',
             input:input
         })
+        makeReRender({})
     }
     
     useEffect(()=>{
         console.log(inputs)
     },[inputs])
 
-    return {setInput,onSubmit}
+    return {inputs,setInput,onSubmit}
 }

@@ -6,19 +6,20 @@ import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import useProps from '@/app/hooks/useProps'
 import { usePageContext } from '@/app/contex/PageContext'
+import { UseForm } from './hooks/useForm'
 
 export default function Form({
     className,
     children,
     response,
     success,
-    submit
+    form
 }:Readonly<{
     className:string,
     children:React.ReactNode,
     response?:APIResponse
     success?:{title:string,message:string}
-    submit:()=>void
+    form:UseForm
 }>){
     const {setLastAction} = usePageContext()
     const formProps = useProps([
@@ -41,7 +42,7 @@ export default function Form({
     },[response])
 
     return <>
-        <form {...formProps.props} noValidate onSubmit={submit}>
+        <form {...formProps.props} noValidate onSubmit={form?.onSubmit}>
             {children}
         </form>
     </>

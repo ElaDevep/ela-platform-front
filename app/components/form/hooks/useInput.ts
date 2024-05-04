@@ -77,12 +77,12 @@ export default function useInput(form:UseForm,params:InputParams){
     }
 
     const onSubmit = () =>{
-        
+
     }
 
     const valueChanged = (value:string|void) =>{
         if(value){
-            setValue(value)
+            setValue(value) 
         }
         else{
             if(inputRef.current){
@@ -92,7 +92,14 @@ export default function useInput(form:UseForm,params:InputParams){
     }
 
     useEffect(()=>{
-        form.setInput({[params.name]:validateValue})
+        console.log(':v')
+        if(inputRef.current){
+            console.log(inputRef.current.value)
+            form.setInput({[params.name]:{
+                onSubmit:validateValue,
+                value:inputRef.current.value
+            }})
+        }
         if(touched){
             validateValue()
         }
@@ -105,10 +112,13 @@ export default function useInput(form:UseForm,params:InputParams){
     },[!value,touched])
 
     useEffect(()=>{
-        if(params.value){
-            if(inputRef.current){
+        if(inputRef.current){
+            if(params.value){
                 inputRef.current.value=params.value
                 valueChanged(params.value)
+            }
+            else{
+                valueChanged(inputRef.current.value)
             }
         }
     },[])

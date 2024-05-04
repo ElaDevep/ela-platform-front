@@ -24,19 +24,19 @@ export default function LogIn(){
         }
     ])
 
-    const test_api = ()=>{
-        axios.get('http://localhost:4000/usuarios')
-        .then((res)=>{
-            console.log(res)
-        })
-    }
+    // const test_api = ()=>{
+    //     axios.get('http://localhost:4000/usuarios')
+    //     .then((res)=>{
+    //         console.log(res)
+    //     })
+    // }
 
     const goToLogIn=()=>{
         move_div.mixClasses(styler.goToLogIn)
     }
 
     useEffect(()=>{
-        test_api()
+        //test_api()
     },[])
     
     return <>
