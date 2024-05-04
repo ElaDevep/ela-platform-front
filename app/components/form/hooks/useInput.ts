@@ -53,6 +53,25 @@ export default function useInput(form:UseForm,params:InputParams){
                 }
             }
             if(params.pattern){
+                if(!value?.match(params.pattern.value)){
+                    setError({
+                        type:'pattern',
+                        message:(params.pattern.message)?params.pattern.message:'Regex Error'
+                    })
+                    return
+                }
+            }
+            if(params.otherValidation){
+                if(value){
+                    const result = params.otherValidation(value)
+                    if(result){
+                        setError({
+                            type:'custom',
+                            message:result
+                        })
+                        return
+                    }
+                }
             }
             setError(undefined)
     }

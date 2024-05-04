@@ -1,6 +1,6 @@
 'use server'
 
-import { axiosAPI } from "@/app/_api/axiosAPI"
+import { axiosAPI } from "@/app/api/axiosAPI"
 import { redirect } from "next/navigation"
 
 
