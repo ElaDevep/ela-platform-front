@@ -75,7 +75,7 @@ export default function BreakPoint({
         responsiver.set({className:element.props.className},{
             allTrue:[!breakCheckSetter(),!(device.desk && isDesk),!(device.mobile && isMobile)]
         })
-    },[,device])
+    },[,device.relation,device.desk,device.mobile])
 
 
 

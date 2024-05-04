@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.sass";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const quicksand = Quicksand({ 
   subsets: ["latin"],
@@ -20,7 +22,9 @@ export default function RootLayout({
   return <>
     <html lang="en">
       <body className={quicksand.className }>
-        {children}
+        <Suspense fallback={<Loading/>}>
+          {children}
+        </Suspense>
       </body>
     </html>
   </>

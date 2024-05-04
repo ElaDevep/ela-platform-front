@@ -11,7 +11,7 @@ export default function Submit({
 }:{
     children:React.ReactNode
     className?:string
-    action:(payload: FormData) => void
+    action?:(payload: FormData) => void
 }){
     const submit = useProps([
         {

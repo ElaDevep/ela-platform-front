@@ -15,6 +15,7 @@ function useProps(initialProps:Array<{
         mixClass?:Array<string|undefined>|string|undefined,
         conditions?:PropsConditioner
     }>|void){
+    const [reRender,makeReRender] = useState<{}>()
     const [thisProps,setProps] = useState<{[key:string]:any}>({})
 
     
@@ -123,14 +124,13 @@ function useProps(initialProps:Array<{
         else{
             setProps(Object.assign({},thisProps,props))
         }
-        
+        makeReRender({})
     }
 
     //Mix the classes   
     const mixClasses = (nameClasses:Array<string|undefined>|string|undefined,conditions:PropsConditioner|void) =>{
         let returnClassName:string = ''
         
-
         if(thisProps.className){
             returnClassName = thisProps.className
         }
@@ -158,6 +158,7 @@ function useProps(initialProps:Array<{
         else{
             setProps(Object.assign(thisProps,{className:returnClassName}))
         }
+        makeReRender({})
     }
 
     const get = (prop:string) =>{
@@ -229,6 +230,7 @@ function useProps(initialProps:Array<{
             }
             setProps(initialPropsSet)
         }
+        makeReRender({})
     },[])
 
     return {props:thisProps,getAll,get,set,mixClasses}

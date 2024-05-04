@@ -4,7 +4,7 @@ import styler from "./Frame.module.sass"
 import Image from "next/image";
 import { StaticImageData, StaticImport } from "next/dist/shared/lib/get-img-props";
 import { useDevice, useProps } from "@/ela-hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Frame({
     src,
@@ -99,7 +99,7 @@ export default function Frame({
         >
             <div className={styler.filter}></div>
                 <Image
-                src={device.colorScheme && darkSrc?darkSrc:src}
+                src={(device.colorScheme == 'dark' && darkSrc!=undefined)?darkSrc:src}
                 alt = {alt}
                 sizes={"1000px"}
                 fill
