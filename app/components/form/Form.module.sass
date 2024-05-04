@@ -14,15 +14,16 @@
     flex-direction: column
     justify-content: center
     align-items: flex-start
+    gap:2px
 
-    .label
+    label
         width: inherit
 
         color: palete('general-text')
         span
             color: palete('primary')
 
-    .input
+    input
 
         all: unset
 
@@ -54,11 +55,11 @@
         color: red
 
 .textField_error, .error_form .textField
-    .label
+    label
         span
             color: red
     
-    .input
+    input
         border-color: red !important
     
     .message
@@ -110,11 +111,92 @@
 
         transition: opacity 1s ease-in-out
 
-
-
-
-
 .submit
     position: relative
 
     @include button('main')
+
+
+.APIerror_message
+    color: red
+
+.APIerror
+    position: fixed
+    z-index: 5
+    top:0
+    left:0
+
+    display: flex
+    justify-content: center
+    align-items: center
+
+    width: 100vw
+    height: 100vh
+
+    background-color: #0000005b
+
+    @include fadeIn
+
+    .APIerror_div
+        position: relative
+        
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+        align-items: center
+        gap:1em
+
+        $breakPoints:(1210px:40vh)
+        @include specificBreakPointsAtribute(width,$breakPoints)
+        
+        min-height: 10em
+        height: min-content
+
+        overflow: hidden
+
+        padding-bottom:0.5em
+
+        background: palete(contrast)
+
+        border-radius: 1em
+
+        border-bottom: red 2px solid
+
+        text-align: center
+        font-size: 1em
+
+        span
+            position: absolute
+            top:0
+            left:0
+
+            width: 100%
+            height: auto
+
+            padding-top: 0.8rem
+            padding-bottom: 0.8rem
+
+            background: palete(primary)
+
+            color: palete(over-primary)
+            font-weight: 600
+            font-size: 1.2em
+
+        button
+            //background: transparent
+            
+            // color: palete(over-primary)
+            // font-weight: 600
+            // font-size: 1.2em
+
+            @include button(main)
+        p
+            width: 100%
+            height: max-content
+            
+            padding: 0 2em
+
+            color: palete('general-text')
+
+
+

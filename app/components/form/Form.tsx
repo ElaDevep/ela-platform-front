@@ -5,26 +5,22 @@ import styler from './Form.module.sass'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import useProps from '@/app/hooks/useProps'
-
-const initialState:APIResponse={
-    status:'unknown',
-    data:''
-}
+import { usePageContext } from '@/app/contex/PageContext'
 
 export default function Form({
-    action,
     className,
-    response,
     children,
+    response,
+    success,
     submit
 }:Readonly<{
-    action:(prevState: any, formData: FormData)=>Promise<APIResponse>,
-    response:APIResponse
     className:string,
     children:React.ReactNode,
+    response?:APIResponse
+    success?:{title:string,message:string}
     submit:()=>void
 }>){
-    //const [response,formAction] = useFormState(action,initialState)
+    const {setLastAction} = usePageContext()
     const formProps = useProps([
         {
             props:{
@@ -32,15 +28,15 @@ export default function Form({
             }
         }
     ])
-    
-
 
     useEffect(()=>{
-        if(response.status == 'error'){
-            //formProps.mixClasses(styler.error_form)
-        }
-        else{
-            formProps.set({className:className})
+        if(response){
+            if(response.status == 'ok'){
+                setLastAction({
+                    type:'right',
+                    ...success
+                })
+            }
         }
     },[response])
 

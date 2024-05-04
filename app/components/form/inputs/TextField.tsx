@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import styler from '../Form.module.sass'
 import { FieldError, FieldErrors, FieldValues } from "react-hook-form"
 import useProps from "@/app/hooks/useProps"
+import useInput from "@/app/components/form/hooks/useInput"
+import { UseForm } from "@/app/components/form/hooks/useForm"
 
 
 
@@ -11,28 +13,50 @@ export default function TextField({
     label,
     placeholder,
     name,
-    className
+    className,
+    require,
+    form
 }:Readonly<{
     label?:string
-    name?:string
+    name:string
     placeholder?:string
-    className?:string
+    className?:string,
+    form:UseForm
+    require?:boolean|{ message?:string}
 }>){
-    const input = useProps([
-        {
-            props:{className:styler.textField}
+    const inputState = useInput(form,{
+        name:name,
+        require:require
+    })
+
+    const inputContainer = useProps([{
+        props:{
+            className:styler.textField
         }
-    ])
+    },{
+        mixClass:className
+    }])
+
+    useEffect(()=>{
+        inputContainer.mixClasses(styler.textField_error,{
+            exist:[inputState.error]
+        },true)
+    },[inputState.error])
     
 
     return <>
-        <div {...input.props}>
+        <div {...inputContainer.props}>
             {label &&
-                <label htmlFor={name} className={styler.label} >{label}</label>
+                <label htmlFor={name}>{label}{require && <span>*</span>}</label>
             }
-            <input type="text" placeholder={placeholder} className={styler.input} name={name}/>
-            
-            
+            <input 
+                type="text" 
+                placeholder={placeholder} 
+                {...inputState.props}
+            />
+            {inputState.error &&
+            <p className={styler.message}>{inputState.error.message}</p>
+            }
         </div>
     </>
 }

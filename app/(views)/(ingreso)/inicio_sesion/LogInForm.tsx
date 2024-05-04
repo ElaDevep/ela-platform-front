@@ -10,13 +10,14 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import {useProps,useForm} from '@/ela-hooks'
 import Form from '@/app/components/form/Form'
-import {DevTool} from '@hookform/devtools'
-import TextField2 from '@/app/components/form/inputs/TextField2'
+import FormError from '@/app/components/form/FormError'
+import { title } from 'process'
 
 
 const initialState:APIResponse={
     status:'unknown',
-    data:''
+    data:'',
+    id:0
 }
 
 interface formData{
@@ -29,47 +30,30 @@ interface formData{
 export default function LogInForm({}:Readonly<{}>){
     const [response,formAction] = useFormState(logInAction,initialState)
     const form = useForm()
-    
-
-    useEffect(()=>{
-        console.log(response)
-        if(response.status == 'error'){
-            //formProps.mixClasses(styler.erro_form)
-        }
-        else{
-            //formProps.set({className:className})
-        }
-    },[response])
-
-
-    useEffect(()=>{
-        console.log(form)
-    })
-
 
     return <>
         <Form 
             className={styler.logIn_form} 
-            action={logInAction} 
-            response={response}
             submit = {form.onSubmit}
+            response = {response}
+            success={{
+                title:'Bienvenido!',
+                message:'Sesión iniciada correctamente'
+            }}
         >
-            <TextField2 
+            <TextField
                 label='Correo'
                 name='email'
-                require
-                form={form}
-            />
-            <TextField2 
-                label='Nombre'
-                name='name'
                 require
                 form={form}
             />
             <PasswordField 
                 label='Contraseña'
                 name='password'
+                require
+                form={form}
             />
+            <FormError response={response} modal={{title:'Error al iniciar sesión'}} />
             <Submit action={formAction} className={styler.logIn_submit}>Ingresar</Submit>
             <Link href={'/blogs'} className={styler.guest_link}>Entrar como invitado</Link>
         </Form>

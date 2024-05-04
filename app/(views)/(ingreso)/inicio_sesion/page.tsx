@@ -12,7 +12,7 @@ import ela_logo_w from '@/public/svg/logo_ela_white.svg'
 
 import { useEffect, useState } from 'react'
 import useProps from '@/app/hooks/useProps'
-import LogInForm from './login_form'
+import LogInForm from './LogInForm'
 
 
 export default function LogIn(){

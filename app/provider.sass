@@ -18,7 +18,7 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
 
 
 @function palete($tag)
-    $able-colors: primary,primary-dark,primary-light,general-text,contrast,uncontrast,contrast-light
+    $able-colors: primary,primary-dark,primary-light,general-text,contrast,uncontrast,contrast-light,right-notification,error-notification,info-notification,over-primary
     @if list.index($able-colors,$tag) == null
         @error 'Color no found'
         @return #757575
@@ -39,10 +39,10 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
             #{$atribute}: $value
 
 @mixin button($type)
-    width: 2em
-    height: 2em
+    width: auto
+    min-height: 2em
 
-    padding: 0.4em 0
+    padding: 0.4em 0.2em
         
     border-radius: 0.5rem
 
@@ -57,7 +57,6 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
     &:active
         transform: scale(0.99)
     @if $type == 'main'
-        position: relative
 
         background-color: palete('primary')
 
@@ -71,7 +70,6 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
         
 
     @if $type == 'secondary'
-        position: relative
 
         background-color: palete('contrast')
         
@@ -92,3 +90,43 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
             background-color: palete('primary-dark')
             border-color: palete('uncontrast') 
             color: palete('uncontrast')
+
+
+@mixin fadeIn($time:2)
+    animation-name: fadeIn 
+    animation-duration: #{$time}s
+    animation-timing-function: ease-in-out
+
+@keyframes fadeIn 
+    from
+        opacity: 0
+    to
+        opacity: 100
+
+    
+@mixin fadeOut($time:2)
+    animation-name: fadeOut 
+    animation-duration: #{$time}s
+    animation-timing-function: ease-in-out
+
+@keyframes fadeOut 
+    from
+        opacity: 100
+    to
+        opacity: 0
+
+    
+@mixin fadeInOut($time)
+    animation-name: fadeInOut 
+    animation-duration: #{$time}s
+    animation-timing-function: ease-in-out
+    
+@keyframes fadeInOut 
+    from
+        opacity: 0
+    25%
+        opacity: 100
+    75%
+        opacity: 100
+    to
+        opacity: 0

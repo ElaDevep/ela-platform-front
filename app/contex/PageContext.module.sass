@@ -1,0 +1,42 @@
+@import  '@/style_provider'
+
+.lastRightAction, .lastErrorAction, .lastInfoAction
+    position: fixed
+    bottom: 1em
+    right: 1em
+    z-index: 10
+
+    width: 20em
+    mix-height: 6em
+
+    padding: 1em
+
+    opacity: 0
+
+    border-radius: 1em
+
+    color: #FEFEFE
+    font-size: 1.1em
+
+    @include fadeInOut(5)
+
+    span
+        font-weight: 700
+    
+    p
+        display: inline-block
+
+
+        width: 100%
+        height: auto
+
+        text-overflow: ellipsis
+
+.lastRightAction
+    background-color: palete(right-notification)
+
+.lastErrorAction
+    background-color: palete(error-notification)
+
+.lastInfoAction
+    background-color: palete(info-notification)

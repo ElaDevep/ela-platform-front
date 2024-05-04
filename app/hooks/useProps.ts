@@ -175,8 +175,6 @@ function useProps(initialProps:InitialProps){
     }
 
     const resetClasses = () =>{
-        console.log(':v')
-        console.log(initialClasses)
         if(initialClasses)
             setProps(Object.assign(thisProps,{className:initialClasses}))
     }
@@ -249,8 +247,6 @@ function useProps(initialProps:InitialProps){
                 }
             }
             setProps(initialPropsSet)
-            console.log('>:v')
-            console.log(initialPropsSet.className)
             if(initialPropsSet.className)
                 setInitClasses(initialPropsSet.className)
         }

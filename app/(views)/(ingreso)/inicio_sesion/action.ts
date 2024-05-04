@@ -7,6 +7,7 @@ import { redirect } from "next/navigation"
 export async function logInAction(prevState: any,formData:FormData){
     let response:APIResponse = {
         status:"unknown",
+        id:0,
         data:''
     }
     
@@ -19,6 +20,7 @@ export async function logInAction(prevState: any,formData:FormData){
     .then((res)=>{
         response = {
             status:'ok',
+            id:200,
             data:res.data.data
         }
         console.log(res)
@@ -26,6 +28,7 @@ export async function logInAction(prevState: any,formData:FormData){
     .catch((error)=>{
         response = {
             status:'error',
+            id:400,
             data:error.response.data.data,
             error:{
                 status:error.response.status,

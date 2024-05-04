@@ -1,11 +1,93 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styler from './Form.module.sass'
+import { title } from 'process'
+import { usePageContext } from '@/app/contex/PageContext'
 
-export default function FormError({}:Readonly<{}>){
+export default function FormError({
+    response,
+    modal,
+    messages,
+    message,
+    notification
+}:Readonly<{
+    response:APIResponse
+    modal?:{
+        title:string
+        message?:string
+    }
+    notification?:boolean
+    message?:string
+    messages?:Array<{
+        id:number
+        title:string
+        message:string
+    }>
+}>){
+    const { setLastAction } = usePageContext()
+    const [show,setShow] = useState<boolean>()
+
+    useEffect(()=>{
+        if(response.status == 'error'){
+            if(messages){
+                for(let message of messages){
+                    if(message.id == response.id){
+                        if(notification){
+                            setLastAction({
+                                type:'error',
+                                title:message.title,
+                                message:message.message
+                            })
+                        }
+                        else{
+                            setShow(true)
+                        }
+                    }
+                }
+            }
+            else{
+                if(notification){
+                    setLastAction({
+                        type:'error',
+                        title:'Error en el formulario',
+                        message: response.data
+                    })
+                }
+                else{
+                    setShow(true)
+                }
+            }
+        }
+        else{
+            setLastAction(undefined)
+            setShow(false)
+        }
+    },[response])
     
 
     return <>
+        {show &&
+        <>
+        {modal ?
+            <>
+                <div className={styler.APIerror}>
+                    <div className={styler.APIerror_div}>
+                        <span>{modal.title}</span>
+                        <div>
+                            <p>
+                                {modal.message ? modal.message :response.data}
+                            </p>
+                        </div>
+                        <button onClick={()=>{setShow(false)}}>Aceptar</button>
+                    </div>
+                </div>
+            </>
+        :
+            <>
+                <p className={styler.APIerror_message}>{message?message:response.data}</p>
+            </>}
+        </>
+        }
     </>
 }
