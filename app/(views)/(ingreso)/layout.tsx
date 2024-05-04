@@ -15,8 +15,9 @@ export default function Layout({
     return <>
         <BreakPoint
             className={styler.vertical_relation}
-            relation={[4,5]}
             element={<main className={styler.main}/>}
+            relation={[4,5]}
+            maxWidth={750}
         >
             <Frame
                 src={enter_background}

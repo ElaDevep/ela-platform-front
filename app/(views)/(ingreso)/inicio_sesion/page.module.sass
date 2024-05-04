@@ -2,7 +2,9 @@
 
 .front_div
     position: relative
-    z-index: 1
+    top:0
+    left: 0
+    z-index: 2
 
     width: 100vw
     height: 100vh
@@ -13,6 +15,8 @@
     gap:5rem
 
     padding-right: 4em
+
+    transition: top 3s ease-in-out
 
     .welcomeTitle_div
         position: relative
@@ -28,10 +32,16 @@
         font-size: 1.7rem
         @include setAllTextColor(palete('contrast'))
 
+        p
+            font-weight: 500
+
 
         .ElaLogotipo_img
             width: 4em
             height: 2em 
+
+        .toLogIn_button
+            visibility: collapse
     
     .logInForm_div
         position: relative
@@ -79,8 +89,35 @@
     .front_div
         display: block
 
-        background: red
+        height: 200vh
+
 
         .welcomeTitle_div, .logInForm_div
             height: 100vh
-            width: 100vh
+            width: 100vw
+            
+        .welcomeTitle_div
+            justify-content: center
+            align-items: center
+            gap: 0.5em
+
+            padding: 0 20%
+
+            text-align: center
+
+            .toLogIn_button
+                @include button('secondary')
+                
+                width: auto
+
+                margin-top: 2em
+
+                padding: 0 1em
+
+                visibility: visible
+
+    .goToLogIn
+        position: relative
+
+        top:-100vh  
+

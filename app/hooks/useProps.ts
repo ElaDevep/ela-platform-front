@@ -127,7 +127,7 @@ function useProps(initialProps:Array<{
     }
 
     //Mix the classes   
-    const mixClasses = (nameClasses:Array<string|undefined>|string|undefined,conditions:PropsConditioner|undefined) =>{
+    const mixClasses = (nameClasses:Array<string|undefined>|string|undefined,conditions:PropsConditioner|void) =>{
         let returnClassName:string = ''
         
 
@@ -137,7 +137,7 @@ function useProps(initialProps:Array<{
 
         switch(typeof nameClasses){
             case 'object':
-                for(let nameClass in nameClasses){
+                for(let nameClass of nameClasses){
                     if(!returnClassName.match(new RegExp('^.*('+nameClass+')+.*$'))){
                         returnClassName += ' '+nameClass
                     }
@@ -154,6 +154,9 @@ function useProps(initialProps:Array<{
             if(conditioner(conditions)){
                 setProps(Object.assign(thisProps,{className:returnClassName}))
             }
+        }
+        else{
+            setProps(Object.assign(thisProps,{className:returnClassName}))
         }
     }
 
@@ -182,7 +185,7 @@ function useProps(initialProps:Array<{
                         if(prop.mixClass){
                             switch(typeof prop.mixClass){
                                 case 'object':
-                                    for(let nameClass in prop.mixClass){
+                                    for(let nameClass of prop.mixClass){
                                         if(thisProps.className){
                                             if(thisProps.className.match('/^.*('+nameClass+'.*)+$/')){
                                                 continue

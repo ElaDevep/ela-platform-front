@@ -67,7 +67,7 @@ export default function BreakPoint({
             setHidden(breakCheckSetter())
             return
         }
-        responsiver.mixClasses(className,{
+        responsiver.mixClasses([className,element.props.className],{
             someTrue:[breakCheckSetter(),(device.desk && isDesk),(device.mobile && isMobile)],
             exist:[className],
             noExist:[hide]
