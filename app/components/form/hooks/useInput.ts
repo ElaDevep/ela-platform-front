@@ -76,6 +76,10 @@ export default function useInput(form:UseForm,params:InputParams){
             setError(undefined)
     }
 
+    const onSubmit = () =>{
+        
+    }
+
     const valueChanged = (value:string|void) =>{
         if(value){
             setValue(value)
