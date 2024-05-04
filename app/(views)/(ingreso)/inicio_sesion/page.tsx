@@ -13,6 +13,7 @@ import ela_logo_w from '@/public/svg/logo_ela_white.svg'
 import { useEffect, useState } from 'react'
 import useProps from '@/app/hooks/useProps'
 import LogInForm from './LogInForm'
+import axios from 'axios'
 
 
 export default function LogIn(){
@@ -23,9 +24,20 @@ export default function LogIn(){
         }
     ])
 
+    const test_api = ()=>{
+        axios.get('http://localhost:4000/usuarios')
+        .then((res)=>{
+            console.log(res)
+        })
+    }
+
     const goToLogIn=()=>{
         move_div.mixClasses(styler.goToLogIn)
     }
+
+    useEffect(()=>{
+        test_api()
+    },[])
     
     return <>
         <BreakPoint

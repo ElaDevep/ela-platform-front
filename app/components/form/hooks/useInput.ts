@@ -12,8 +12,10 @@ interface InputParams{
         message?:string
     },
     pattern?:{
-        
-    }
+        value:RegExp
+        message?:string
+    },
+    otherValidation?:(values:string)=>string|undefined
     props?:InitialProps
 }
 
@@ -51,6 +53,8 @@ export default function useInput(form:UseForm,params:InputParams){
                     })
                     return
                 }
+            }
+            if(params.pattern){
             }
             setError(undefined)
     }

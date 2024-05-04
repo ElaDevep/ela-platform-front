@@ -31,6 +31,10 @@ export default function LogInForm({}:Readonly<{}>){
     const [response,formAction] = useFormState(logInAction,initialState)
     const form = useForm()
 
+    useEffect(()=>{
+        console.log(form)
+    })
+
     return <>
         <Form 
             className={styler.logIn_form} 
