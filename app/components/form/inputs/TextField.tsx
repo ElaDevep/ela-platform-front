@@ -10,14 +10,12 @@ import useProps from "@/app/hooks/useProps"
 export default function TextField({
     label,
     placeholder,
-    useInput,
-    errors,
+    name,
     className
 }:Readonly<{
     label?:string
-    errors:FieldErrors<FieldValues>
+    name?:string
     placeholder?:string
-    useInput:any
     className?:string
 }>){
     const input = useProps([
@@ -30,15 +28,10 @@ export default function TextField({
     return <>
         <div {...input.props}>
             {label &&
-                <label htmlFor={useInput.name} className={styler.label} >{label}</label>
+                <label htmlFor={name} className={styler.label} >{label}</label>
             }
-            <input type="text" placeholder={placeholder} className={styler.input} {...useInput}/>
-            {errors[useInput.name]&&
-                <>
-                {/*@ts-ignore*/}
-                <p>{errors[useInput.name]?.message}</p>
-                </>
-            }
+            <input type="text" placeholder={placeholder} className={styler.input} name={name}/>
+            
             
         </div>
     </>

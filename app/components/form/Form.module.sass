@@ -15,11 +15,10 @@
     justify-content: center
     align-items: flex-start
 
-    color: inherit
-
     .label
         width: inherit
 
+        color: palete('general-text')
         span
             color: palete('primary')
 
@@ -38,7 +37,7 @@
         border-bottom: palete(contrast-light) 2px solid
         border-radius: 2px
 
-        color: palete(general-text)
+        color: palete(general-text) !important
 
         transition: border-color 0.5s ease-in-out
         
@@ -49,14 +48,6 @@
 
         &:focus
             border-color: palete(primary)
-
-.errorInput
-    .label, p
-        color: red
-
-    .input
-        border-color: red
-    
     
 .error_form 
     .textField
@@ -68,8 +59,12 @@
             color: red
     
     .input
-        border-color: red
+        border-color: red !important
     
+    .message
+        color: red
+
+
 
 .passwordField
     &:hover

@@ -15,12 +15,14 @@ export default function Form({
     action,
     className,
     response,
-    children
+    children,
+    submit
 }:Readonly<{
     action:(prevState: any, formData: FormData)=>Promise<APIResponse>,
     response:APIResponse
     className:string,
-    children:React.ReactNode
+    children:React.ReactNode,
+    submit:()=>void
 }>){
     //const [response,formAction] = useFormState(action,initialState)
     const formProps = useProps([
@@ -35,7 +37,7 @@ export default function Form({
 
     useEffect(()=>{
         if(response.status == 'error'){
-            formProps.mixClasses(styler.error_form)
+            //formProps.mixClasses(styler.error_form)
         }
         else{
             formProps.set({className:className})
@@ -43,7 +45,7 @@ export default function Form({
     },[response])
 
     return <>
-        <form {...formProps.props} noValidate>
+        <form {...formProps.props} noValidate onSubmit={submit}>
             {children}
         </form>
     </>

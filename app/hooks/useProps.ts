@@ -9,15 +9,19 @@ export interface PropsConditioner{
     noExist?:Array<any>|any
 }
 
-function useProps(initialProps:Array<{
+export type InitialProps =
+    Array<{
         props?:{[key:string]:any},
         mix?:{[key:string]:any},
         mixClass?:Array<string|undefined>|string|undefined,
         conditions?:PropsConditioner
-    }>|void){
+    }>|void|undefined
+
+
+function useProps(initialProps:InitialProps){
     const [reRender,makeReRender] = useState<{}>()
     const [thisProps,setProps] = useState<{[key:string]:any}>({})
-
+    const [initialClasses,setInitClasses] = useState<string>()
     
 
     //Needs that all conditions are true
@@ -104,7 +108,6 @@ function useProps(initialProps:Array<{
             //If result is false in any case break the function
             if(!result) return false
         }
-
         return result
     }
 
@@ -119,46 +122,63 @@ function useProps(initialProps:Array<{
                     props[prop] = undefined
                 }
                 setProps(Object.assign({},thisProps,props))
+                return false
+            }
+            else{
+                return false
             }
         }
         else{
             setProps(Object.assign({},thisProps,props))
         }
         makeReRender({})
+        return true
     }
 
     //Mix the classes   
-    const mixClasses = (nameClasses:Array<string|undefined>|string|undefined,conditions:PropsConditioner|void) =>{
+    const mixClasses = (nameClasses:Array<string|undefined>|string|undefined,conditions:PropsConditioner|void,reset:boolean|void) =>{
         let returnClassName:string = ''
         
         if(thisProps.className){
-            returnClassName = thisProps.className
+            returnClassName = thisProps.className+' '
         }
 
         switch(typeof nameClasses){
             case 'object':
                 for(let nameClass of nameClasses){
                     if(!returnClassName.match(new RegExp('^.*('+nameClass+')+.*$'))){
-                        returnClassName += ' '+nameClass
+                        returnClassName += nameClass+' '
                     }
                 }
                 break
             case 'string':
                 if(!returnClassName.match(new RegExp('^.*('+nameClasses+')+.*$'))){
-                    returnClassName += ' '+nameClasses
+                    returnClassName += nameClasses+' '
                 }
                 break
         }
-
         if(conditions){
             if(conditioner(conditions)){
                 setProps(Object.assign(thisProps,{className:returnClassName}))
+            }
+            else{
+                if(reset && initialClasses)
+                    setProps(Object.assign(thisProps,{className:initialClasses}))
+                return false
             }
         }
         else{
             setProps(Object.assign(thisProps,{className:returnClassName}))
         }
         makeReRender({})
+        return true
+    }
+
+    const resetClasses = () =>{
+        console.log(':v')
+        console.log(initialClasses)
+        if(initialClasses)
+            setProps(Object.assign(thisProps,{className:initialClasses}))
     }
 
     const get = (prop:string) =>{
@@ -229,11 +249,15 @@ function useProps(initialProps:Array<{
                 }
             }
             setProps(initialPropsSet)
+            console.log('>:v')
+            console.log(initialPropsSet.className)
+            if(initialPropsSet.className)
+                setInitClasses(initialPropsSet.className)
         }
         makeReRender({})
     },[])
 
-    return {props:thisProps,getAll,get,set,mixClasses}
+    return {props:thisProps,getAll,get,set,mixClasses,resetClasses}
 }
 
 export default useProps 

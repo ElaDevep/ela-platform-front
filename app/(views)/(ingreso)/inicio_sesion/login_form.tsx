@@ -1,6 +1,5 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
 import styler from './page.module.sass'
 import { useFormState } from 'react-dom'
 
@@ -9,9 +8,10 @@ import { logInAction } from './action'
 import { PasswordField,TextField,Submit } from '@/ela-form'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import useProps from '@/app/hooks/useProps'
+import {useProps,useForm} from '@/ela-hooks'
 import Form from '@/app/components/form/Form'
 import {DevTool} from '@hookform/devtools'
+import TextField2 from '@/app/components/form/inputs/TextField2'
 
 
 const initialState:APIResponse={
@@ -19,13 +19,16 @@ const initialState:APIResponse={
     data:''
 }
 
+interface formData{
+    username:string,
+    email:string,
+    password:string
+}
+
 
 export default function LogInForm({}:Readonly<{}>){
-    const form = useForm()
-    const {register,formState,control} = form
-    const {errors} = formState
     const [response,formAction] = useFormState(logInAction,initialState)
-
+    const form = useForm()
     
 
     useEffect(()=>{
@@ -38,41 +41,34 @@ export default function LogInForm({}:Readonly<{}>){
         }
     },[response])
 
+
     useEffect(()=>{
-        console.log(errors) 
+        console.log(form)
     })
 
+
     return <>
-        <input {...register('username',{
-                required:{
-                    value:true,
-                    message:':B'
-                }
-            })}/>
-        <Form className={styler.logIn_form} action={logInAction} response={response}>
-            
-            <TextField 
+        <Form 
+            className={styler.logIn_form} 
+            action={logInAction} 
+            response={response}
+            submit = {form.onSubmit}
+        >
+            <TextField2 
                 label='Correo'
-                useInput={register('email',{
-                    required:{
-                        value:true,
-                        message:':v'
-                    },
-                    pattern:{
-                        value:/^.*@+.*$/,
-                        message: '>:v'
-                    }
-                })} 
-                errors={errors}
+                name='email'
+                require
+                form={form}
+            />
+            <TextField2 
+                label='Nombre'
+                name='name'
+                require
+                form={form}
             />
             <PasswordField 
-                useInput={register('password',{
-                    required:{
-                        value:true,
-                        message:':v'
-                    }
-                })} 
                 label='Contraseña'
+                name='password'
             />
             <Submit action={formAction} className={styler.logIn_submit}>Ingresar</Submit>
             <Link href={'/blogs'} className={styler.guest_link}>Entrar como invitado</Link>
