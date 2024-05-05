@@ -1,6 +1,7 @@
 'use server'
 
 import { axiosAPI } from "@/app/api/axiosAPI"
+import axios from "axios"
 import { redirect } from "next/navigation"
 
 
@@ -17,7 +18,7 @@ export async function logInAction(prevState: any,formData:FormData){
     }
     
     try{
-        await axiosAPI.post('/auth/login',body)
+        await axios.post('http://localhost:4000/auth/login',body)
         .then((res)=>{
             response = {
                 status:'ok',
@@ -42,7 +43,7 @@ export async function logInAction(prevState: any,formData:FormData){
     catch(error){
         response = {
             status:'error',
-            id:400,
+            id:404,
             data:error
         }
     }
