@@ -17,7 +17,7 @@ import { title } from 'process'
 const initialState:APIResponse={
     status:'unknown',
     data:'',
-    id:0
+    code:0
 }
 
 interface formData{
