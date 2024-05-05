@@ -25,7 +25,10 @@ export default function Form({
     const formProps = useProps([
         {
             props:{
-                className:className
+                className:className,
+                noValidate:true,
+                onSubmit:form?.onSubmit,
+                method:'POST'
             }
         }
     ])
@@ -43,7 +46,7 @@ export default function Form({
     },[response])
 
     return <>
-        <form {...formProps.props} noValidate onSubmit={form?.onSubmit}>
+        <form {...formProps.props}>
             {children}
         </form>
     </>
