@@ -32,8 +32,8 @@ export default function LogInForm({}:Readonly<{}>){
     const form = useForm()
 
     useEffect(()=>{
-        console.log(form)
-    },[form])
+        //console.log(form)
+    })
 
     return <>
         <Form 

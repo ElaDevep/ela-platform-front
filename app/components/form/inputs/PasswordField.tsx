@@ -35,7 +35,7 @@ export default function PasswordField({
 
     const inputContainer = useProps([{
         props:{
-            className:styler.textField
+            className:styler.passwordField
         }
     },{
         mixClass:className

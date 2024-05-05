@@ -50,9 +50,13 @@ export default function useForm(){
 
     const onSubmit =()=>{
         for(let input in inputs){
-            console.log(inputs[input])
+            //console.log(inputs[input])
             inputs[input].onSubmit()
         }   
+    }
+
+    const get = (name:string)=>{
+        console.log(inputs[name])
     }
 
     const setInput = (input:{
@@ -68,8 +72,8 @@ export default function useForm(){
     }
     
     useEffect(()=>{
-        console.log(inputs)
+        //console.log(inputs)
     },[inputs])
 
-    return {inputs,setInput,onSubmit}
+    return {inputs,setInput,onSubmit,get}
 }

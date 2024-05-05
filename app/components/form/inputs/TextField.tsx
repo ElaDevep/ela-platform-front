@@ -51,7 +51,6 @@ export default function TextField({
             exist:[inputState.error]
         },true)
     },[inputState.error])
-    
 
     return <>
         <div {...inputContainer.props}>

@@ -15,6 +15,7 @@ interface InputParams{
         message?:string
     },
     otherValidation?:(values:string)=>string|undefined
+    depended?:Array<string>
 }
 
 export interface UseInput{
@@ -25,7 +26,6 @@ export interface UseInput{
     },
     input:{
         props:{[key: string]: any;}
-        
     },
     error:{
         type:string
@@ -41,6 +41,7 @@ export default function useInput(form:UseForm,params:InputParams){
     }>()
     const [touched,setTouched] = useState<boolean>(false)
     const inputRef = useRef<HTMLInputElement>(null)
+    const [reRender,makeReRender] = useState({})
 
     const validateValue = () =>{
             if(params.require){
@@ -76,9 +77,11 @@ export default function useInput(form:UseForm,params:InputParams){
             setError(undefined)
     }
 
-    const onSubmit = () =>{
+    useEffect(()=>{
+        makeReRender({})
+    },[error])
 
-    }
+    
 
     const valueChanged = (value:string|void) =>{
         if(value){
@@ -91,17 +94,26 @@ export default function useInput(form:UseForm,params:InputParams){
         }
     }
 
-    useEffect(()=>{
-        console.log(':v')
+    const setIntoForm = () =>{
         if(inputRef.current){
-            console.log(inputRef.current.value)
             form.setInput({[params.name]:{
                 onSubmit:validateValue,
                 value:inputRef.current.value
             }})
         }
+    }
+
+    useEffect(()=>{
         if(touched){
             validateValue()
+        }
+        else{
+            if(inputRef.current){
+                form.setInput({[params.name]:{
+                    onSubmit:validateValue,
+                    value:inputRef.current.value
+                }})
+            }
         }
     },[value])
 
@@ -110,7 +122,7 @@ export default function useInput(form:UseForm,params:InputParams){
             validateValue()
         }
     },[!value,touched])
-
+    
     useEffect(()=>{
         if(inputRef.current){
             if(params.value){
@@ -123,14 +135,17 @@ export default function useInput(form:UseForm,params:InputParams){
         }
     },[])
 
+
     return {
         name:params.name,
         value:value,
         props:{
             name:params.name,
             ref:inputRef,
-            onChange:()=>{valueChanged()},
-            onBlur:()=>{setTouched(true)}
+            onChange:()=>{
+                valueChanged()
+            },
+            onBlur:()=>{setTouched(true);setIntoForm()}
         },
         error:error
     }
