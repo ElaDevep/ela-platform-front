@@ -33,6 +33,7 @@ export default function Form({
     useEffect(()=>{
         if(response){
             if(response.status == 'ok'){
+                alert('/:v')
                 setLastAction({
                     type:'right',
                     ...success

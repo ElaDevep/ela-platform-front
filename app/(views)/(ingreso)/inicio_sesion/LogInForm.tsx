@@ -36,6 +36,7 @@ export default function LogInForm({}:Readonly<{}>){
         if(response){
             setOnu(JSON.parse(response))
         }
+        console.log(response)
     },[response])
 
     return <>
