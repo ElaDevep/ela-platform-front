@@ -46,11 +46,11 @@ export async function logInAction(prevState: any,formData:FormData){
         //     }
         //     console.log(error)
         // })
-        const res = await axios.post('http://localhost:4000/auth/login',body)
+        const res = await axios.get('https://jsonplaceholder.typicode.com/posts/1')
         response = {
             status:'ok',
             code:200,
-            data:res.data.data
+            data:res.data
         }
     }
     catch(error:any){

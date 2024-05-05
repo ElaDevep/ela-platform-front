@@ -26,10 +26,7 @@ export default function LogIn(){
     ])
 
     const test_api = async()=>{
-        await axiosAPI.post('/auth/login',{
-            email:'admin@gmail.com',
-            password:'contraseña123'
-        })
+        await axios.get('https://jsonplaceholder.typicode.com/posts/1')
         .then((res)=>{
             console.log(res)
         })
