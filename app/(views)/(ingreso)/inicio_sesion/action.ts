@@ -25,27 +25,27 @@ export async function logInAction(prevState: any,formData:FormData){
         // console.log(':v')
         // console.log(responseF)
 
-        await axiosAPI.post('http://localhost:4000/auth/login',body)
-        .then((res)=>{
-            if(res){
-                response = {
-                    status:'ok',
-                    id:200,
-                    data:res
-                }
-            }
-        })
-        .catch((error)=>{
-            response = {
-                status:'error',
-                id:400,
-                data:error.response.data.data,
-                error:{
-                    status:error.response.status,
-                    message:error.response.statusText
-                }
-            }
-        })
+        // await axiosAPI.post('http://localhost:4000/auth/login',body)
+        // .then((res)=>{
+        //     if(res){
+        //         response = {
+        //             status:'ok',
+        //             id:200,
+        //             data:res
+        //         }
+        //     }
+        // })
+        // .catch((error)=>{
+        //     response = {
+        //         status:'error',
+        //         id:400,
+        //         data:error.response.data.data,
+        //         error:{
+        //             status:error.response.status,
+        //             message:error.response.statusText
+        //         }
+        //     }
+        // })
     // }
     // catch(error){
     //     response = {
@@ -58,5 +58,9 @@ export async function logInAction(prevState: any,formData:FormData){
     if(response.status == 'ok'){
         //redirect('/clientes')
     }
-    return JSON.stringify(response)
+    return JSON.stringify({
+            status:'ok',
+            id:200,
+            data:':<'
+        })
 }
