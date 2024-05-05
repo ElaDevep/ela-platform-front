@@ -20,7 +20,7 @@ export default function FormError({
     notification?:boolean
     message?:string
     messages?:Array<{
-        id:number
+        code:number
         title:string
         message:string
     }>
@@ -32,7 +32,7 @@ export default function FormError({
         if(response.status == 'error'){
             if(messages){
                 for(let message of messages){
-                    if(message.id == response.id){
+                    if(message.code == response.code){
                         if(notification){
                             setLastAction({
                                 type:'error',
