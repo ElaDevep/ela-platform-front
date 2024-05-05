@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react'
 import useProps from '@/app/hooks/useProps'
 import LogInForm from './LogInForm'
 import axios from 'axios'
+import { axiosAPI } from '@/app/api/axiosAPI'
 
 
 export default function LogIn(){
@@ -24,19 +25,19 @@ export default function LogIn(){
         }
     ])
 
-    // const test_api = ()=>{
-    //     axios.get('http://localhost:4000/usuarios')
-    //     .then((res)=>{
-    //         console.log(res)
-    //     })
-    // }
+    const test_api = ()=>{
+        axiosAPI.get('/usuarios')
+        .then((res)=>{
+            console.log(res)
+        })
+    }
 
     const goToLogIn=()=>{
         move_div.mixClasses(styler.goToLogIn)
     }
 
     useEffect(()=>{
-        //test_api()
+        test_api()
     },[])
     
     return <>
