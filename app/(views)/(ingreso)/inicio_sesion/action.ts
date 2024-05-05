@@ -27,6 +27,7 @@ export async function logInAction(prevState: any,formData:FormData){
 
         await axiosAPI.post('http://localhost:4000/auth/login',body)
         .then((res)=>{
+            throw  JSON.stringify(res)
             response = {
                 status:'ok',
                 id:200,
@@ -35,6 +36,7 @@ export async function logInAction(prevState: any,formData:FormData){
             console.log(res)
         })
         .catch((error)=>{
+            throw  JSON.stringify(error)
             response = {
                 status:'error',
                 id:400,
