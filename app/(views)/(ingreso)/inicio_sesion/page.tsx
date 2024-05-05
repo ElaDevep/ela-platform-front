@@ -25,8 +25,11 @@ export default function LogIn(){
         }
     ])
 
-    const test_api = ()=>{
-        axiosAPI.get('/usuarios')
+    const test_api = async()=>{
+        await axiosAPI.post('/auth/login',{
+            email:'admin@gmail.com',
+            password:'contraseña123'
+        })
         .then((res)=>{
             console.log(res)
         })
@@ -37,6 +40,7 @@ export default function LogIn(){
     }
 
     useEffect(()=>{
+        console.log('👻')
         test_api()
     },[])
     
