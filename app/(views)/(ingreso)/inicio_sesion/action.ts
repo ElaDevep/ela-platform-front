@@ -27,10 +27,12 @@ export async function logInAction(prevState: any,formData:FormData){
 
         await axiosAPI.post('http://localhost:4000/auth/login',body)
         .then((res)=>{
-            response = {
-                status:'ok',
-                id:200,
-                data:res.data
+            if(res){
+                response = {
+                    status:'ok',
+                    id:200,
+                    data:res
+                }
             }
         })
         .catch((error)=>{
