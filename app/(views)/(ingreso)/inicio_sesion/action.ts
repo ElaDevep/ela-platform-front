@@ -17,7 +17,7 @@ export async function logInAction(prevState: any,formData:FormData){
         password:formData.get('password')
     }
     
-    try{
+    // try{
         // const responseF = await fetch('http://localhost:4000/auth/login',{
         //     method:'POST',
         //     body:formData
@@ -46,14 +46,14 @@ export async function logInAction(prevState: any,formData:FormData){
             }
             console.log(error)
         })
-    }
-    catch(error){
-        response = {
-            status:'error',
-            id:404,
-            data:error
-        }
-    }
+    // }
+    // catch(error){
+    //     response = {
+    //         status:'error',
+    //         id:404,
+    //         data:error
+    //     }
+    // }
 
     if(response.status == 'ok'){
         //redirect('/clientes')
