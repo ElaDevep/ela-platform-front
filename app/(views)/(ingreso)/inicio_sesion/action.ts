@@ -5,7 +5,7 @@ import { redirect } from "next/navigation"
 
 
 export async function logInAction(prevState: any,formData:FormData){
-    let response:APIResponse = {
+    let response:APIResponse & Object = {
         status:"unknown",
         id:0,
         data:''
@@ -50,6 +50,5 @@ export async function logInAction(prevState: any,formData:FormData){
     if(response.status == 'ok'){
         //redirect('/clientes')
     }
-
-    return response
+    return JSON.stringify(response)
 }

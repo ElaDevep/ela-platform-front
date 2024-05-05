@@ -28,18 +28,21 @@ interface formData{
 
 
 export default function LogInForm({}:Readonly<{}>){
-    const [response,formAction] = useFormState(logInAction,initialState)
+    const [response,formAction] = useFormState(logInAction,'')
     const form = useForm()
+    const [onu,setOnu] = useState()
 
     useEffect(()=>{
-        //console.log(form)
-    })
+        if(response){
+            setOnu(JSON.parse(response))
+        }
+    },[response])
 
     return <>
         <Form 
             className={styler.logIn_form} 
             form = {form}
-            response = {response}
+            response={onu}
             success={{
                 title:'Bienvenido!',
                 message:'Sesión iniciada correctamente'
@@ -57,7 +60,7 @@ export default function LogInForm({}:Readonly<{}>){
                 require
                 form={form}
             />
-            <FormError response={response} modal={{title:'Error al iniciar sesión'}} />
+            {/* {<FormError response={JSON.parse(response)} modal={{title:'Error al iniciar sesión'}} />} */}
             <Submit action={formAction} className={styler.logIn_submit}>Ingresar</Submit>
             <Link href={'/blogs'} className={styler.guest_link}>Entrar como invitado</Link>
         </Form>
