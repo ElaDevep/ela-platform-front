@@ -27,19 +27,13 @@ export async function logInAction(prevState: any,formData:FormData){
 
         await axiosAPI.post('http://localhost:4000/auth/login',body)
         .then((res)=>{
-            const respu = (res.data)
-            const error = JSON.stringify(respu)
-            console.log(error)
-            throw  (res.data).toString()
             response = {
                 status:'ok',
                 id:200,
-                data:res.data.data
+                data:res.data
             }
-            console.log(res)
         })
         .catch((error)=>{
-            throw  JSON.stringify(error)
             response = {
                 status:'error',
                 id:400,
@@ -49,7 +43,6 @@ export async function logInAction(prevState: any,formData:FormData){
                     message:error.response.statusText
                 }
             }
-            console.log(error)
         })
     // }
     // catch(error){
