@@ -1,6 +1,6 @@
 'use client'
 
-import { PageProvider } from "../contex/PageContext";
+import { PageProvider } from "../context/PageContext";
 
 export default function RootLayout({
     children

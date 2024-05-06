@@ -19,39 +19,43 @@ export function PageProvider({
     props?:{[key:string]:any},
     children:React.ReactNode
 }>){
-    const [lastActionShow,setLastActionShow] = useState<LastAction>()
-    const lastAction = useProps()
+    const [lastAction,setLastAction] = useState<LastAction>()
+    const lastActionProps = useProps()
 
     const value = {
-        setLastAction: setLastActionShow,
-        lastAction: lastActionShow
+        setLastAction: setLastAction,
+        lastAction: lastAction
     }
 
     useEffect(()=>{
-        lastAction.set({className:styler.lastRightAction},{
-            allTrue:[lastActionShow?.type == 'right']
+        lastActionProps.set({className:styler.lastRightAction},{
+            allTrue:[lastAction?.type == 'right']
         })
-        lastAction.set({className:styler.lastErrorAction},{
-            allTrue:[lastActionShow?.type == 'error']
+        lastActionProps.set({className:styler.lastErrorAction},{
+            allTrue:[lastAction?.type == 'error']
         })
-        lastAction.set({className:styler.lastInfoAction},{
-            allTrue:[lastActionShow?.type == 'info']
+        lastActionProps.set({className:styler.lastInfoAction},{
+            allTrue:[lastAction?.type == 'info']
         })
-        if(lastActionShow){
+        if(lastAction){
             setTimeout(()=>{
-                setLastActionShow(undefined)
+                setLastAction(undefined)
             },6000)
         }
-    },[lastActionShow])
+    },[lastAction])
+
+    useEffect(()=>{
+        console.log(lastAction)
+    })
 
 
     
     return <PageContext.Provider value={value} {...props}>
-        {lastActionShow &&
+        {lastAction &&
         <>
-            <div {...lastAction.props}>
-                <span>{lastActionShow.title}</span>
-                <p>{lastActionShow.message}</p>
+            <div {...lastActionProps.props}>
+                <span>{lastAction.title}</span>
+                <p>{lastAction.message}</p>
             </div>
         </>
         }

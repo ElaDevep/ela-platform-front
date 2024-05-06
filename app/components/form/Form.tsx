@@ -5,23 +5,22 @@ import styler from './Form.module.sass'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import useProps from '@/app/hooks/useProps'
-import { usePageContext } from '@/app/contex/PageContext'
+import { usePageContext } from '@/app/context/PageContext'
 import { UseForm } from './hooks/useForm'
+import { useRouter } from 'next/navigation'
+
+
+
 
 export default function Form({
     className,
     children,
-    response,
-    success,
     form
 }:Readonly<{
     className:string,
     children:React.ReactNode,
-    response?:APIResponse
-    success?:{title:string,message:string}
     form:UseForm
 }>){
-    const {setLastAction} = usePageContext()
     const formProps = useProps([
         {
             props:{
@@ -33,17 +32,6 @@ export default function Form({
         }
     ])
 
-    useEffect(()=>{
-        if(response){
-            alert('/:v')
-            if(response.status == 'ok'){
-                setLastAction({
-                    type:'right',
-                    ...success
-                })
-            }
-        }
-    },[response])
 
     return <>
         <form {...formProps.props}>
@@ -51,3 +39,4 @@ export default function Form({
         </form>
     </>
 }
+

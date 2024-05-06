@@ -21,6 +21,12 @@ declare global {
         message:string
         type:'error'|'info'|'right'|'unknown'
     }
+
+    interface SuccessAction{
+        success?:{title:string,message:string,redirect?:string}
+    }
+
+    type FormAction = (prevState: any, formData: FormData)=>Promise<string>
 }
 
 

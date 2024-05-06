@@ -18,40 +18,28 @@ export async function logInAction(prevState: any,formData:FormData){
     }
     
     try{
-        // const responseF = await fetch('http://localhost:4000/auth/login',{
-        //     method:'POST',
-        //     body:formData
-        // })
-        // console.log(':v')
-        // console.log(responseF)
 
-        // await axios.post('http://localhost:4000/auth/login',body)
-        // .then((res)=>{
-        //     response = {
-        //         status:'ok',
-        //         id:200,
-        //         data:res.data.data
-        //     }
-        //     console.log(res)
-        // })
-        // .catch((error)=>{
-        //     response = {
-        //         status:'error',
-        //         id:400,
-        //         data:error.response.data.data,
-        //         error:{
-        //             status:error.response.status,
-        //             message:error.response.statusText
-        //         }
-        //     }
-        //     console.log(error)
-        // })
-        const res = await axios.get('https://jsonplaceholder.typicode.com/posts/1')
-        response = {
-            status:'ok',
-            code:200,
-            data:res.data
-        }
+        await axiosAPI.post('/auth/login',body)
+        .then((res)=>{
+            response = {
+                status:'ok',
+                code:200,
+                data:res.data.data
+            }
+            console.log(res)
+        })
+        .catch((error)=>{
+            response = {
+                status:'error',
+                code:400,
+                data:error.response.data.data,
+                error:{
+                    status:error.response.status,
+                    message:error.response.statusText
+                }
+            }
+            console.log(error)
+        })
     }
     catch(error:any){
         response = {
@@ -60,9 +48,6 @@ export async function logInAction(prevState: any,formData:FormData){
             data:error.response.data.data
         }
     }
-
-    if(response.status == 'ok'){
-        //redirect('/clientes')
-    }
+    
     return JSON.stringify(response)
 }

@@ -18,6 +18,8 @@ import { axiosAPI } from '@/app/api/axiosAPI'
 
 
 export default function LogIn(){
+    const [obj1,setObj1] = useState()
+    
 
     const move_div = useProps([
         {
@@ -37,8 +39,7 @@ export default function LogIn(){
     }
 
     useEffect(()=>{
-        console.log('👻')
-        test_api()
+        console.log(process.env.NEXT_PUBLIC_DEMO_API_BASE_URL)
     },[])
     
     return <>

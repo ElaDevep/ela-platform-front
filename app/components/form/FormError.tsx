@@ -3,16 +3,17 @@
 import { useEffect, useState } from 'react'
 import styler from './Form.module.sass'
 import { title } from 'process'
-import { usePageContext } from '@/app/contex/PageContext'
+import { usePageContext } from '@/app/context/PageContext'
+import { UseForm } from './hooks/useForm'
 
 export default function FormError({
-    response,
+    form,
     modal,
     messages,
     message,
     notification
 }:Readonly<{
-    response:APIResponse
+    form:UseForm
     modal?:{
         title:string
         message?:string
@@ -29,7 +30,8 @@ export default function FormError({
     const [show,setShow] = useState<boolean>()
 
     useEffect(()=>{
-        if(response.status == 'error'){
+        const response = form.response
+        if(form.response.status == 'error'){
             if(messages){
                 for(let message of messages){
                     if(message.code == response.code){
@@ -63,7 +65,7 @@ export default function FormError({
             setLastAction(undefined)
             setShow(false)
         }
-    },[response])
+    },[form.response])
     
 
     return <>
@@ -76,7 +78,7 @@ export default function FormError({
                         <span>{modal.title}</span>
                         <div>
                             <p>
-                                {modal.message ? modal.message :response.data}
+                                {modal.message ? modal.message :form.response.data}
                             </p>
                         </div>
                         <button onClick={()=>{setShow(false)}}>Aceptar</button>
@@ -85,7 +87,7 @@ export default function FormError({
             </>
         :
             <>
-                <p className={styler.APIerror_message}>{message?message:response.data}</p>
+                <p className={styler.APIerror_message}>{message?message:form.response.data}</p>
             </>}
         </>
         }
