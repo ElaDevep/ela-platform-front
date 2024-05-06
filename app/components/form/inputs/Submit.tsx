@@ -5,7 +5,9 @@ import styler from '../Form.module.sass'
 import useProps from "@/app/hooks/useProps"
 import { UseForm } from "../hooks/useForm"
 import { useFormState } from "react-dom"
-
+import changing_submit from "@/public/svg/charge_submit.svg"
+import changing_submit_w from "@/public/svg/charge_submit_w.svg"
+import { Frame } from "../../ela-components"
 
 export default function Submit({
     children,
@@ -35,17 +37,31 @@ export default function Submit({
         }
     ])
 
-    useEffect(()=>{
-        if(response){
-            
+    const changeImg = useProps([
+        {
+            props:{
+                className:styler.submit_charging
+            }
+        }
+    ])
 
+    useEffect(()=>{
+        if(response){   
             form.setResponse({...JSON.parse(response),success:success})
         }
     },[response])
 
     return <>
         <button {...submit.props}>
-            {children}
+            {!form.charging ?
+            <>
+                {children}
+            </>
+            :
+            <>
+                <img src="/svg/charge_submit.svg" className={styler.submit_charging}/>
+            </>
+            }
         </button>
     </>
 }

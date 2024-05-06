@@ -21,6 +21,8 @@ export default function Form({
     children:React.ReactNode,
     form:UseForm
 }>){
+    const [charging,setCharged] = useState<boolean>()
+
     const formProps = useProps([
         {
             props:{

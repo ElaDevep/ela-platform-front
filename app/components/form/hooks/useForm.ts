@@ -31,6 +31,7 @@ export interface UseForm{
     }) => void
     setResponse:(response:APIResponse)=>any
     response:APIResponse
+    charging:boolean
 }
 
 class Form{
@@ -59,16 +60,18 @@ const inputReducer = (state:{[key:string]:any},action:useFormAction) =>{
 export default function useForm(){
     const [inputs,setInputs] = useReducer(inputReducer,new Form())
     const [reRender,makeReRender] = useState({})
+    const [charging,setChanging] = useState<boolean>(false)
     const [actions,setActions] = useState<{[key:string]:FormAction}>()
     const [response,setResponse] = useState<APIResponse & SuccessAction>(initialState)
     const {setLastAction} = usePageContext()
     const router = useRouter()
 
     const onSubmit =()=>{
+        setChanging(true)
         for(let input in inputs){
             //console.log(inputs[input])
             inputs[input].onSubmit()
-        }   
+        } 
     }
 
     const get = (name:string)=>{
@@ -89,12 +92,14 @@ export default function useForm(){
 
     useEffect(()=>{
         if(response){
+            setChanging(false)
             if(response.status == 'ok'){
                 setLastAction({
                     type:'right',
                     ...(response.success)?response.success:{}
                 })
-                router.push('/recuperacion_contrasena')
+                if(response.success?.redirect)
+                    router.push(response.success?.redirect)
             }
         }
     },[response])
@@ -107,5 +112,5 @@ export default function useForm(){
         console.log(actions)
     },[actions])
 
-    return {inputs,setInput,onSubmit,get,setResponse,response}
+    return {inputs,setInput,onSubmit,get,setResponse,response,charging}
 }

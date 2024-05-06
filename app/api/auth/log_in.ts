@@ -2,10 +2,12 @@
 
 import { axiosAPI } from "@/app/api/axiosAPI"
 import axios from "axios"
+import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
+import validateUserToken from "./validate_user_token"
 
 
-export async function logInAction(prevState: any,formData:FormData){
+export async function logIn(prevState: any,formData:FormData){
     let response:APIResponse & Object = {
         status:"unknown",
         code:0,
@@ -26,7 +28,7 @@ export async function logInAction(prevState: any,formData:FormData){
                 code:200,
                 data:res.data.data
             }
-            console.log(res)
+            //validateUserToken(res.data.data)
         })
         .catch((error)=>{
             response = {
@@ -38,7 +40,6 @@ export async function logInAction(prevState: any,formData:FormData){
                     message:error.response.statusText
                 }
             }
-            console.log(error)
         })
     }
     catch(error:any){

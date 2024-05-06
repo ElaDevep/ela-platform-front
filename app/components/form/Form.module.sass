@@ -119,6 +119,25 @@
 
     @include button('main')
 
+.submit_charging
+    width: 1.5em
+    height: 1.5em
+
+    margin-top:0.2em
+
+    animation-name: charging_submit
+    animation-duration: 5s
+    animation-iteration-count: infinite
+    animation-timing-function: none
+    
+
+@keyframes charging_submit
+    0%
+        transform: rotate(0deg) 
+    100%
+        transform: rotate(360deg)
+        
+
 
 .APIerror_message
     color: red

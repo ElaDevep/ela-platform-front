@@ -1,7 +1,7 @@
 'use client'
 
 import styler from './page.module.sass'
-import { logInAction } from './action' 
+import { logIn } from '../../../api/auth/log_in' 
 import { PasswordField,TextField,Submit } from '@/ela-form'
 import {useState } from 'react'
 import Link from 'next/link'
@@ -32,12 +32,13 @@ export default function LogInForm({}:Readonly<{}>){
             />
             <FormError form={form}/>
             <Submit 
-                action={logInAction} 
+                action={logIn} 
                 className={styler.logIn_submit}
                 form={form}
                 success={{
                     title:'Bienvenido!',
-                    message:'Sesión iniciada correctamente'
+                    message:'Sesión iniciada correctamente',
+                    redirect:'/recuperacion_contrasena'
                 }}
             >
                 Ingresar
