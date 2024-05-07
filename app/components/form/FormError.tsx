@@ -78,7 +78,12 @@ export default function FormError({
                         <span>{modal.title}</span>
                         <div>
                             <p>
-                                {modal.message ? modal.message :form.response.data}
+                                {modal.message ? modal.message :
+                                <>
+                                {typeof form.response.data == 'string' &&
+                                    form.response.data
+                                }
+                                </>}
                             </p>
                         </div>
                         <button onClick={()=>{setShow(false)}}>Aceptar</button>
@@ -87,7 +92,13 @@ export default function FormError({
             </>
         :
             <>
-                <p className={styler.APIerror_message}>{message?message:form.response.data}</p>
+                <p className={styler.APIerror_message}>{message?
+                message:
+                <>
+                {typeof form.response.data == 'string' &&
+                    form.response.data
+                }
+                </>}</p>
             </>}
         </>
         }
