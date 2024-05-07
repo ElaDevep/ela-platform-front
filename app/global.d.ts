@@ -10,7 +10,7 @@ declare global {
     interface APIResponse<T=string|Array<object>|object>{
         status:'ok'|'error'|'unknown'
         code:number
-        data:T 
+        data?:T 
         error?:{
             status:number,
             message:string
