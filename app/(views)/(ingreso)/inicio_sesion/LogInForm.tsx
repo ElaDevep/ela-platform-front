@@ -31,6 +31,15 @@ export default function LogInForm({}:Readonly<{}>){
                 form={form}
             />
             <FormError form={form}/>
+            {form.response.status == 'error' &&
+                <Link 
+                    href={'/recuperacion_contrasena'}
+                    className={styler.passwordForgot_link}
+                >
+                    ¿Has olvidado tu contraseña?
+                    <hr/>
+                </Link>
+            }
             <Submit
                 action={logIn} 
                 className={styler.logIn_submit}
@@ -38,7 +47,12 @@ export default function LogInForm({}:Readonly<{}>){
             >
                 Ingresar
             </Submit>
-            <Link href={'/blogs'} className={styler.guest_link}>Entrar como invitado</Link>
+            <Link 
+                href={'/blogs'} 
+                className={styler.guest_link}
+            >
+                Entrar como invitado
+            </Link>
         </Form>
     </>
 }

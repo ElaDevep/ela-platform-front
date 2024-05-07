@@ -78,6 +78,31 @@
 
             margin-top: 2em
 
+            .passwordForgot_link
+                box-shadow: none
+
+                color: palete('primary')
+                text-align: center
+                text-decoration: none
+                
+                transition: color 1s ease-in-out
+                
+                @include fadeIn(1)
+
+                &:hover
+                    color: palete('primary-light')
+
+                    hr
+                        width: 100%
+                        border: palete('primary-light') 1px solid
+                
+                hr
+                    width: 0
+                    border: transparent 1px solid
+
+                    transition: width 0.5s ease-in, border-color 1s ease-in-out
+
+
             .logIn_submit
                 width: 70%
 

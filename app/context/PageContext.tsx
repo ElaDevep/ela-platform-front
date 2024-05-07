@@ -27,19 +27,17 @@ export function PageProvider({
 
 
     const validateLocalUser = async () =>{
-        if(!currentUser){
-            await getCurrentUser()
-            .then((res)=>{
-                if(res.data){
-                    setCurrentUser({
-                        name:res.data.name,
-                        lastName:res.data.lastname,
-                        email:res.data.email,
-                        id:res.data._id
-                    })
-                }
-            })
-        }
+        await getCurrentUser()
+        .then((res)=>{
+            if(res.data){
+                setCurrentUser({
+                    name:res.data.name,
+                    lastName:res.data.lastname,
+                    email:res.data.email,
+                    id:res.data._id
+                })
+            }
+        })
     }
 
     const CloseSession = async () =>{
@@ -76,8 +74,9 @@ export function PageProvider({
     },[lastAction])
 
     useEffect(()=>{
-        console.log(currentUser)
-        validateLocalUser()
+        if(!currentUser){
+            validateLocalUser()
+        }
     })
 
     useEffect(()=>{

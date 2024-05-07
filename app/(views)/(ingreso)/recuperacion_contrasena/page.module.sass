@@ -1,0 +1,132 @@
+@import '@/style_provider'
+
+.front_div
+    position: absolute
+    top:0
+    left: 0
+    z-index: 1
+
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-wrap: wrap
+    flex-direction: row
+
+    height: 100vh
+    width: 100vw
+
+.restoreRequest_div
+    position: relative
+
+    display: flex
+    flex-wrap: nowrap
+    flex-direction: column
+    align-items: center
+    gap: 1rem
+
+    $responsive-widths: (500px:80vw,900px:50vw,1210px:50vw,1620px:40vw,2160px:40vw,3240px:40vw,4320px:40vw)
+    @include specificBreakPointsAtribute(width,$responsive-widths)
+    height: 22em
+
+    padding: 2rem 4rem
+
+    border-radius: 1em
+
+    background-color: palete('contrast')
+    box-shadow: 0 0 20px 0px palete('uncontrast')
+
+    color: palete('general-text')
+
+    transition: height 0.5s ease-in-out
+
+    @include fadeIn()
+
+    
+    .ElaLogoForm_img
+        width: 3em
+        height: 3em 
+
+
+    .restoreRequestForm_div
+        position: absolute
+
+        height: 100%
+        width: 80%
+
+        margin-top: 4em
+
+        display: flex
+        flex-wrap: nowrap
+        flex-direction: column
+        align-items: center
+        gap: 1rem
+
+        animation-name: fadeIn 
+        animation-duration: 2s
+        animation-timing-function: ease-in-out
+
+        h3
+            color: palete('primary')
+
+        &:nth-child(3n)
+            transition: opacity 2s ease-in
+            opacity: 0
+            // animation-name: fadeOut
+            // animation-duration: 2s
+            // animation-timing-function: ease-in-out
+
+        
+    .sendMessage_div
+        position: absolute
+
+
+        display: flex
+        flex-wrap: nowrap
+        flex-direction: column
+        align-items: center
+        gap: 1rem
+    
+        height: min-content
+        width: 100%
+
+        margin-top: 5em
+
+        background: palete('contrast')
+
+        @include fadeIn()
+
+        
+    .restoreRequest_form
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
+        justify-content: center
+        align-items: center
+        gap: 10px
+
+        width: 80%
+
+        .restoreRequest_submit
+            width: 60%
+
+
+
+.minilogo_image
+    height: 5rem
+    width: 5rem
+
+.check_svg
+    height: 6rem
+    width: 6rem
+
+
+.vertical_relation 
+    .restoreRequest_div
+        width: 100vw
+
+        padding-rigth: auto
+        padding-left: auto
+
+        box-shadow: unset
+
+        border-radius: 0
