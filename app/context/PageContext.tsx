@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import styler from './PageContext.module.sass'
 import useProps from "../hooks/useProps";
+import getCurrentUser from "../api/auth/get_current_user";
 
 interface UsePageContext{
     setLastAction:((action:LastAction)=>void)|undefined
@@ -21,10 +22,24 @@ export function PageProvider({
 }>){
     const [lastAction,setLastAction] = useState<LastAction>()
     const lastActionProps = useProps()
+    const [currentUser,setCurrentUser] = useState<CurrentUser>()
 
-    const value = {
-        setLastAction: setLastAction,
-        lastAction: lastAction
+
+    const validateLocalUser = async () =>{
+        if(!currentUser){
+            await getCurrentUser()
+            .then((res)=>{
+                if(res.data){
+                    setCurrentUser({
+                        name:res.data.name,
+                        lastName:res.data.lastname,
+                        email:res.data.email,
+                        id:res.data._id
+                    })
+                }
+            })
+        }
+
     }
 
     useEffect(()=>{
@@ -45,10 +60,14 @@ export function PageProvider({
     },[lastAction])
 
     useEffect(()=>{
-        console.log(lastAction)
+        validateLocalUser()
     })
 
-
+    const value = {
+        setLastAction,
+        lastAction,
+        currentUser
+    }
     
     return <PageContext.Provider value={value} {...props}>
         {lastAction &&

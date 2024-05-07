@@ -37,14 +37,6 @@ export default function Submit({
         }
     ])
 
-    const changeImg = useProps([
-        {
-            props:{
-                className:styler.submit_charging
-            }
-        }
-    ])
-
     useEffect(()=>{
         if(response){   
             form.setResponse({...JSON.parse(response),success:success})

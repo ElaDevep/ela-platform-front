@@ -5,17 +5,34 @@ export {}
 declare global {
     type FixArray<T, L extends number> = readonly T[] & { length: L };
 
-    interface APIResponse{
+
+    //Api response
+    interface APIResponse<T=string|Array<object>|object>{
         status:'ok'|'error'|'unknown'
         code:number
-        data:string|Array<object>|object|any
+        data?:T
         error?:{
             status:number,
             message:string
         }
     }
 
-    
+    //API Model responses
+
+    interface User{
+        _id:string
+        name:string
+        lastname:string
+        email:string
+        mobile:string
+        password:string
+        role:string
+        approved:string
+        imgProfile:string
+    }
+
+
+    //Last action in PageContext
     interface LastAction{
         title:string
         message:string
@@ -26,7 +43,16 @@ declare global {
         success?:{title:string,message:string,redirect?:string}
     }
 
+    //Type for Form Actions
     type FormAction = (prevState: any, formData: FormData)=>Promise<string>
+
+    //Current User Type
+    interface CurrentUser {
+        id:string,
+        name:string,
+        lastName:string,
+        email:string
+    }
 }
 
 

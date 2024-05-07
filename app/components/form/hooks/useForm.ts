@@ -61,7 +61,6 @@ export default function useForm(){
     const [inputs,setInputs] = useReducer(inputReducer,new Form())
     const [reRender,makeReRender] = useState({})
     const [charging,setChanging] = useState<boolean>(false)
-    const [actions,setActions] = useState<{[key:string]:FormAction}>()
     const [response,setResponse] = useState<APIResponse & SuccessAction>(initialState)
     const {setLastAction} = usePageContext()
     const router = useRouter()
@@ -108,9 +107,6 @@ export default function useForm(){
         //console.log(inputs)
     },[inputs])
 
-    useEffect(()=>{
-        console.log(actions)
-    },[actions])
 
     return {inputs,setInput,onSubmit,get,setResponse,response,charging}
 }

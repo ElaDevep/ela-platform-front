@@ -1,16 +1,18 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { get_cookie } from './app/api/cookier'
 
 // This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
-    console.log(path)
+    //console.log(path)
     if(path.match(/^\/(?!inicio_sesion|recuperacion_contrasena).*$/)){
-        return NextResponse.redirect(new URL('/inicio_sesion', request.url))
+        if(!(await get_cookie('userToken'))){
+            return NextResponse.redirect(new URL('/inicio_sesion', request.url))
+        }
     }
     else{
     }
-    
 }
 // See "Matching Paths" below to learn more
 export const config = {

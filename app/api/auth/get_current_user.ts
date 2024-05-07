@@ -1,24 +1,29 @@
 'use server'
 
 import { axiosAPI } from "../axiosAPI"
-import getCurrentUser from "./get_current_user"
+import { get_cookie, set_cookie } from "../cookier"
+import validateUserToken from "./validate_user_token"
 
-export default async function validateUserToken(logInToken:string){
-    let response:APIResponse = {
+export default async function getCurrentUser(){
+    const userToken = await get_cookie('userToken')
+    let response:APIResponse<User> = {
         status:'unknown',
         data:undefined,
         code:0
     }
-    
-    if(logInToken){
-        //console.log(token)
-        await axiosAPI.post('/auth/validate-token',{token:logInToken})
+    let userId
+    if(userToken){
+        userId = (await validateUserToken(userToken)).data
+    }
+    if(userId){
+        await axiosAPI.get('/auth/user/'+userId)
         .then((res)=>{
             response = {
                 status:'ok',
-                data:res.data.data.userId,
+                data:res.data.data,
                 code:200
             }
+            set_cookie('userInfo',JSON.stringify(res.data.data))
         }).catch((error)=>{
             response = {
                 status:'error',

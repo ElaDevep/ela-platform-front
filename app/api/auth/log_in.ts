@@ -5,13 +5,13 @@ import axios from "axios"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import validateUserToken from "./validate_user_token"
+import { set_cookie } from "../cookier"
 
 
 export async function logIn(prevState: any,formData:FormData){
     let response:APIResponse & Object = {
         status:"unknown",
-        code:0,
-        data:''
+        code:0
     }
     
     const body = {
@@ -25,10 +25,9 @@ export async function logIn(prevState: any,formData:FormData){
         .then((res)=>{
             response = {
                 status:'ok',
-                code:200,
-                data:res.data.data
+                code:200
             }
-            //validateUserToken(res.data.data)
+            set_cookie('userToken',res.data.data)
         })
         .catch((error)=>{
             response = {

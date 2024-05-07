@@ -31,7 +31,7 @@ export default function LogInForm({}:Readonly<{}>){
                 form={form}
             />
             <FormError form={form}/>
-            <Submit 
+            <Submit
                 action={logIn} 
                 className={styler.logIn_submit}
                 form={form}

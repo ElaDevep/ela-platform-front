@@ -10,16 +10,10 @@ import ela_logotipo_d from '@/public/svg/logotipo_ela_dark.svg'
 import ela_logo from '@/public/svg/logo_ela.svg'
 import ela_logo_w from '@/public/svg/logo_ela_white.svg'
 
-import { useEffect, useState } from 'react'
 import useProps from '@/app/hooks/useProps'
 import LogInForm from './LogInForm'
-import axios from 'axios'
-import { axiosAPI } from '@/app/api/axiosAPI'
-
 
 export default function LogIn(){
-    const [obj1,setObj1] = useState()
-    
 
     const move_div = useProps([
         {
@@ -27,21 +21,10 @@ export default function LogIn(){
         }
     ])
 
-    const test_api = async()=>{
-        await axios.get('https://jsonplaceholder.typicode.com/posts/1')
-        .then((res)=>{
-            console.log(res)
-        })
-    }
-
     const goToLogIn=()=>{
         move_div.mixClasses(styler.goToLogIn)
     }
 
-    useEffect(()=>{
-        console.log(process.env.NEXT_PUBLIC_DEMO_API_BASE_URL)
-    },[])
-    
     return <>
         <BreakPoint
             className={styler.vertical_relation}

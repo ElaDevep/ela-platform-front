@@ -1,5 +1,35 @@
 'use server'
 
-export default function getUser({userId}:Readonly<{userId:number}>){
+import { axiosAPI } from "../axiosAPI"
+
+export default async function getUser(userId:number){
+    let response:APIResponse = {
+        status:'unknown',
+        code:0
+    }
     
+    if(userId){
+        //console.log(token)
+        await axiosAPI.get('/auth/user/'+userId)
+        .then((res)=>{
+            response = {
+                status:'ok',
+                data:res.data,
+                code:200
+            }
+            console.log(res.data)
+        }).catch((error)=>{
+            response = {
+                status:'error',
+                code:400,
+                data:error.response.data.data,
+                error:{
+                    status:error.response.status,
+                    message:error.response.statusText
+                }
+            }
+            console.log(error.response.data)
+        })  
+    }
+    return response
 }
