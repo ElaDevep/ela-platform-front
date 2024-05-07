@@ -6,14 +6,13 @@ import logOut from "./log_out"
 import validateUserToken from "./validate_user_token"
 
 export default async function getCurrentUser(){
-    const userToken = await get_cookie('userToken')
+    const userToken = get_cookie('userToken')
     let response:APIResponse<User> = {
         status:'unknown',
         data:undefined,
         code:0
     }
     let userId
-    console.log('xs')
     console.log(userToken)
     if(userToken){
         userId = (await validateUserToken(userToken)).data

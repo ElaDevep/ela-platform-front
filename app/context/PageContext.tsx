@@ -30,7 +30,6 @@ export function PageProvider({
         if(!currentUser){
             await getCurrentUser()
             .then((res)=>{
-                console.log(res)    
                 if(res.data){
                     setCurrentUser({
                         name:res.data.name,
@@ -39,7 +38,6 @@ export function PageProvider({
                         id:res.data._id
                     })
                 }
-                
             })
         }
     }
@@ -51,7 +49,6 @@ export function PageProvider({
     }
 
     useEffect(()=>{
-        console.log(currentUser)
         if(currentUser){
             setLastAction({
                 type:'right',
@@ -79,6 +76,7 @@ export function PageProvider({
     },[lastAction])
 
     useEffect(()=>{
+        console.log(currentUser)
         validateLocalUser()
     })
 

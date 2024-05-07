@@ -27,7 +27,7 @@ export async function logIn(prevState: any,formData:FormData){
                 status:'ok',
                 code:200
             }
-            set_cookie('userToken',res.data.data)
+            set_cookie('userToken',res.data.data,'10:00')
         })
         .catch((error)=>{
             response = {
@@ -51,6 +51,5 @@ export async function logIn(prevState: any,formData:FormData){
     if(response.status == 'ok'){
         redirect('/recuperacion_contrasena')
     }
-    
     return JSON.stringify(response)
 }
