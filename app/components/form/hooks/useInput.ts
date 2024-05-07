@@ -98,10 +98,21 @@ export default function useInput(form:UseForm,params:InputParams){
         if(inputRef.current){
             form.setInput({[params.name]:{
                 onSubmit:validateValue,
-                value:inputRef.current.value
+                value:inputRef.current.value,
+                error:error
             }})
         }
     }
+
+    useEffect(()=>{
+        if(inputRef.current){
+            form.setInput({[params.name]:{
+                onSubmit:validateValue,
+                value:inputRef.current.value,
+                error:error
+            }})
+        }
+    },[error])
 
     useEffect(()=>{
         if(touched){
@@ -111,7 +122,8 @@ export default function useInput(form:UseForm,params:InputParams){
             if(inputRef.current){
                 form.setInput({[params.name]:{
                     onSubmit:validateValue,
-                    value:inputRef.current.value
+                    value:inputRef.current.value,
+                    error:error
                 }})
             }
         }

@@ -7,7 +7,7 @@ import styler from './page.module.sass'
 import {Form, FormError, PasswordField, Submit, TextField, useForm} from '@/ela-form'
 import { Frame } from '@/ela-components'
 
-import RestorePasswordAction from '@/app/api/auth/resetore_password'
+import {RestorePasswordAction} from '@/app/api/auth/resetore_password'
 
 import useProps from '@/app/hooks/useProps'
 
@@ -17,15 +17,17 @@ import Link from 'next/link'
 export default function RestorePasswordForm({token}:Readonly<{token:string}>){
     const form = useForm()
 
-    useEffect(()=>{
-        console.log(token)
-    })
 
     const [ok,setOk] = useState(false)
 
 
+    useEffect(()=>{
+        //console.log(form)
+    },[form])
+
+
     const passwordsMatch = (value:string)=>{
-        const newPassword = form.inputs.password
+        const newPassword = form.inputs.password.value
         if(value != newPassword){
             return {
                 type:'differentPassword',
@@ -34,12 +36,6 @@ export default function RestorePasswordForm({token}:Readonly<{token:string}>){
         }
         return undefined
     }
-
-    // useEffect(()=>{
-    //     if(form.response.status=='ok'){
-    //         form_div.mixClasses()
-    //     }
-    // },[form.response])
 
     return <>
         <div className={styler.restorePasswordForm_div}>
@@ -56,6 +52,7 @@ export default function RestorePasswordForm({token}:Readonly<{token:string}>){
                 className={styler.restoreRequest_form} 
                 form = {form}
             >
+                <input type='hidden' value={token} name={'token'}/>
                 <PasswordField
                     label='Nueva contraseña'
                     name='password'
@@ -81,11 +78,12 @@ export default function RestorePasswordForm({token}:Readonly<{token:string}>){
                     action={RestorePasswordAction} 
                     className={styler.restoreRequest_submit}
                     form={form}
+                    disable
                 >
                     Enviar
                 </Submit>
             </Form>
-            {form.response.status == 'ok'||ok && <>
+            {form.response.status == 'ok' && <>
                     <div className={styler.restoredMessage_div}>
                         <Frame
                             src={check}

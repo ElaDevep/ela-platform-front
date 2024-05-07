@@ -8,13 +8,20 @@ import { usePageContext } from "@/app/context/PageContext"
 import { useRouter } from "next/navigation"
 
 
+interface FormInput{
+    [key:string]:{
+        value:string|undefined
+        onSubmit:() => void
+        error:{
+            type:string
+            message:string|undefined
+        }|undefined
+    }
+}
+
 interface useFormAction{
     type:string
-    input?:{
-        [key:string]:{
-            value:string|undefined
-            onSubmit:() => void}
-    }
+    input?:FormInput
     assign?:{[key:string]:any}
 }
 
@@ -22,16 +29,12 @@ export interface UseForm{
     inputs: {
         [key: string]: any;
     }
-    onSubmit:()=>any
-    setInput:(input: {
-        [key: string]: {
-            value: string|undefined;
-            onSubmit: () => void;
-        };
-    }) => void
+    onSubmit:(e:Event)=>any
+    setInput:(input:FormInput) => void
     setResponse:(response:APIResponse)=>any
     response:APIResponse
     charging:boolean
+    disable:boolean
 }
 
 class Form{
@@ -63,29 +66,40 @@ export default function useForm(){
     const [charging,setChanging] = useState<boolean>(false)
     const [response,setResponse] = useState<APIResponse & SuccessAction>(initialState)
     const {setLastAction} = usePageContext()
+    const [disable,setDisable] = useState<boolean>(false)
+
     const router = useRouter()
 
-    const onSubmit =()=>{
+    const onSubmit =(e:Event)=>{
         setChanging(true)
         for(let input in inputs){
-            //console.log(inputs[input])
             inputs[input].onSubmit()
+            if(inputs[input].error){
+                e.preventDefault()
+                setDisable(true)
+                return
+            }
         } 
+        setDisable(false)
     }
 
     const get = (name:string)=>{
         console.log(inputs[name])
     }
 
-    const setInput = (input:{
-        [key:string]:{
-            value:string|undefined
-            onSubmit:() => void}
-    }) =>{
+    const setInput = (input:FormInput) =>{
         setInputs({
             type:'setInput',
             input:input
         })
+        for(let i in input){
+            if(input[i].error!=undefined){
+                setDisable(true)
+            }
+            else{
+                setDisable(false)
+            }
+        }
         makeReRender({})
     }
 
@@ -108,5 +122,5 @@ export default function useForm(){
     },[inputs])
 
 
-    return {inputs,setInput,onSubmit,get,setResponse,response,charging}
+    return {inputs,setInput,onSubmit,get,setResponse,response,charging,disable}
 }

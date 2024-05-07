@@ -14,10 +14,12 @@ export default function Submit({
     className,
     action,
     success,
+    disable,
     form,
 }:{
     children:React.ReactNode
     className?:string
+    disable?:boolean
     action:(prevState: any, formData: FormData)=>Promise<string>
     success?:{title:string,message:string,redirect?:string}
     form:UseForm
@@ -36,6 +38,12 @@ export default function Submit({
             }
         }
     ])
+    
+    useEffect(()=>{
+        submit.set({disabled:true},{
+            allTrue:[form.disable,disable,!submit.get('disabled')]
+        },true)
+    },[form])
 
     useEffect(()=>{
         if(response){   
@@ -44,7 +52,7 @@ export default function Submit({
     },[response])
 
     return <>
-        <button {...submit.props}>
+        <button {...submit.props} >
             {!form.charging ?
             <>
                 {children}

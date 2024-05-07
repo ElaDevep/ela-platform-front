@@ -119,6 +119,14 @@
 
     @include button('main')
 
+    &:disabled
+        background: palete('uncontrast')
+
+        &:active
+            transform: none
+        &:hover
+            transform: none
+
 .submit_charging
     width: 1.5em
     height: 1.5em

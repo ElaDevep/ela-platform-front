@@ -74,14 +74,13 @@ export function PageProvider({
     },[lastAction])
 
     useEffect(()=>{
-        if(!currentUser){
+        if(currentUser==undefined){
             validateLocalUser()
         }
     })
 
     useEffect(()=>{
-        // logOut()
-        // setCurrentUser(undefined)
+        //CloseSession()
     },[])
 
     const value = {

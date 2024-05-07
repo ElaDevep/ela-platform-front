@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
     //console.log(path)
     if(path.match(/^\/(?!inicio_sesion|recuperacion_contrasena).*$/)){
-        if(!(await get_cookie('userToken'))){
+        if(!( get_cookie('userToken'))){
             return NextResponse.redirect(new URL('/inicio_sesion', request.url))
         }
     }

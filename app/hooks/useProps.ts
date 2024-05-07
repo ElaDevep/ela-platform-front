@@ -113,6 +113,7 @@ function useProps(initialProps:InitialProps){
 
     //Add or overwrite a prop
     const set = (props:{[key:string]:any},conditions:PropsConditioner|void,remove:boolean|void) =>{
+        if(Object.keys(thisProps).length == 0) return false
         if(conditions){
             if(conditioner(conditions)){
                 setProps(Object.assign({},thisProps,props))
@@ -122,9 +123,11 @@ function useProps(initialProps:InitialProps){
                     props[prop] = undefined
                 }
                 setProps(Object.assign({},thisProps,props))
+                makeReRender({})
                 return false
             }
             else{
+                makeReRender({})
                 return false
             }
         }
