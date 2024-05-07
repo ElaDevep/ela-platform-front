@@ -14,22 +14,25 @@ export default function TextField({
     placeholder,
     name,
     className,
+    form,
     require,
     pattern,
     otherValidation,
-    form
 }:Readonly<{
     label?:string
-    pattern?:{
-        value:RegExp
-        message?:string
-    }
-    otherValidation?:(values:string)=>string|undefined
     name:string
     placeholder?:string
     className?:string,
     form:UseForm
     require?:boolean|{ message?:string}
+    pattern?:{
+        value:RegExp
+        message?:string
+    }
+    otherValidation?:(values:string)=>{
+        type:string,
+        message:string
+    }|undefined
 }>){
     const inputState = useInput(form,{
         name:name,

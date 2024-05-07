@@ -17,7 +17,9 @@ export default function PasswordField({
     name,
     className,
     require,
-    form
+    form,
+    pattern,
+    otherValidation,
 }:Readonly<{
     label?:string
     name:string
@@ -25,12 +27,22 @@ export default function PasswordField({
     className?:string,
     form:UseForm
     require?:boolean|{ message?:string}
+    pattern?:{
+        value:RegExp
+        message?:string
+    }
+    otherValidation?:(values:string)=>{
+        type:string,
+        message:string
+    }|undefined
 }>){
     const [visible,setVisible] = useState<boolean>()
     
     const inputState = useInput(form,{
         name:name,
-        require:require
+        require:require,
+        pattern:pattern,
+        otherValidation:otherValidation
     })
 
     const inputContainer = useProps([{

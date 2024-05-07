@@ -14,7 +14,10 @@ interface InputParams{
         value:RegExp
         message?:string
     },
-    otherValidation?:(values:string)=>string|undefined
+    otherValidation?:(values:string)=>{
+        type:string,
+        message:string
+    }|undefined
     depended?:Array<string>
 }
 
@@ -66,10 +69,7 @@ export default function useInput(form:UseForm,params:InputParams){
                 if(value){
                     const result = params.otherValidation(value)
                     if(result){
-                        setError({
-                            type:'custom',
-                            message:result
-                        })
+                        setError(result)
                         return
                     }
                 }
