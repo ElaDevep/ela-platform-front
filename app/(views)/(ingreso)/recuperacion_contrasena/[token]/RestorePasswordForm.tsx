@@ -32,7 +32,7 @@ export default function RestorePasswordForm({userId}:Readonly<{userId:string}>){
         }
         return undefined
     }
-    
+
     // useEffect(()=>{
     //     if(form.response.status=='ok'){
     //         form_div.mixClasses()
@@ -44,12 +44,12 @@ export default function RestorePasswordForm({userId}:Readonly<{userId:string}>){
             <h3>Recuperación de contraseña</h3>
             <p>A continuación ingresa tu nueva contraseña, recuerda que debe cumplir con los siguientes requisitos:</p>
             <ul className={styler.passwordConditions_list}>
-                                    <li>1 Letra mayúscula</li>
-                                    <li>1 Letra minúscula</li>
-                                    <li>4 Números</li>
-                                    <li>1 Carácter especial</li>
-                                    <li>12 Caracteres en total</li>
-                                </ul>
+                <li>1 Letra mayúscula</li>
+                <li>1 Letra minúscula</li>
+                <li>4 Números</li>
+                <li>1 Carácter especial</li>
+                <li>12 Caracteres en total</li>
+            </ul>
             <Form 
                 className={styler.restoreRequest_form} 
                 form = {form}

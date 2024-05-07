@@ -1,4 +1,4 @@
-
+'use client'
 //imágenes
 import ela_logo from '@/public/svg/logo_ela.svg'
 import ela_logo_w from '@/public/svg/logo_ela_white.svg'
@@ -8,8 +8,10 @@ import BreakPoint from '@/app/components/BreakPoint'
 import styler from './page.module.sass'
 import { Frame } from '@/app/components/ela-components'
 import RestorePasswordForm from './RestorePasswordForm'
+import { useEffect } from 'react'
 
-export default function RestorePassword(){
+export default function RestorePassword({params}:{params:{token:string}}){
+
     return <>
         <BreakPoint
             className={styler.vertical_relation}
