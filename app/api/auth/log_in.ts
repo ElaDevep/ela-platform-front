@@ -48,6 +48,9 @@ export async function logIn(prevState: any,formData:FormData){
             data:error.response.data.data
         }
     }
+    if(response.status == 'ok'){
+        redirect('/recuperacion_contrasena')
+    }
     
     return JSON.stringify(response)
 }

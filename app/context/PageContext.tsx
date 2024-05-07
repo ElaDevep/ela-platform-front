@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import styler from './PageContext.module.sass'
 import useProps from "../hooks/useProps";
 import getCurrentUser from "../api/auth/get_current_user";
+import logOut from "../api/auth/log_out";
 
 interface UsePageContext{
     setLastAction:((action:LastAction)=>void)|undefined
@@ -29,6 +30,7 @@ export function PageProvider({
         if(!currentUser){
             await getCurrentUser()
             .then((res)=>{
+                console.log(res)    
                 if(res.data){
                     setCurrentUser({
                         name:res.data.name,
@@ -37,10 +39,27 @@ export function PageProvider({
                         id:res.data._id
                     })
                 }
+                
             })
         }
-
     }
+
+    const CloseSession = async () =>{
+        console.log('Salido')
+        await logOut()
+        setCurrentUser(undefined)
+    }
+
+    useEffect(()=>{
+        console.log(currentUser)
+        if(currentUser){
+            setLastAction({
+                type:'right',
+                title:'Bienvenido!',
+                message:'Sesión iniciada correctamente'
+            })
+        }
+    },[currentUser])
 
     useEffect(()=>{
         lastActionProps.set({className:styler.lastRightAction},{
@@ -62,6 +81,11 @@ export function PageProvider({
     useEffect(()=>{
         validateLocalUser()
     })
+
+    useEffect(()=>{
+        // logOut()
+        // setCurrentUser(undefined)
+    },[])
 
     const value = {
         setLastAction,

@@ -92,7 +92,7 @@ export default function useForm(){
     useEffect(()=>{
         if(response){
             setChanging(false)
-            if(response.status == 'ok'){
+            if(response.status == 'ok' && response.success){
                 setLastAction({
                     type:'right',
                     ...(response.success)?response.success:{}

@@ -14,6 +14,7 @@ export async function set_cookie(name:string,value:string|undefined,expire?:stri
             for(let t of expireArray){
                 expireTime *= parseInt(t)
             }
+            console.log(expireTime)
             cookies().set(name,value,{expires:expireTime})
         }
         else{
@@ -25,6 +26,6 @@ export async function set_cookie(name:string,value:string|undefined,expire?:stri
     }
 }
 
-export async function set_delete(name:string){
+export async function delete_cookie(name:string){
     cookies().delete(name)
 }

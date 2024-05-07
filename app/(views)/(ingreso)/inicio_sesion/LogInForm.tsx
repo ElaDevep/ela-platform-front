@@ -35,11 +35,6 @@ export default function LogInForm({}:Readonly<{}>){
                 action={logIn} 
                 className={styler.logIn_submit}
                 form={form}
-                success={{
-                    title:'Bienvenido!',
-                    message:'Sesión iniciada correctamente',
-                    redirect:'/recuperacion_contrasena'
-                }}
             >
                 Ingresar
             </Submit>
