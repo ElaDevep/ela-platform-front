@@ -27,7 +27,7 @@ export default function RestorePassword({params}:{params:{token:string}}){
                         alt='ela_log'
                         className={styler.ElaLogoForm_img}
                     />
-                    <RestorePasswordForm userId='d'/>
+                    <RestorePasswordForm token={params.token}/>
                 </div>
             </div>
         </BreakPoint>

@@ -2,22 +2,24 @@
 
 import check from '@/public/svg/check.svg'
 
-import {Form, FormError, PasswordField, Submit, TextField, useForm} from '@/ela-form'
 import styler from './page.module.sass'
-import RestorePasswordRequestAction from '@/app/api/auth/restore_password_request'
+
+import {Form, FormError, PasswordField, Submit, TextField, useForm} from '@/ela-form'
 import { Frame } from '@/ela-components'
+
 import RestorePasswordAction from '@/app/api/auth/resetore_password'
+
 import useProps from '@/app/hooks/useProps'
+
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-export default function RestorePasswordForm({userId}:Readonly<{userId:string}>){
+export default function RestorePasswordForm({token}:Readonly<{token:string}>){
     const form = useForm()
-    const form_div = useProps([{
-        props:{
-            className:styler.restorePasswordForm_div
-        }
-    }])
+
+    useEffect(()=>{
+        console.log(token)
+    })
 
     const [ok,setOk] = useState(false)
 
