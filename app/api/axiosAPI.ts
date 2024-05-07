@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const axiosAPI = axios.create({
-    baseURL:process.env.NEXT_PUBLIC_DEMO_API_BASE_URL
+    baseURL:process.env.NEXT_PRIVATE_API_BASE_URL
 })
 
 
