@@ -47,12 +47,12 @@ export default function LogInForm({}:Readonly<{}>){
             >
                 Ingresar
             </Submit>
-            <Link 
+            {/* <Link 
                 href={'/blogs'} 
                 className={styler.guest_link}
             >
                 Entrar como invitado
-            </Link>
+            </Link> */}
         </Form>
     </>
 }

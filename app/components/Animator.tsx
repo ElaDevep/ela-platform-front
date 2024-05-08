@@ -5,7 +5,7 @@ export default function Animator({
     className,
     baseRoute,
     framing,
-    start,
+    start=0,
     end,
     auto,
     infinite,
@@ -16,9 +16,9 @@ export default function Animator({
     framing:number
     start:number
     end:number
-    auto:boolean
-    infinite:boolean
-    onClick:boolean
+    auto?:boolean
+    infinite?:boolean
+    onClick?:boolean
 
 }>){
     const [nFrame,setNFrame] = useState(start)

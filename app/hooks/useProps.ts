@@ -22,6 +22,7 @@ function useProps(initialProps:InitialProps){
     const [reRender,makeReRender] = useState<{}>()
     const [thisProps,setProps] = useState<{[key:string]:any}>({})
     const [initialClasses,setInitClasses] = useState<string>()
+    const [initialSet,setInitialSet] = useState<boolean>(false)
     
 
     //Needs that all conditions are true
@@ -113,7 +114,7 @@ function useProps(initialProps:InitialProps){
 
     //Add or overwrite a prop
     const set = (props:{[key:string]:any},conditions:PropsConditioner|void,remove:boolean|void) =>{
-        if(Object.keys(thisProps).length == 0) return false
+        if(!initialSet) return false
         if(conditions){
             if(conditioner(conditions)){
                 setProps(Object.assign({},thisProps,props))
@@ -141,6 +142,7 @@ function useProps(initialProps:InitialProps){
     //Mix the classes   
     const mixClasses = (nameClasses:Array<string|undefined>|string|undefined,conditions:PropsConditioner|void,reset:boolean|void) =>{
         let returnClassName:string = ''
+        if(!initialSet) return false
         
         if(thisProps.className){
             returnClassName = thisProps.className+' '
@@ -183,7 +185,7 @@ function useProps(initialProps:InitialProps){
     }
 
     const get = (prop:string) =>{
-        return thisProps.prop
+        return thisProps[prop]
     }
 
     const getAll = () =>{
@@ -249,10 +251,11 @@ function useProps(initialProps:InitialProps){
                     }
                 }
             }
-            setProps(initialPropsSet)
+            setProps(Object.assign(initialPropsSet,thisProps))
             if(initialPropsSet.className)
                 setInitClasses(initialPropsSet.className)
         }
+        setInitialSet(true)
         makeReRender({})
     },[])
 

@@ -85,6 +85,7 @@ export default function useForm(){
 
     const get = (name:string)=>{
         console.log(inputs[name])
+        return inputs[name]
     }
 
     const setInput = (input:FormInput) =>{

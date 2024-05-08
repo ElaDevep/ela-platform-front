@@ -5,6 +5,7 @@ import styler from './PageContext.module.sass'
 import useProps from "../hooks/useProps";
 import getCurrentUser from "../api/auth/get_current_user";
 import logOut from "../api/auth/log_out";
+import { useRouter } from "next/navigation";
 
 interface UsePageContext{
     setLastAction:((action:LastAction)=>void)|undefined
@@ -24,18 +25,21 @@ export function PageProvider({
     const [lastAction,setLastAction] = useState<LastAction>()
     const lastActionProps = useProps()
     const [currentUser,setCurrentUser] = useState<CurrentUser>()
+    const router = useRouter()
 
 
     const validateLocalUser = async () =>{
         await getCurrentUser()
         .then((res)=>{
-            if(res.data){
-                setCurrentUser({
-                    name:res.data.name,
-                    lastName:res.data.lastname,
-                    email:res.data.email,
-                    id:res.data._id
-                })
+            if(res){
+                if(res.data){
+                    setCurrentUser({
+                        name:res.data.name,
+                        lastName:res.data.lastname,
+                        email:res.data.email,
+                        id:res.data._id
+                    })
+                }
             }
         })
     }
@@ -47,12 +51,14 @@ export function PageProvider({
     }
 
     useEffect(()=>{
+        console.log(currentUser)
         if(currentUser){
             setLastAction({
                 type:'right',
                 title:'Bienvenido!',
                 message:'Sesión iniciada correctamente'
             })
+            router.push('/home')
         }
     },[currentUser])
 
@@ -80,7 +86,7 @@ export function PageProvider({
     })
 
     useEffect(()=>{
-        //CloseSession()
+        CloseSession()
     },[])
 
     const value = {

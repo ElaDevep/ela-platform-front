@@ -51,9 +51,7 @@ export async function RestorePasswordAction(prevState: any,formData:FormData){
                     message:error.response.statusText
                 }
             }
-            console.log(error.response.data)
         })  
-    }
-    console.log(response)   
+    }  
     return JSON.stringify(response)
 }

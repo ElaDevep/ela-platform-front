@@ -17,7 +17,6 @@ export default async function getUser(userId:number){
                 data:res.data,
                 code:200
             }
-            console.log(res.data)
         }).catch((error)=>{
             response = {
                 status:'error',

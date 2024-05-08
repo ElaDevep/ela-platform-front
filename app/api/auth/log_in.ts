@@ -1,14 +1,14 @@
 'use server'
 
 import { axiosAPI } from "@/app/api/axiosAPI"
-import axios from "axios"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import validateUserToken from "./validate_user_token"
 import { set_cookie } from "../cookier"
+import type { NextRequest } from 'next/server'
 
 
 export async function logIn(prevState: any,formData:FormData){
+    let request:NextRequest
     let response:APIResponse & Object = {
         status:"unknown",
         code:0
@@ -38,9 +38,5 @@ export async function logIn(prevState: any,formData:FormData){
             }
         }
     })
-    
-    if(response.status == 'ok'){
-        redirect('/recuperacion_contrasena')
-    }
     return JSON.stringify(response)
 }

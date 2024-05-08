@@ -1,7 +1,9 @@
 'use server'
 
+
+import { redirect } from "next/navigation"
 import { axiosAPI } from "../axiosAPI"
-import { get_cookie, set_cookie } from "../cookier"
+import { delete_cookie, get_cookie, set_cookie } from "../cookier"
 import logOut from "./log_out"
 import validateUserToken from "./validate_user_token"
 
@@ -13,7 +15,6 @@ export default async function getCurrentUser(){
         code:0
     }
     let userId
-    console.log(userToken)
     if(userToken){
         userId = (await validateUserToken(userToken)).data
     }
@@ -39,5 +40,8 @@ export default async function getCurrentUser(){
             logOut()
         })  
     }
+    // if(response.status == 'ok'){
+    //     redirect('/inicio_sesion')
+    // }
     return response
 }

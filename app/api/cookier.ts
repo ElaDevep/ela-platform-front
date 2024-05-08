@@ -3,7 +3,14 @@ import { cookies } from "next/headers"
 
 export function get_cookie(name:string){
     const cookie = cookies().get(name)
-    return cookie?.value
+
+    if(cookie?.value){
+        try{
+            return JSON.parse(cookie.value)
+        }catch(e){
+            return cookie.value
+        }
+    }
 }
 
 export function set_cookie(name:string,value:string|undefined,expire?:string){
@@ -42,7 +49,6 @@ export function set_cookie(name:string,value:string|undefined,expire?:string){
                     expireTime *= time
                 }
             }
-                    console.log(expireTime)
             cookies().set(name,value,{maxAge:expireTime})
         }
         else{
