@@ -86,7 +86,7 @@ export function PageProvider({
     })
 
     useEffect(()=>{
-        CloseSession()
+        //CloseSession()
     },[])
 
     const value = {
