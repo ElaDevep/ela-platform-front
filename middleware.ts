@@ -7,24 +7,57 @@ export async function middleware(request: NextRequest) {
     const userToken = get_cookie('userToken')
     const userInfo = get_cookie('userInfo')
     
-    // console.log(userToken)
-    // console.log(userInfo)
-    // console.log(':v')
+    console.log(':v')
+    console.log(userToken)
+    console.log(userInfo)
+    console.log(path)
 
-    //console.log(path)
+
+
+   
     if(path.match(/^\/(?!inicio_sesion|recuperacion_contrasena).*$/)){
-        if(!(userToken)){
+        if(!userInfo){
             return NextResponse.redirect(new URL('/inicio_sesion', request.url))
         }
-        else{
+    }
+    else{
+        if(userInfo){
             if(path.match(/^\/home$/)){
                 switch(userInfo.role){
                     case 'Administrador':
-                        return NextResponse.redirect(new URL('/usuarios', request.url))
+                        return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
                 }
+            }
+            else{
+                return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
             }
         }
     }
+
+
+
+    // if(path.match(/^\/(?!inicio_sesion|recuperacion_contrasena).*$/)){
+    //     if(!(userToken)){
+    //         return NextResponse.redirect(new URL('/inicio_sesion', request.url))
+    //     }
+    //     else{
+    //         if(path.match(/^\/home$/)){
+    //             switch(userInfo.role){
+    //                 case 'Administrador':
+    //                     return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
+    //             }
+    //         }
+    //     }
+    // }
+    // else{
+    //     if(userInfo){
+    //         switch(userInfo.role){
+    //             case 'Administrador':
+    //                 return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
+    //         }
+
+    //     }
+    // }
 }
 // See "Matching Paths" below to learn more
 export const config = {

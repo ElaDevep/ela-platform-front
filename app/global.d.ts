@@ -49,10 +49,19 @@ declare global {
     //Current User Type
     interface CurrentUser {
         id:string,
-        name:string,
-        lastName:string,
-        email:string
+        name:string[],
+        lastName:string[],
+        email:string,
+        img:string,
+        role:string
     }
+
+    
+    export interface View{
+        title:string
+        route:string
+    }
+
 }
 
 

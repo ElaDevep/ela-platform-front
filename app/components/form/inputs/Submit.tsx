@@ -21,7 +21,7 @@ export default function Submit({
     className?:string
     disable?:boolean
     action:(prevState: any, formData: FormData)=>Promise<string>
-    success?:{title:string,message:string,redirect?:string}
+    success?:{title?:string,message?:string,redirect?:string}
     form:UseForm
 }){
     const [response,submitAction] = useFormState(action,'')

@@ -4,7 +4,7 @@
     :root
         --contrast:#FEFEFE
         --primary:#0597f2
-        --primary-dark:#0583f2
+        --primary-dark:#0275da
         --primary-light:#05aff2
         --secondary:#f2bc1b
         --general-text: #2F2F2F
@@ -19,13 +19,13 @@
 @media (prefers-color-scheme: dark) 
     :root
         --contrast:#303030
-        --primary:#0597f2
-        --primary-dark:#005baa
-        --primary-light:#05aff2
+        --primary:#118fd8
+        --primary-dark:#0170d1
+        --primary-light:#14aedd
         --secondary:#c29100
         --general-text: #d8d8d8
         --uncontrast: #838383
-        --contrast-light:#3b3b3b
+        --contrast-light:#5c5c5c
         --right-notification: #68d800c5 
         --error-notification: #fd2828b6
         --info-notification: #1657e4b4
@@ -66,8 +66,7 @@ body
     width: 100vw
     height: 100vh
     
-
-    background-color: palete(primary)
+    background-color: transparent
 
 a
     position: relative
@@ -79,21 +78,9 @@ a
     color: palete('primary')
     text-align: center
     text-decoration: none
-    
-    transition: color 1s ease-in-out
+
+    border-color: palete('primary-light')
     
     @include fadeIn(1)
 
-    &:hover
-        color: palete('primary-light')
-
-        hr
-            width: 100%
-
-            border: palete('primary-light') 1px solid
-    
-    hr
-        width: 0
-        border: transparent 1px solid
-
-        transition: width 0.5s ease-in, border-color 1s ease-in-out
+    @include coolUnderline()

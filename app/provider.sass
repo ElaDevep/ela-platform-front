@@ -131,3 +131,21 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
         opacity: 100
     to
         opacity: 0
+
+@mixin coolUnderline()
+    transition: color 1s ease-in-out
+
+    &:hover
+        color: inherit
+
+        hr
+            width: 100%
+
+            border: inherit 1px solid
+            border-color: inherit
+    
+    hr
+        width: 0
+        border: transparent 1px solid
+
+        transition: width 0.5s ease-in, border-color 1s ease-in-out

@@ -44,6 +44,9 @@ export default function LogInForm({}:Readonly<{}>){
                 action={logIn} 
                 className={styler.logIn_submit}
                 form={form}
+                success={{
+                    redirect:'/home'
+                }}
             >
                 Ingresar
             </Submit>

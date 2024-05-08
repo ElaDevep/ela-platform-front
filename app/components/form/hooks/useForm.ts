@@ -108,12 +108,14 @@ export default function useForm(){
         if(response){
             setChanging(false)
             if(response.status == 'ok' && response.success){
-                setLastAction({
-                    type:'right',
-                    ...(response.success)?response.success:{}
-                })
-                if(response.success?.redirect)
-                    router.push(response.success?.redirect)
+                if(response.success.message && response.success.title){
+                    setLastAction({
+                        type:'right',
+                        ...(response.success)?response.success:{}
+                    })
+                }
+                if(response.success.redirect)
+                    router.push(response.success.redirect)
             }
         }
     },[response])

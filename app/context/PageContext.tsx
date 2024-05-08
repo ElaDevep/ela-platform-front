@@ -6,10 +6,18 @@ import useProps from "../hooks/useProps";
 import getCurrentUser from "../api/auth/get_current_user";
 import logOut from "../api/auth/log_out";
 import { useRouter } from "next/navigation";
+import role_access from '@/app/jsons/role_access.json';
 
 interface UsePageContext{
     setLastAction:((action:LastAction)=>void)|undefined
     lastAction:LastAction|undefined
+}
+
+interface RoleAccess{
+    views:{[key:string]:View}
+    roles:{
+        [key:string]:string[]
+    }
 }
 
 
@@ -25,6 +33,7 @@ export function PageProvider({
     const [lastAction,setLastAction] = useState<LastAction>()
     const lastActionProps = useProps()
     const [currentUser,setCurrentUser] = useState<CurrentUser>()
+    const [userAccess,setUserAccess] = useState<View[]>()
     const router = useRouter()
 
 
@@ -34,10 +43,12 @@ export function PageProvider({
             if(res){
                 if(res.data){
                     setCurrentUser({
-                        name:res.data.name,
-                        lastName:res.data.lastname,
+                        name:res.data.name.split(' '),
+                        lastName:res.data.lastname.split(' '),
                         email:res.data.email,
-                        id:res.data._id
+                        id:res.data._id,
+                        img:res.data.imgProfile,
+                        role:res.data.role
                     })
                 }
             }
@@ -51,14 +62,17 @@ export function PageProvider({
     }
 
     useEffect(()=>{
-        console.log(currentUser)
+        const AllRoleAccess:RoleAccess =  role_access
         if(currentUser){
             setLastAction({
                 type:'right',
                 title:'Bienvenido!',
                 message:'Sesión iniciada correctamente'
             })
-            router.push('/home')
+            if(currentUser.role)
+            setUserAccess((AllRoleAccess.roles[currentUser.role]).map((access:string)=>{
+                return AllRoleAccess.views[access]
+            }))
         }
     },[currentUser])
 
@@ -92,17 +106,18 @@ export function PageProvider({
     const value = {
         setLastAction,
         lastAction,
-        currentUser
+        currentUser,
+        userAccess
     }
     
     return <PageContext.Provider value={value} {...props}>
         {lastAction &&
-        <>
-            <div {...lastActionProps.props}>
-                <span>{lastAction.title}</span>
-                <p>{lastAction.message}</p>
-            </div>
-        </>
+            <>
+                <div {...lastActionProps.props}>
+                    <span>{lastAction.title}</span>
+                    <p>{lastAction.message}</p>
+                </div>
+            </>
         }
         {children}
     </PageContext.Provider>

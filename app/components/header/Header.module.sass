@@ -1,0 +1,136 @@
+@import '@/style_provider'
+
+
+.header
+    position: relative
+
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    flex-direction: column
+    gap: 0.5em
+
+    width: 100%
+    height: 10%
+
+    padding-top: 0.5em
+
+    background: linear-gradient(180deg,palete(primary-light) 25%,palete(primary) 75%)
+
+    .title_div
+        position: relative
+
+        display: flex
+        align-items: center
+        justify-content: flex-end
+        gap: 0.5em
+
+
+        h1
+            height: min-content
+
+            color: white
+            font-size: 3em
+
+        .ElaIcon_img
+            width: 2.5em
+            height: 2.5em
+
+
+    .currentUser_div
+        position: absolute
+        right: 0
+        top:0
+
+        display: flex
+        align-items: center
+        justify-content: center
+        gap:1em
+
+        height: 70%
+
+        padding: 1em
+
+        background: palete('contrast')
+
+        border-radius: 0 0 0 1em
+
+        color: palete('general-text')
+
+        .currentUser_img
+            height: 90%
+            width: auto
+
+            box-shadow: palete(primary) 0 0 0 2px
+
+            border-radius: 100%
+
+        .userInfo_div
+            position: relative
+
+            display: flex
+            align-items: center
+            justify-content: center 
+            flex-direction: column
+
+            .userName_span
+                font-size: 1.2em
+                font-weight: 700
+
+            .logOut_button
+                width: max-content
+
+                background: transparent
+
+                color: inherit
+
+
+                @include coolUnderline()
+
+                &:hover
+                    color: palete(primary-light)
+                    border-color: palete(primary-light)
+
+    .mainMenu_nav
+        position: relative
+
+        display: flex
+        flex-direction: row
+
+        overflow: hidden
+
+
+        color: white
+
+        border-radius: 1em 1em 0 0  
+
+        
+        &:hover
+            a
+                background-color: palete(primary-light)
+
+                border-radius: 0
+
+        a
+            all: unset
+            
+            width: 10em
+
+            padding: 0.2em
+
+            background-color: palete(primary)
+
+            text-align: center
+            
+            color: white
+            
+            transition: background-color 0.5s ease-in-out,border-radius 0.2s ease-in-out
+
+            &:hover
+                background: palete(contrast-light)
+
+        .currentRoute
+            background: palete(primary-dark)
+
+            border-radius: 1em 1em 0 0
+

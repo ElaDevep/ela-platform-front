@@ -1,0 +1,22 @@
+{
+    "views":{
+        "client_users":{
+            "title":"Clientes",
+            "route":"/usuarios/clientes"
+        },
+        "ela_users":{
+            "title":"Usuarios ELA",
+            "route":"/usuarios/ela"
+        },
+        "enterprises":{
+            "title":"Empresas",
+            "route":"/empresas"
+        }
+    },
+    "roles":{
+        "Administrador":["client_users","ela_users","enterprises"],
+        "Cliente":[],
+        "Visualizador":[],
+        "Super":[]
+    }
+}
