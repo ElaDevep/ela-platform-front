@@ -3,7 +3,7 @@
 import { axiosAPI } from "../axiosAPI"
 
 export default async function getUser(userId:number){
-    let response:APIResponse = {
+    let response:APIResponse<User> = {
         status:'unknown',
         code:0
     }

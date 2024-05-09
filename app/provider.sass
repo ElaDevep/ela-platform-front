@@ -18,7 +18,7 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
 
 
 @function palete($tag)
-    $able-colors: primary,primary-dark,primary-light,general-text,contrast,uncontrast,contrast-light,right-notification,error-notification,info-notification,over-primary
+    $able-colors: primary,primary-dark,primary-light,general-text,contrast,uncontrast,contrast-light,right-notification,error-notification,info-notification,over-primary,row-selected
     @if list.index($able-colors,$tag) == null
         @error 'Color no found'
         @return #757575
@@ -149,3 +149,32 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
         border: transparent 1px solid
 
         transition: width 0.5s ease-in, border-color 1s ease-in-out
+
+@mixin pageTitleUnderline($color: inherit)
+    hr
+        width: 120%
+        border: $color 1px solid
+
+        transition: width 0.5s ease-in, border-color 1s ease-in-out
+
+        animation-name: underline
+        animation-duration: 1s
+        animation-timing-function: ease-out
+
+        @keyframes underline
+            0%
+                width: 0
+
+            100%
+                width: 120%
+
+@mixin tableColumns($columns)
+    $nColumns:length($columns)
+    $columnTemplate: ()
+    @each $column in $columns
+        $columnTemplate: $columnTemplate #{$column}
+        $nColumns: $nColumns + 1
+    
+    $nColumns: $nColumns + 1
+    grid-template-columns: $columnTemplate
+    grid-column: 1/#{$nColumns}

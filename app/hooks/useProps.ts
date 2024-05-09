@@ -73,7 +73,7 @@ function useProps(initialProps:InitialProps){
                     }
                 }
                 break
-            case 'string':
+            default:
                 if(items!=undefined && items!='' ){ 
                     return false
                 }

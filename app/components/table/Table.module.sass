@@ -1,0 +1,108 @@
+@import '@/style_provider'
+
+.table_div
+    position: relative
+
+    display: flex
+    flex-direction: column
+    grid-column: inherit
+    gap: 1px
+
+    height: 80%
+
+    overflow: hidden
+
+    border: palete(primary) 1px solid
+    border-radius: 1em
+
+    padding: 2px
+
+    background: palete(contrast-light)
+
+.records_div
+    display: flex
+    flex-direction: column
+    gap: 1px
+
+    grid-template-columns: inherit
+    grid-column: inherit
+
+    overflow-y: scroll
+    overflow-x: hidden
+
+    width: 100%
+    
+    &::-webkit-scrollbar 
+        position: absolute
+        left: 50px
+
+        width: 4px
+
+        background: palete(uncontrast)
+        border-radius: 100%
+    
+
+    /* Track */
+    &::-webkit-scrollbar-track 
+        box-shadow: inset 0 0 5px grey
+        border-radius: 10px
+    
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb 
+        background: palete(contrast)
+        border-radius: 10px
+
+
+.general_row, .header_row
+    position: relative
+
+    display: grid
+    grid-template-columns: inherit
+    grid-column: inherit
+    grid-row: 1
+    gap: 1px
+
+    width: 100%
+    height: 2em  
+
+
+    &:last-child
+        border-bottom-left-radius: 1em
+        border-bottom-right-radius: 1em
+
+    *
+        height: 2em  
+
+        overflow: hidden
+
+        padding-top: 0.3em
+
+        text-align: center
+        text-overflow: ellipsis
+        color: palete(general-text)
+
+.general_row
+    *
+        background: palete(contrast)
+
+.header_row
+    height: 3em
+
+    overflow: hidden
+
+    border-radius: 1em 1em 0 0
+
+    color: white
+
+    *
+        height: 2em  
+
+        padding-top: 0.3em
+
+        background: palete(primary)
+
+.selected_row
+    *
+        background: palete(row-selected)
+    

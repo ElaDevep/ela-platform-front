@@ -23,7 +23,8 @@
       "@/ela-components":["./app/components/ela-components"],
       "@/public/*":["./public/*"],
       "@/ela-hooks":["./app/hooks/ela-hooks"],
-      "@/ela-form":["./app/components/form/ela-form"]
+      "@/ela-form":["./app/components/form/ela-form"],
+      "@/ela-table":["./app/components/table/ela-table"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
