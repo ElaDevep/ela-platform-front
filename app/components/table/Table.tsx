@@ -35,7 +35,6 @@ export default function Table({
         else{
             setError(true)
         }
-        console.log(response)
     }
 
     const setTable = () =>{
@@ -62,7 +61,6 @@ export default function Table({
             }
         })
         
-        console.log(':v')
         //@ts-ignore
         const records = data.map((record,index)=>{
             return <Row
@@ -109,7 +107,6 @@ export default function Table({
     },[])
 
     useEffect(()=>{
-        console.log(current)
         makeReRender({})
     },[current])
 
