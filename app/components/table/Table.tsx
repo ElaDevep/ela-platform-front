@@ -38,7 +38,7 @@ export default function Table({
     }
 
     const setTable = () =>{
-        const fields =Children.toArray(children).map((child)=>{
+        const fields =Children.toArray(children).map((child,key)=>{
             try{
                 //@ts-ignore
                 return child.props.field
@@ -51,10 +51,8 @@ export default function Table({
         const headers = Children.toArray(children).map((child)=>{
             try{
                 
-                return <>
-                    {/*@ts-ignore*/}
-                    {child.props.children}
-                </>
+                //@ts-ignore
+                return child.props.children
             }
             catch(e){
                 throw new Error('Table component can only have Column components as children')
@@ -64,6 +62,7 @@ export default function Table({
         //@ts-ignore
         const records = data.map((record,index)=>{
             return <Row
+                key={index}
                 id={record._id}
                 selected={(current == record._id)?true:false}
                 onSelect={()=>setCurrent(record._id)}
@@ -89,7 +88,7 @@ export default function Table({
         })
 
 
-        //@ts-ignore
+        // //@ts-ignore
         return <>
             <Row 
                 header

@@ -43,14 +43,23 @@ export default function Header({}:Readonly<{}>){
                         {
                             userAccess.map((access:View,index:number)=>{
                                 if(pathname.match('^'+access.route+'$')){
-                                    return <>
-                                        <Link key={index} className={styler.currentRoute} href={access.route}>{access.title}</Link>
-                                    </>
+                                    return <Link 
+                                        key={index} 
+                                        className={styler.currentRoute} 
+                                        href={access.route}
+                                    >
+                                        {access.title}
+                                    </Link>
+
                                 }
                                 else{
-                                    return <>
-                                        <Link key={index} href={access.route}>{access.title}</Link>
-                                    </>
+                                    return <Link 
+                                        key={index} 
+                                        href={access.route}
+                                    >
+                                        {access.title}
+                                    </Link>
+
                                 }
                             })
                         }
