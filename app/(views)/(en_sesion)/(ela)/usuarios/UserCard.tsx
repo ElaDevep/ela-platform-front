@@ -8,12 +8,14 @@ import profile_w from '@/public/svg/profile_w.svg'
 import { Children } from 'react'
 import { PasswordField } from '@/app/components/form/ela-form'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function UserCard({
     user
 }:Readonly<{
     user:User|undefined
 }>){
+    const path = usePathname()
 
     return <>
         {user ?
@@ -33,7 +35,7 @@ export default function UserCard({
                 <h4>Role</h4>
                 <span>{user.role}</span>
                 <div className={styler.userActions_div}>
-                    <Link href='/' className={styler.editUser_link}>Modificar</Link>
+                    <Link href={path+'/editar/'+user._id} className={styler.editUser_link}>Modificar</Link>
                     <button className={styler.deleteUser_button}>Eliminar</button>
                 </div>
             </div>

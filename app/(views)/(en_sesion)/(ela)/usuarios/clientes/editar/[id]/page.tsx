@@ -3,7 +3,7 @@ import ClientForm from '../../ClientForm'
 import styler from './page.module.sass'
 import Link from 'next/link'
 
-export default function NewClient({param}:{param:{id:string}}){
+export default function NewClient({params}:{params:{id:string}}){
 
     return <>
         <Link
