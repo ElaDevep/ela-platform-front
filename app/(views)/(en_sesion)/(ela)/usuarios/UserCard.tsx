@@ -28,6 +28,8 @@ export default function UserCard({
                 <span>{user.email}</span>
                 <h4>Celular</h4>
                 <span>{user.mobile}</span>
+                <h4>Empresa</h4>
+                <span>{user.idEnterprice}</span>
                 <h4>Role</h4>
                 <span>{user.role}</span>
                 <div className={styler.userActions_div}>

@@ -35,6 +35,7 @@ export interface UseForm{
     response:APIResponse
     charging:boolean
     disable:boolean
+    defaultValues?:{[key:string]:any}
 }
 
 class Form{
@@ -60,7 +61,7 @@ const inputReducer = (state:{[key:string]:any},action:useFormAction) =>{
     return state
 }
 
-export default function useForm(){
+export default function useForm(values?:{[key:string]:any}){
     const [inputs,setInputs] = useReducer(inputReducer,new Form())
     const [reRender,makeReRender] = useState({})
     const [charging,setChanging] = useState<boolean>(false)
@@ -129,5 +130,5 @@ export default function useForm(){
     },[inputs])
 
 
-    return {inputs,setInput,onSubmit,get,setResponse,response,charging,disable}
+    return {inputs,setInput,onSubmit,get,setResponse,response,charging,disable,defaultValues:values}
 }

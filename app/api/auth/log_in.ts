@@ -8,7 +8,6 @@ import type { NextRequest } from 'next/server'
 
 
 export async function logIn(prevState: any,formData:FormData){
-    let request:NextRequest
     let response:APIResponse & Object = {
         status:"unknown",
         code:0

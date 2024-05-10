@@ -83,7 +83,7 @@ export default function useInput(form:UseForm|undefined,params:InputParams){
 
     
 
-    const valueChanged = (value:string|void) =>{
+    const valueChanged = (value:string|void|undefined) =>{
         if(value){
             setValue(value) 
         }
@@ -140,6 +140,14 @@ export default function useInput(form:UseForm|undefined,params:InputParams){
             if(params.value){
                 inputRef.current.value=params.value
                 valueChanged(params.value)
+            }
+            else if(form){
+                if(form.defaultValues){
+                    if(form.defaultValues[params.name]){
+                        inputRef.current.value=form.defaultValues[params.name]
+                        valueChanged(form.defaultValues[params.name])
+                    }
+                }
             }
             else{
                 valueChanged(inputRef.current.value)

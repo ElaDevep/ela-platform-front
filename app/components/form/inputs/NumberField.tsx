@@ -9,7 +9,7 @@ import { UseForm } from "@/app/components/form/hooks/useForm"
 
 
 
-export default function TextField({
+export default function NumberField({
     label,
     placeholder,
     name,
@@ -43,7 +43,7 @@ export default function TextField({
 
     const inputContainer = useProps([{
         props:{
-            className:styler.textField
+            className:styler.numberField
         }
     },{
         mixClass:className
@@ -61,8 +61,7 @@ export default function TextField({
                 <label htmlFor={name}>{label}{require && <span>*</span>}</label>
             }
             <input 
-                type="text" 
-                
+                type="number" 
                 autoComplete="off"
                 placeholder={placeholder} 
                 {...inputState.props}

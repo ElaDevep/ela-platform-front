@@ -4,9 +4,6 @@
 //Puntos de corte de pantallas
 $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
 
-.charging_animation
-    width: auto
-    height: 4em
 
 @mixin setAllTextColor($color)
     $texts:h1,h2,h3,h4,h5,h6,p,label
@@ -47,7 +44,7 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
     width: auto
     min-height: 2em
 
-    padding: 0.4em 0.2em
+    padding: 0.4em 1em
         
     border-radius: 0.5rem
 
@@ -67,12 +64,17 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
         background-color: palete('primary')
 
         color: #FFFFFF
+
         
         &:hover
             background-color: palete('primary-light')
 
         &:active
             background-color: palete('primary-dark')
+    @else 
+        border-width: 2px
+        
+        font-weight: 600
         
 
     @if $type == 'secondary'
@@ -80,7 +82,6 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
         background-color: palete('contrast')
         
         border-color: palete('primary') 
-        border-width: 1px 
         border-style: solid
         
         color: palete('primary')
@@ -102,7 +103,6 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
         background-color: palete('contrast')
         
         border-color: palete('error')
-        border-width: 1px 
         border-style: solid
         
         color: palete('error')
@@ -123,7 +123,6 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
         background-color: palete('contrast')
         
         border-color: palete('secondary')
-        border-width: 1px 
         border-style: solid
         
         color: palete('secondary')
@@ -229,3 +228,42 @@ $break-points: 0,400px,700px,900px,1210px,1620px,2160px,3240px,4320px
     grid-column: 1/#{$nColumns}
     width: $totalWidth
     
+.pageTitle_h
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+
+    color: palete(primary-light)
+    
+    @include pageTitleUnderline(palete(primary-light))
+
+.charging_animation
+    width: auto
+    height: 4em
+
+.cancelForm_link
+    position: absolute
+    top: 2em
+    left: 2em
+
+    width: auto
+    height: auto
+
+    display: flex
+    align-items: center
+    justify-content: center
+
+    background: palete('secondary')
+
+    border-radius: 100%
+    border: palete('secondary') 1em solid
+
+
+    
+    img
+        position: relative
+        right: 2px
+
+        width: 3em
+        height: 3em

@@ -42,7 +42,7 @@ export default function Header({}:Readonly<{}>){
                     <nav className={styler.mainMenu_nav}>
                         {
                             userAccess.map((access:View,index:number)=>{
-                                if(pathname.match('^'+access.route+'$')){
+                                if(pathname.match('^'+access.route+'.*$')){
                                     return <Link 
                                         key={index} 
                                         className={styler.currentRoute} 

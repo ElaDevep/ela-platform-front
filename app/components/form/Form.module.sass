@@ -4,7 +4,7 @@
     color: red
     text-align: center
 
-.textField, .passwordField
+.textField, .passwordField, .numberField
     position: relative
 
     width: 100%
@@ -65,7 +65,15 @@
     .message
         color: red
 
-
+.numberField
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button 
+        -webkit-appearance: none
+        margin: 0
+    
+    input[type=number] 
+        -moz-appearance: textfield
+    
 
 .passwordField
     input 
