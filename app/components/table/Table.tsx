@@ -8,16 +8,19 @@ import Animator from '../Animator'
 import { Frame } from '../ela-components'
 import server_error_d from '@/public/svg/server_error_d.svg'
 import server_error_w from '@/public/svg/server_error_w.svg'
+import Link from 'next/link'
 
 export default function Table({
     children,
     className,
     dataSetter,
     getCurrent,
+    createForm
 }:Readonly<{
     children:React.ReactNode
     className:string
     dataSetter:any
+    createForm?:string
     getCurrent?:Dispatch<SetStateAction<any>>
 }>){
     const [data,setData] = useState<{[key:string]:any}[]>()
@@ -133,6 +136,15 @@ export default function Table({
         {data && <>
             <div {...table.props}>
                 {setTable()}
+                {createForm && 
+                    <Link 
+                        className={styler.newItem_link}
+                        href={createForm}
+                    >
+                        Crear
+                    </Link>
+                }
+                
             </div>
         </>
         }

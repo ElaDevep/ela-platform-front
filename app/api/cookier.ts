@@ -46,7 +46,7 @@ export function set_cookie(name:string,value:string|undefined,expire?:string){
                             time*=60*60*24*7
                             break
                     }
-                    expireTime *= time
+                    expireTime += time
                 }
             }
             cookies().set(name,value,{maxAge:expireTime})

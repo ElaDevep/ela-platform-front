@@ -14,7 +14,6 @@ export default function UserCard({
 }:Readonly<{
     user:User|undefined
 }>){
-    console.log(user)
 
     return <>
         {user ?

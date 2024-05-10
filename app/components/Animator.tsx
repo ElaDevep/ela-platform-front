@@ -41,7 +41,6 @@ export default function Animator({
     const setFrameRoute = () =>{
         let timeout = 1000/framing
         let zeros = ''
-        console.log()
         for(let i=0;i<(4-nFrame.toString().length);i++){
             zeros+='0'
         }
