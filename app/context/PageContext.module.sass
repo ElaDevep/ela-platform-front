@@ -1,10 +1,12 @@
 @import  '@/style_provider'
 
-.lastRightAction, .lastErrorAction, .lastInfoAction
+.lastAction
     position: fixed
     bottom: 1em
     right: 1em
     z-index: 10
+
+    visibility: collapse
 
     width: 20em
     mix-height: 6em
@@ -33,10 +35,13 @@
         text-overflow: ellipsis
 
 .lastRightAction
+    visibility: visible
     background-color: palete(right-notification)
 
 .lastErrorAction
+    visibility: visible
     background-color: palete(error-notification)
 
 .lastInfoAction
+    visibility: visible
     background-color: palete(info-notification)

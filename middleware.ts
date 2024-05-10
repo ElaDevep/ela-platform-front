@@ -7,8 +7,12 @@ export async function middleware(request: NextRequest) {
     const userToken = get_cookie('userToken')
     const userInfo = get_cookie('userInfo')
 
-    if(path.match(/^\/(?!inicio_sesion|recuperacion_contrasena).*$/)){
-        if(!userInfo){
+    if(path.match(/^\/$/)){
+        return NextResponse.redirect(new URL('/home', request.url))
+    }
+
+    if(!userToken){
+        if(path.match(/^\/(?!inicio_sesion|recuperacion_contrasena).*$/)){
             return NextResponse.redirect(new URL('/inicio_sesion', request.url))
         }
     }
@@ -16,14 +20,17 @@ export async function middleware(request: NextRequest) {
         if(userInfo){
             if(path.match(/^\/home$/)){
                 switch(userInfo.role){
-                    case 'Administrador':
+                    case 'Admin':
                         return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
                 }
             }
-            else{
-                return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
+            if(path.match(/^\/(inicio_sesion|recuperacion_contrasena).*$/)){
+                return NextResponse.redirect(new URL('/home', request.url))
             }
         }
+            // else{
+            //     return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
+            // }
     }
 
 

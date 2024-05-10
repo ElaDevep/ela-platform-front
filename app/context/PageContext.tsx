@@ -31,7 +31,9 @@ export function PageProvider({
     children:React.ReactNode
 }>){
     const [lastAction,setLastAction] = useState<LastAction>()
-    const lastActionProps = useProps()
+    const lastActionProps = useProps([{
+        props:{className:styler.lastAction}
+    }])
     const [currentUser,setCurrentUser] = useState<CurrentUser>()
     const [userAccess,setUserAccess] = useState<View[]>()
     const router = useRouter()
@@ -59,6 +61,7 @@ export function PageProvider({
         console.log('Salido')
         await logOut()
         setCurrentUser(undefined)
+        router.push('/inicio_sesion')
     }
 
     useEffect(()=>{
@@ -77,13 +80,13 @@ export function PageProvider({
     },[currentUser])
 
     useEffect(()=>{
-        lastActionProps.set({className:styler.lastRightAction},{
+        lastActionProps.mixClasses(styler.lastRightAction,{
             allTrue:[lastAction?.type == 'right']
         })
-        lastActionProps.set({className:styler.lastErrorAction},{
+        lastActionProps.mixClasses(styler.lastErrorAction,{
             allTrue:[lastAction?.type == 'error']
         })
-        lastActionProps.set({className:styler.lastInfoAction},{
+        lastActionProps.mixClasses(styler.lastInfoAction,{
             allTrue:[lastAction?.type == 'info']
         })
         if(lastAction){
@@ -107,7 +110,8 @@ export function PageProvider({
         setLastAction,
         lastAction,
         currentUser,
-        userAccess
+        userAccess,
+        CloseSession
     }
     
     return <PageContext.Provider value={value} {...props}>

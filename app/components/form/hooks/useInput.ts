@@ -36,7 +36,7 @@ export interface UseInput{
     }|void
 }
 
-export default function useInput(form:UseForm,params:InputParams){
+export default function useInput(form:UseForm|undefined,params:InputParams){
     const [value,setValue] = useState<string>()
     const [error,setError] =useState<{
         type:string
@@ -95,7 +95,7 @@ export default function useInput(form:UseForm,params:InputParams){
     }
 
     const setIntoForm = () =>{
-        if(inputRef.current){
+        if(inputRef.current && form){
             form.setInput({[params.name]:{
                 onSubmit:validateValue,
                 value:inputRef.current.value,
@@ -105,7 +105,7 @@ export default function useInput(form:UseForm,params:InputParams){
     }
 
     useEffect(()=>{
-        if(inputRef.current){
+        if(inputRef.current && form){
             form.setInput({[params.name]:{
                 onSubmit:validateValue,
                 value:inputRef.current.value,
@@ -119,7 +119,7 @@ export default function useInput(form:UseForm,params:InputParams){
             validateValue()
         }
         else{
-            if(inputRef.current){
+            if(inputRef.current && form){
                 form.setInput({[params.name]:{
                     onSubmit:validateValue,
                     value:inputRef.current.value,

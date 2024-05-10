@@ -1,0 +1,89 @@
+@import '@/style_provider'
+
+
+.userCard_div
+    position: relative
+
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: flex-start
+
+    padding: 2em
+
+    text-align: left
+
+    h4
+        width: 100%
+
+        margin-top: 1em
+    
+    span
+        width: 100%
+
+    .profile_img
+        width: 6em
+        height: 6em
+
+        border-radius: 100%
+
+        box-shadow: palete(primary) 0 0 0 2px
+
+.userActions_div
+    position: absolute
+    bottom: 0
+    left: 0
+
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: center
+    gap: 2em
+
+    width: 100% 
+    height: 5em
+
+    box-shadow: palete(contrast) 0 -5px 10px 0
+
+    .editUser_link
+        top: 0
+        @include button(secondary)
+
+    .deleteUser_button
+        @include button(reject)
+
+
+.noUserCard_div
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    gap: 1em
+
+    .unSelect_span
+        color: palete(uncontrast)
+        width: 12em
+        text-align: center
+
+.userCard_div,.noUserCard_div
+    position: relative
+    
+
+    width: 20em
+    height: 40em
+
+    background-color: palete(contrast-light)
+
+    border-radius: 1em
+
+    color: palete(general-text)
+
+    .profile_img
+        width: 4em
+        height: 4em
+
+
+
+    
+    //Usuario seleccionado
+    

@@ -21,11 +21,11 @@ export async function logIn(prevState: any,formData:FormData){
     
     await axiosAPI.post('/auth/login',body)
     .then((res)=>{
+        set_cookie('userToken',res.data.data,'10:00')
         response = {
             status:'ok',
             code:200
         }
-        set_cookie('userToken',res.data.data,'10:00')
     })
     .catch((error)=>{
         response = {

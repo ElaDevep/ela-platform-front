@@ -1,5 +1,23 @@
 @import '@/style_provider'
 
+.tableMessage_div
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    flex-wrap: nowrap
+
+    background: palete('contrast-light')
+
+    border-radius: 1em
+
+    color: palete('uncontrast')
+    text-align: center
+
+.serverError_img
+    width: 5em
+    height: 4em
+
 .table_div
     position: relative
 
@@ -7,8 +25,6 @@
     flex-direction: column
     grid-column: inherit
     gap: 1px
-
-    height: 80%
 
     overflow: hidden
 
@@ -89,7 +105,7 @@
         background: palete(contrast)
 
 .header_row
-    height: 3em
+    height: 2em
 
     overflow: hidden
 
@@ -98,7 +114,6 @@
     color: white
 
     *
-        height: 2em  
 
 
         background: palete(primary)

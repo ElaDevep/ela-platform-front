@@ -1,22 +1,28 @@
 'use client'
 
-import { Children, ReactElement, useEffect, useState } from 'react'
+import { Children, Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react'
 import styler from './Table.module.sass'
 import useProps from '@/app/hooks/useProps'
 import Row from './Row'
+import Animator from '../Animator'
+import { Frame } from '../ela-components'
+import server_error_d from '@/public/svg/server_error_d.svg'
+import server_error_w from '@/public/svg/server_error_w.svg'
 
 export default function Table({
     children,
     className,
-    dataSetter
+    dataSetter,
+    getCurrent,
 }:Readonly<{
     children:React.ReactNode
     className:string
     dataSetter:any
+    getCurrent?:Dispatch<SetStateAction<any>>
 }>){
     const [data,setData] = useState<{[key:string]:any}[]>()
     const [error,setError] = useState<boolean>(false)
-    const [current,setCurrent] =useState<string>()
+    const [current,setCurrent] =useState<{[key:string]:any}>()
     const [reRender,makeReRender] = useState<{}>()
     const table = useProps([
         {
@@ -26,14 +32,24 @@ export default function Table({
         }
     ])
 
+    const message = useProps([
+        {
+            props:{className:styler.tableMessage_div}
+        },{
+            mixClass:className
+        }
+    ])
 
     const gettingData = async()=>{
         const response = await dataSetter()
-        if(response.status=='ok'){
-            setData(response.data)
-        }
-        else{
-            setError(true)
+        if(response){
+            if(response.status=='ok'){
+                setData(response.data)
+            }
+            else{
+                console.log(response)
+                setError(true)
+            }
         }
     }
 
@@ -64,8 +80,8 @@ export default function Table({
             return <Row
                 key={index}
                 id={record._id}
-                selected={(current == record._id)?true:false}
-                onSelect={()=>setCurrent(record._id)}
+                selected={(current && current._id == record._id)?true:false}
+                onSelect={()=>setCurrent(record)}
             >
                 {
                     fields.map((field)=>{
@@ -101,13 +117,17 @@ export default function Table({
         </>
     }
 
+    
+    useEffect(()=>{
+        if(current && getCurrent){
+            getCurrent(current)
+        }
+        makeReRender({})
+    },[current])
+
     useEffect(()=>{
         gettingData()
     },[])
-
-    useEffect(()=>{
-        makeReRender({})
-    },[current])
 
     return <>
         {data && <>
@@ -117,7 +137,33 @@ export default function Table({
         </>
         }
         {error &&
-            <h1>Error</h1>
+            <>
+                <div {...message.props}>
+                    <Frame
+                        src={server_error_w}
+                        darkSrc={server_error_d}
+                        alt={'server_error'}
+                        className={styler.serverError_img}
+                        contain
+                    />
+                    <span>Lo sentimos, tenemos algunos problemas.<br/>Por favor intenta mas tarde</span>
+                </div>
+            </>
+        }
+        {!data && !error && 
+            <>
+                <div {...message.props}>
+                    <Animator
+                        className={styler.charging_animation}
+                        baseRoute="/animations/charging/"
+                        framing={3}
+                        start={0}
+                        end={2}
+                        infinite
+                        auto
+                    />
+                </div>
+            </>
         }
     </>
 }

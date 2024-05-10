@@ -47,6 +47,8 @@ export default function Submit({
 
     useEffect(()=>{
         if(response){   
+            console.log('🦍')
+            console.log(response)
             form.setResponse({...JSON.parse(response),success:success})
         }
     },[response])

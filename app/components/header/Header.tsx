@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export default function Header({}:Readonly<{}>){
-    const {currentUser,userAccess} = usePageContext()
+    const {currentUser,userAccess,CloseSession} = usePageContext()
     const pathname = usePathname()
 
 
@@ -32,7 +32,7 @@ export default function Header({}:Readonly<{}>){
                         />
                         <div className={styler.userInfo_div}>
                             <span className={styler.userName_span}>{currentUser.name[0]+' '+currentUser.lastName[0]}</span>
-                            <button className={styler.logOut_button}>Cerrar sesión<hr/></button>
+                            <button className={styler.logOut_button} onClick={CloseSession} >Cerrar sesión<hr/></button>
                         </div>
                     </div>
                 </>

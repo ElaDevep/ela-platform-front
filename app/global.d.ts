@@ -27,8 +27,9 @@ declare global {
         mobile:string
         password:string
         role:string
-        approved:string
+        approved:boolean
         imgProfile:string
+        idEnterprice:string
     }
 
 

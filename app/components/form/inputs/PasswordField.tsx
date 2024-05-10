@@ -15,6 +15,7 @@ export default function PasswordField({
     label,
     placeholder,
     name,
+    value,
     className,
     require,
     form,
@@ -23,9 +24,10 @@ export default function PasswordField({
 }:Readonly<{
     label?:string
     name:string
+    value?:string
     placeholder?:string
     className?:string,
-    form:UseForm
+    form?:UseForm
     require?:boolean|{ message?:string}
     pattern?:{
         value:RegExp
@@ -40,6 +42,7 @@ export default function PasswordField({
     
     const inputState = useInput(form,{
         name:name,
+        value:value,
         require:require,
         pattern:pattern,
         otherValidation:otherValidation

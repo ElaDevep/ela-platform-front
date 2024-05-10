@@ -1,15 +1,21 @@
 'use server'
 
 import { axiosAPI } from "../axiosAPI"
+import { get_cookie } from "../cookier"
 
 export default async function getClients(){
     let response:APIResponse<User[]> = {
         status:'unknown',
         code:0
     }
+    const userToken = get_cookie('userToken')
     
-    //console.log(token)
-    await axiosAPI.get('/usuarios')
+    
+    await axiosAPI.get('/auth/admin/usuariosCliente',{
+        headers:{
+            Authorization: `Bearer ${userToken}`,
+        }
+    })
     .then((res)=>{
         response = {
             status:'ok',

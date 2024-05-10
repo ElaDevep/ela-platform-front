@@ -14,7 +14,7 @@
         }
     },
     "roles":{
-        "Administrador":["client_users","ela_users","enterprises"],
+        "Admin":["client_users","ela_users","enterprises"],
         "Cliente":[],
         "Visualizador":[],
         "Super":[]
