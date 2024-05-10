@@ -30,7 +30,7 @@ export default function UserManager(){
                 <Column field="lastname">Apellidos</Column>
                 <Column field="email">Correo electrónico</Column>
                 <Column field="mobile">Celular</Column>
-                <Column field="approved">Activo</Column>
+                <Column field="idEnterprice">Empresa</Column>
             </Table>
         </main>
     </>
