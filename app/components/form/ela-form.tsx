@@ -7,5 +7,6 @@ import FormError from "./FormError";
 import useForm from "./hooks/useForm";
 import useInput from "./hooks/useInput";
 import NumberField from "./inputs/NumberField";
+import HiddenField from "./inputs/HiddenField";
 
-export {PasswordField,TextField,Submit,NumberField,Form,FormError,useForm,useInput}
+export {PasswordField,TextField,Submit,NumberField,Form,FormError,useForm,useInput,HiddenField}

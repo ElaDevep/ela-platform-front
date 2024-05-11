@@ -43,8 +43,6 @@ export default async function postClient(prevState: any,formData:FormData){
         }
         console.log(error.response.data)
     })  
-
-    console.log(response)
     
     return JSON.stringify(response)
 }

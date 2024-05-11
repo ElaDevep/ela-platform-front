@@ -17,26 +17,34 @@ export async function logIn(prevState: any,formData:FormData){
         email:formData.get('email'),
         password:formData.get('password')
     }
-    
-    await axiosAPI.post('/auth/login',body)
-    .then((res)=>{
-        set_cookie('userToken',res.data.data,'10:00')
-        response = {
-            status:'ok',
-            code:200
-        }
-    })
-    .catch((error)=>{
+    try{
+        await axiosAPI.post('/auth/login',body)
+        .then((res)=>{
+            set_cookie('userToken',res.data.data,'10:00')
+            response = {
+                status:'ok',
+                code:200
+            }
+        })
+        .catch((error)=>{
+            response = {
+                status:'error',
+                code:400,
+                data:error.response.data.data,
+                error:{
+                    status:error.response.status,
+                    message:error.response.statusText
+                }
+            }
+        })
+    }
+    catch(e){
         response = {
             status:'error',
-            code:400,
-            data:error.response.data.data,
-            error:{
-                status:error.response.status,
-                message:error.response.statusText
-            }
+            code:500,
+            data:'Error de servidor'
         }
-    })
+    }
     // if(response.status == 'ok'){
     //     redirect('/home')
     // }

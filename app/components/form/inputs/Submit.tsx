@@ -25,11 +25,13 @@ export default function Submit({
     form:UseForm
 }){
     const [response,submitAction] = useFormState(action,'')
+    const [clicked,setClicked]=useState<boolean>(false)
     const submit = useProps([
         {
             props:{
                 className:styler.submit,
-                formAction:submitAction
+                formAction:submitAction,
+                onClick:()=>{setClicked(true)}
             }
         },{
             mixClass:className,
@@ -46,16 +48,15 @@ export default function Submit({
     },[form])
 
     useEffect(()=>{
-        if(response){   
-            console.log('🦍')
-            console.log(response)
+        if(response){  
             form.setResponse({...JSON.parse(response),success:success})
+            setClicked(false)
         }
     },[response])
 
     return <>
         <button {...submit.props} >
-            {!form.charging ?
+            {(!form.charging && !clicked)?
             <>
                 {children}
             </>

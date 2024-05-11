@@ -66,16 +66,18 @@ export function PageProvider({
 
     useEffect(()=>{
         const AllRoleAccess:RoleAccess =  role_access
+        //console.log(currentUser)
         if(currentUser){
             setLastAction({
                 type:'right',
                 title:'Bienvenido!',
                 message:'Sesión iniciada correctamente'
             })
-            if(currentUser.role)
-            setUserAccess((AllRoleAccess.roles[currentUser.role]).map((access:string)=>{
-                return AllRoleAccess.views[access]
-            }))
+            if(currentUser.role){
+                setUserAccess((AllRoleAccess.roles[currentUser.role]).map((access:string)=>{
+                    return AllRoleAccess.views[access]
+                }))
+            }
         }
     },[currentUser])
 
@@ -115,6 +117,7 @@ export function PageProvider({
     }
     
     return <PageContext.Provider value={value} {...props}>
+        {children}
         {lastAction &&
             <>
                 <div {...lastActionProps.props}>
@@ -123,7 +126,6 @@ export function PageProvider({
                 </div>
             </>
         }
-        {children}
     </PageContext.Provider>
 }
 

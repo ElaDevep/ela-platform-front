@@ -9,18 +9,7 @@ import UserCard from '../UserCard'
 import Link from 'next/link'
 
 export default function UserManager(){
-    const [current,setCurrent] = useState<User>({
-        approved:false,
-        email: "Paulcastill@example.com",
-        idEnterprice:"ELa",
-        imgProfile:"https://www.educaciontrespuntocero.com/wp-content/uploads/2020/04/mejores-bancos-de-imagenes-gratis.jpg",
-        lastname:"pedrocastill",
-        mobile:"1111111111",
-        name:"paulitaCastill",
-        password:"$2b$10$IuNSw6xGOinrspK3gNF3GeyZXDQtlfMZWSBrnoDfK4QkkQtlZUMnW",
-        role:"Cliente",
-        _id:"6629d819587ce685911ca51e"
-    })
+    const [current,setCurrent] = useState<User>()
 
     const getAllUsersTest = async() =>{
         console.log(await getClients())

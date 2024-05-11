@@ -2,7 +2,7 @@
 
 import { axiosAPI } from "../axiosAPI"
 
-export default async function getUser(userId:number){
+export default async function getUser(userId:string){
     let response:APIResponse<User> = {
         status:'unknown',
         code:0
@@ -14,7 +14,7 @@ export default async function getUser(userId:number){
         .then((res)=>{
             response = {
                 status:'ok',
-                data:res.data,
+                data:res.data.data,
                 code:200
             }
         }).catch((error)=>{
