@@ -1,7 +1,7 @@
 'use client'
 
 import { error } from "console"
-import { useEffect, useRef, useState } from "react"
+import { RefObject, useEffect, useRef, useState } from "react"
 import { UseForm } from "./useForm"
 
 interface InputParams{
@@ -23,27 +23,24 @@ interface InputParams{
 
 export interface UseInput{
     name:string
-    value:string
-    container:{
-        props:{[key: string]: any;}
-    },
-    input:{
-        props:{[key: string]: any;}
-    },
+    value:string|undefined
+    props:{[key: string]: any;}
     error:{
         type:string
-        message:string
+        message:string|undefined
     }|void
 }
 
-export default function useInput(form:UseForm|undefined,params:InputParams){
+//export function useInput<InputType = HTMLInputElement>(form:UseForm|undefined,params:InputParams):UseInput
+
+export default function useInput<InputType>(form:UseForm|undefined,params:InputParams){
     const [value,setValue] = useState<string>()
     const [error,setError] =useState<{
         type:string
         message:string|undefined
     }>()
     const [touched,setTouched] = useState<boolean>(false)
-    const inputRef = useRef<HTMLInputElement>(null)
+    const inputRef = useRef<InputType extends {value:string} ? InputType: HTMLInputElement>(null)
     const [reRender,makeReRender] = useState({})
 
     const validateValue = () =>{
@@ -89,6 +86,7 @@ export default function useInput(form:UseForm|undefined,params:InputParams){
         }
         else{
             if(inputRef.current){
+
                 setValue(inputRef.current.value)
             }
         }

@@ -135,7 +135,10 @@ export default function Table({
     return <>
         {data && <>
             <div {...table.props}>
+                <div className={styler.scrollTable_div}>
                 {setTable()}
+                </div>
+                
                 {createForm && 
                     <Link 
                         className={styler.newItem_link}

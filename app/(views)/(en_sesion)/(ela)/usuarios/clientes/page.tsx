@@ -7,17 +7,18 @@ import getClients from '@/app/api/users/get_clients'
 import Column from '@/app/components/table/Column'
 import UserCard from '../UserCard'
 import Link from 'next/link'
+import getEnterprises from '@/app/api/enterprices/get_enterprices'
 
 export default function UserManager(){
     const [current,setCurrent] = useState<User>()
 
-    const getAllUsersTest = async() =>{
-        console.log(await getClients())
+    const getAllEnterprises = async() =>{
+        console.log(await getEnterprises())
     }
 
-    // useEffect(()=>{
-    //     getAllUsersTest()
-    // })
+    useEffect(()=>{
+        getAllEnterprises()
+    })
 
 
     return <>

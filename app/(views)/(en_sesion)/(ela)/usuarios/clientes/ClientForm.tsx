@@ -1,9 +1,10 @@
 'use client'
 
 import styler from './ClientForm.module.sass'
-import {Form, FormError, HiddenField, NumberField, Submit, TextField, useForm} from '@/ela-form'
+import {Form, FormError, HiddenField, NumberField, SelectionField, Submit, TextField, useForm} from '@/ela-form'
 import postClient from '@/app/api/users/post_client'
 import putUser from '@/app/api/users/put_user'
+import getEnterprises from '@/app/api/enterprices/get_enterprices'
 
 
 export default function ClientForm({user}:Readonly<{user?:User}>){
@@ -43,11 +44,15 @@ export default function ClientForm({user}:Readonly<{user?:User}>){
                 }}
             />
 
-            <TextField
+            <SelectionField
                 label='Empresa asociada'
                 name = 'idEnterprice'
                 form = {form}
                 require
+                options={getEnterprises}
+                title={'razonSocial'}
+                value={'nit'}
+                
             />
             <FormError form={form}/>
             {user ?

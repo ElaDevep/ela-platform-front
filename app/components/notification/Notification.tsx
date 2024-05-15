@@ -6,12 +6,9 @@ import { usePageContext } from '@/app/context/PageContext'
 import useProps from '@/app/hooks/useProps'
 
 export default function Notification({
-    lastAction
 }:Readonly<{
-    lastAction:LastAction|undefined
 }>){
-    const {setLastAction} = usePageContext()
-    const [reRender,makeReRender] = useState({})
+    const {setLastAction,lastAction} = usePageContext()
     
     const lastActionProps = useProps([{
         props:{className:styler.lastAction}
@@ -19,23 +16,23 @@ export default function Notification({
     
 
     useEffect(()=>{
-        console.log('🗿')
-        console.log(lastAction)
-        lastActionProps.mixClasses(styler.lastRightAction,{
-            allTrue:[lastAction?.type == 'right']
-        })
-        lastActionProps.mixClasses(styler.lastErrorAction,{
-            allTrue:[lastAction?.type == 'error']
-        })
-        lastActionProps.mixClasses(styler.lastInfoAction,{
-            allTrue:[lastAction?.type == 'info']
-        })
         if(lastAction){
-            setTimeout(()=>{
-                setLastAction(undefined)
-            },6000)
+            lastActionProps.mixClasses(styler.lastRightAction,{
+                allTrue:[lastAction?.type == 'right']
+            })
+            lastActionProps.mixClasses(styler.lastErrorAction,{
+                allTrue:[lastAction?.type == 'error']
+            })
+            lastActionProps.mixClasses(styler.lastInfoAction,{
+                allTrue:[lastAction?.type == 'info']
+            })
+            if(lastAction){
+                setTimeout(()=>{
+                    setLastAction(undefined)
+                },6000)
+            }
         }
-    })
+    },[lastAction])
 
     return <>
         {lastAction &&

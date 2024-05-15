@@ -69,9 +69,7 @@ export function PageProvider({
 
     useEffect(()=>{
         const AllRoleAccess:RoleAccess =  role_access
-        console.log(currentUser)
         if(currentUser){
-            console.log('🍙')
             setLastAction({
                 type:'right',
                 title:'Bienvenido!',
@@ -85,10 +83,6 @@ export function PageProvider({
         }
     },[currentUser])
 
-    useEffect(()=>{
-        console.log('🪦')
-        console.log(lastAction)
-    },[lastAction])
 
     useEffect(()=>{
         if(currentUser==undefined){
@@ -100,6 +94,9 @@ export function PageProvider({
             }
         }
     })
+
+    useEffect(()=>{
+    },[lastAction])
 
     useEffect(()=>{
         //CloseSession()
@@ -115,7 +112,7 @@ export function PageProvider({
     
     return <PageContext.Provider value={value} {...props}>
         {children}
-        <Notification lastAction={lastAction}/>
+        <Notification />
     </PageContext.Provider>
 }
 

@@ -4,7 +4,7 @@
     color: red
     text-align: center
 
-.textField, .passwordField, .numberField
+.textField, .passwordField, .numberField, .selectField
     position: relative
 
     width: 100%
@@ -23,7 +23,7 @@
         span
             color: palete('primary')
 
-    input
+    input,select
 
         all: unset
 
@@ -36,7 +36,7 @@
         background: palete(contrast-light)
         
         border-bottom: palete(contrast-light) 2px solid
-        border-radius: 5px
+        border-radius: 5px 5px 3px 3px
 
         color: palete(general-text) !important
 
@@ -48,7 +48,9 @@
 
         &:focus
             border-color: palete(primary)
-            border-radius: 5px 5px 2px 2px
+
+    select
+        appearance: auto
     
 .error_form 
     .textField
@@ -59,7 +61,7 @@
         span
             color: red
     
-    input
+    input,select
         border-color: red !important
     
     .message
@@ -122,6 +124,13 @@
 
         transition: opacity 1s ease-in-out
 
+//Selection input
+.selectField
+    select
+        padding-top: 0.3em
+
+
+//Submit button
 .submit
     position: relative
 

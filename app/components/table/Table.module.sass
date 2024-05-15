@@ -49,6 +49,7 @@
 
     overflow: hidden
 
+
     border: palete(primary) 1px solid
     border-radius: 1em
 
@@ -56,7 +57,45 @@
 
     background: palete(contrast-light)
 
+.scrollTable_div
+    grid-template-columns: inherit
+    grid-column: inherit
+    
+    width: 100%
+    height: 100%
+
+    overflow-x: scroll
+
+    
+    &::-webkit-scrollbar 
+        position: absolute
+        left: 50px
+
+        width: 0
+        height: 0
+
+        background: transparent
+        border-radius: 100%
+    
+
+    /* Track */
+    &::-webkit-scrollbar-track 
+        box-shadow: inset 0 0 5px grey
+        border-radius: 10px
+    
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb 
+        background: transparent
+        border-radius: 10px
+
+    *
+        box-sizing: border-box
+
+
 .records_div
+    position: relative
+
     display: flex
     flex-direction: column
     gap: 1px
@@ -65,9 +104,9 @@
     grid-column: inherit
 
     overflow-y: scroll
-    overflow-x: hidden
+    overflow-x: visible
 
-    width: 100%
+    width: min-content
     
     &::-webkit-scrollbar 
         position: absolute
@@ -129,6 +168,7 @@
 
 .header_row
     height: 2em
+    width: min-content
 
     overflow: hidden
 
@@ -137,8 +177,6 @@
     color: white
 
     *
-
-
         background: palete(primary)
 
 .selected_row

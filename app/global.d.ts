@@ -7,7 +7,7 @@ declare global {
 
 
     //Api response
-    interface APIResponse<T=string|Array<object>|object>{
+    interface APIResponse<T=string|Array<{[key:string]:any}>|{[key:string]:any}>{
         status:'ok'|'error'|'unknown'
         code:number
         data?:T 
@@ -30,6 +30,10 @@ declare global {
         approved:boolean
         imgProfile:string
         idEnterprice:string
+    }
+
+    interface Enterprise{
+
     }
 
 
