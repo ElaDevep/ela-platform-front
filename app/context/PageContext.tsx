@@ -69,7 +69,6 @@ export function PageProvider({
 
     useEffect(()=>{
         const AllRoleAccess:RoleAccess =  role_access
-        //console.log(currentUser)
         if(currentUser){
             setLastAction({
                 type:'right',
@@ -102,7 +101,6 @@ export function PageProvider({
     // },[lastAction])
 
     useEffect(()=>{
-        console.log(process.env.NEXT_PRIVATE_API_BASE_URL)
         if(currentUser==undefined){
             validateLocalUser()
         }
