@@ -14,6 +14,8 @@ export default function Notification({}:Readonly<{}>){
     
 
     useEffect(()=>{
+        console.log('🗿')
+        console.log(lastAction)
         lastActionProps.mixClasses(styler.lastRightAction,{
             allTrue:[lastAction?.type == 'right']
         })

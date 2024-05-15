@@ -69,6 +69,7 @@ export function PageProvider({
 
     useEffect(()=>{
         const AllRoleAccess:RoleAccess =  role_access
+        console.log(currentUser)
         if(currentUser){
             console.log('🍙')
             setLastAction({
@@ -85,6 +86,7 @@ export function PageProvider({
     },[currentUser])
 
     useEffect(()=>{
+        console.log('🪦')
         console.log(lastAction)
     },[lastAction])
 
