@@ -26,7 +26,7 @@ export default async function setCurrentUser(){
                 data:res.data.data,
                 code:200
             }
-            set_cookie('userInfo',JSON.stringify(res.data.data))
+            set_cookie('userInfo',JSON.stringify(res.data.data),'10:00')
         }).catch((error)=>{
             response = {
                 status:'error',

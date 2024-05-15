@@ -70,6 +70,7 @@ export function PageProvider({
     useEffect(()=>{
         const AllRoleAccess:RoleAccess =  role_access
         if(currentUser){
+            console.log('🍙')
             setLastAction({
                 type:'right',
                 title:'Bienvenido!',
