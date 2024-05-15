@@ -21,7 +21,6 @@ export default function SelectionField({
     otherValidation,
     options,
     title,
-    complement,
     value,
 }:Readonly<{
     label?:string
@@ -29,15 +28,9 @@ export default function SelectionField({
     className?:string,
     options:Array<[string,string]|[string,string,string]>|(()=>Promise<APIResponse>)
     title?:string
-    complement?:string
     value?:string
-
     form:UseForm
     require?:boolean|{ message?:string}
-    pattern?:{
-        value:RegExp
-        message?:string
-    }
     otherValidation?:(values:string)=>{
         type:string,
         message:string
@@ -66,7 +59,7 @@ export default function SelectionField({
     },[inputState.error])
 
     const settingOptions = async ()=>{
-        let optionsSet:Array<{value:string,title:string,complement?:string}>|undefined 
+        let optionsSet:Array<{value:string,title:string}>|undefined 
         if(typeof options == 'object'){
             optionsSet = options.map((op)=>{
                 if(op[2]){
@@ -81,15 +74,10 @@ export default function SelectionField({
         else if(typeof options == 'function'){
             await options().
             then((res)=>{
-                console.log(res)
+                //console.log(res)
                 if(typeof res.data=='object' && value && title){
                     optionsSet = res.data.map((op:{[key:string]:any})=>{
-                        if(complement){
-                            return {value:op[value],title:op[title],complement:op[complement]}
-                        }
-                        else{
-                            return {value:op[value],title:op[title]}
-                        }
+                        return {value:op[value],title:op[title]}
                     })
                 }
                 else{
@@ -118,7 +106,9 @@ export default function SelectionField({
             >
                 {optionsList && 
                     optionsList.map((op,index)=>{
-                        return <option key={index} value={op.value}>{op.title}</option>
+                        return <option key={index} value={op.value}>
+                            {op.title}
+                        </option>
                     })
                 }
             </select>
