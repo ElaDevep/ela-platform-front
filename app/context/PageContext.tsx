@@ -84,22 +84,9 @@ export function PageProvider({
         }
     },[currentUser])
 
-    // useEffect(()=>{
-    //     lastActionProps.mixClasses(styler.lastRightAction,{
-    //         allTrue:[lastAction?.type == 'right']
-    //     })
-    //     lastActionProps.mixClasses(styler.lastErrorAction,{
-    //         allTrue:[lastAction?.type == 'error']
-    //     })
-    //     lastActionProps.mixClasses(styler.lastInfoAction,{
-    //         allTrue:[lastAction?.type == 'info']
-    //     })
-    //     if(lastAction){
-    //         setTimeout(()=>{
-    //             setLastAction(undefined)
-    //         },6000)
-    //     }
-    // },[lastAction])
+    useEffect(()=>{
+        console.log(lastAction)
+    },[lastAction])
 
     useEffect(()=>{
         if(currentUser==undefined){
