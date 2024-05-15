@@ -32,6 +32,7 @@ export async function middleware(request: NextRequest) {
             //     return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
             // }
     }
+    
 }
 
 export const config = {

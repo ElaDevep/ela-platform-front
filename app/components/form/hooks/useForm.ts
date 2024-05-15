@@ -110,8 +110,8 @@ export default function useForm(values?:{[key:string]:any}){
             setChanging(false)
             if(response.status == 'ok' && response.success){
                 if(response.success.redirect){
-                    console.log('🦅')
-                    console.log(response.success.redirect)
+                    // console.log('🦅')
+                    // console.log(response.success.redirect)
                     router.push(response.success.redirect)
                 }
                 if(response.success.message && response.success.title){

@@ -4,6 +4,7 @@ import Animator from '@/app/components/Animator'
 import styler from './page.module.sass'
 
 export default function Home(){
+
     return <>
         <main className={styler.main}>
             <Animator 

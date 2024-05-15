@@ -5,8 +5,10 @@ import styler from './PageContext.module.sass'
 import useProps from "../hooks/useProps";
 import getCurrentUser from "../api/auth/get_current_user";
 import logOut from "../api/auth/log_out";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import role_access from '@/app/jsons/role_access.json';
+import { Notification } from "../components/ela-components";
+import path from "path";
 
 interface UsePageContext{
     setLastAction:((action:LastAction)=>void)|undefined
@@ -31,12 +33,13 @@ export function PageProvider({
     children:React.ReactNode
 }>){
     const [lastAction,setLastAction] = useState<LastAction>()
-    const lastActionProps = useProps([{
-        props:{className:styler.lastAction}
-    }])
+    // const lastActionProps = useProps([{
+    //     props:{className:styler.lastAction}
+    // }])
     const [currentUser,setCurrentUser] = useState<CurrentUser>()
     const [userAccess,setUserAccess] = useState<View[]>()
     const router = useRouter()
+    const pathname = usePathname()
 
 
     const validateLocalUser = async () =>{
@@ -81,26 +84,31 @@ export function PageProvider({
         }
     },[currentUser])
 
-    useEffect(()=>{
-        lastActionProps.mixClasses(styler.lastRightAction,{
-            allTrue:[lastAction?.type == 'right']
-        })
-        lastActionProps.mixClasses(styler.lastErrorAction,{
-            allTrue:[lastAction?.type == 'error']
-        })
-        lastActionProps.mixClasses(styler.lastInfoAction,{
-            allTrue:[lastAction?.type == 'info']
-        })
-        if(lastAction){
-            setTimeout(()=>{
-                setLastAction(undefined)
-            },6000)
-        }
-    },[lastAction])
+    // useEffect(()=>{
+    //     lastActionProps.mixClasses(styler.lastRightAction,{
+    //         allTrue:[lastAction?.type == 'right']
+    //     })
+    //     lastActionProps.mixClasses(styler.lastErrorAction,{
+    //         allTrue:[lastAction?.type == 'error']
+    //     })
+    //     lastActionProps.mixClasses(styler.lastInfoAction,{
+    //         allTrue:[lastAction?.type == 'info']
+    //     })
+    //     if(lastAction){
+    //         setTimeout(()=>{
+    //             setLastAction(undefined)
+    //         },6000)
+    //     }
+    // },[lastAction])
 
     useEffect(()=>{
         if(currentUser==undefined){
             validateLocalUser()
+        }
+        if(pathname.includes('home')){
+            if(window){
+                window.location.reload()
+            }
         }
     })
 
@@ -118,14 +126,7 @@ export function PageProvider({
     
     return <PageContext.Provider value={value} {...props}>
         {children}
-        {/* {lastAction &&
-            <>
-                <div {...lastActionProps.props}>
-                    <span>{lastAction.title}</span>
-                    <p>{lastAction.message}</p>
-                </div>
-            </>
-        } */}
+        <Notification/>
     </PageContext.Provider>
 }
 
