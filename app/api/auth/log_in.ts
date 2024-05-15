@@ -5,6 +5,10 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { set_cookie } from "../cookier"
 import type { NextRequest } from 'next/server'
+import setCurrentUser from "./set_current_user"
+
+
+
 
 
 export async function logIn(prevState: any,formData:FormData){
@@ -45,8 +49,9 @@ export async function logIn(prevState: any,formData:FormData){
             data:'Error de servidor'
         }
     }
-    // if(response.status == 'ok'){
-    //     redirect('/home')
-    // }
+    if(response.status == 'ok'){
+        //redirect('/home')
+        await setCurrentUser()
+    }
     return JSON.stringify(response)
 }

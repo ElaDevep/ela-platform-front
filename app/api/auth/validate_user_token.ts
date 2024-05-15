@@ -1,8 +1,6 @@
 'use server'
 
 import { axiosAPI } from "../axiosAPI"
-import getCurrentUser from "./get_current_user"
-
 export default async function validateUserToken(logInToken:string){
     let response:APIResponse = {
         status:'unknown',
