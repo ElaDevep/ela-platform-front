@@ -102,6 +102,7 @@ export function PageProvider({
     // },[lastAction])
 
     useEffect(()=>{
+        console.log(process.env.NEXT_PRIVATE_API_BASE_URL)
         if(currentUser==undefined){
             validateLocalUser()
         }
