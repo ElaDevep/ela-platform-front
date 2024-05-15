@@ -50,7 +50,7 @@ export default function Table({
                 setData(response.data)
             }
             else{
-                console.log(response)
+                //console.log(response)
                 setError(true)
             }
         }

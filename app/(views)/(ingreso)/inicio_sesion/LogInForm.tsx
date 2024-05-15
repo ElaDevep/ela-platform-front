@@ -45,7 +45,9 @@ export default function LogInForm({}:Readonly<{}>){
                 className={styler.logIn_submit}
                 form={form}
                 success={{
-                    redirect:'/home'
+                    title:'Bienvenido!',
+                    message:'Sesión iniciada correctamente',
+                    redirect:'/home',
                 }}
             >
                 Ingresar

@@ -1,0 +1,47 @@
+@import  '@/style_provider'
+
+.lastAction
+    position: fixed
+    bottom: 1em
+    right: 1em
+    z-index: 10
+
+    visibility: collapse
+
+    width: 20em
+    mix-height: 6em
+
+    padding: 1em
+
+    opacity: 0
+
+    border-radius: 1em
+
+    color: #FEFEFE
+    font-size: 1.1em
+
+    @include fadeInOut(5)
+
+    span
+        font-weight: 700
+    
+    p
+        display: inline-block
+
+
+        width: 100%
+        height: auto
+
+        text-overflow: ellipsis
+
+.lastRightAction
+    visibility: visible
+    background-color: palete(right-notification)
+
+.lastErrorAction
+    visibility: visible
+    background-color: palete(error-notification)
+
+.lastInfoAction
+    visibility: visible
+    background-color: palete(info-notification)

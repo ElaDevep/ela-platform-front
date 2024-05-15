@@ -58,7 +58,7 @@ export function PageProvider({
     }
 
     const CloseSession = async () =>{
-        console.log('Salido')
+        //console.log('Salido')
         await logOut()
         setCurrentUser(undefined)
         router.push('/inicio_sesion')
@@ -118,14 +118,14 @@ export function PageProvider({
     
     return <PageContext.Provider value={value} {...props}>
         {children}
-        {lastAction &&
+        {/* {lastAction &&
             <>
                 <div {...lastActionProps.props}>
                     <span>{lastAction.title}</span>
                     <p>{lastAction.message}</p>
                 </div>
             </>
-        }
+        } */}
     </PageContext.Provider>
 }
 
