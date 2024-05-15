@@ -1,12 +1,17 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styler from './Notification.module.sass'
 import { usePageContext } from '@/app/context/PageContext'
 import useProps from '@/app/hooks/useProps'
 
-export default function Notification({}:Readonly<{}>){
-    const {lastAction,setLastAction} = usePageContext()
+export default function Notification({
+    lastAction
+}:Readonly<{
+    lastAction:LastAction|undefined
+}>){
+    const {setLastAction} = usePageContext()
+    const [reRender,makeReRender] = useState({})
     
     const lastActionProps = useProps([{
         props:{className:styler.lastAction}
@@ -30,7 +35,7 @@ export default function Notification({}:Readonly<{}>){
                 setLastAction(undefined)
             },6000)
         }
-    },[lastAction])
+    })
 
     return <>
         {lastAction &&

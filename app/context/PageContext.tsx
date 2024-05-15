@@ -115,7 +115,7 @@ export function PageProvider({
     
     return <PageContext.Provider value={value} {...props}>
         {children}
-        <Notification/>
+        <Notification lastAction={lastAction}/>
     </PageContext.Provider>
 }
 
