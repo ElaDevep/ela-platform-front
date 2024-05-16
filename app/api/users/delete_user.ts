@@ -1,19 +1,16 @@
 'use server'
 
-import { axiosAPI } from "../axiosAPI"
-import { get_cookie } from "../cookier"
+import { axiosAPI } from "@/ela-axios"
 
-export default async function getClients(){
-    let response:APIResponse<[User]> = {
+export default async function deleteUser(userId:string){
+    let response:APIResponse<User[]> = {
         status:'unknown',
         code:0
     }
-    const userToken = get_cookie('userToken')
     
-    
-    await axiosAPI.get('/auth/admin/usuariosCliente',{
+    await axiosAPI.delete('/admin/user/'+userId,{
         headers:{
-            Authorization: `Bearer ${userToken}`,
+            Authorization: `Bearer userToken`,
         }
     })
     .then((res)=>{
@@ -34,6 +31,6 @@ export default async function getClients(){
         }
         console.log(error.response.data)
     })  
-    
+
     return response
 }

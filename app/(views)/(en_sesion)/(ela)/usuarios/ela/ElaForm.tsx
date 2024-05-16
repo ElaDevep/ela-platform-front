@@ -1,13 +1,15 @@
 'use client'
 
-import styler from './ClientForm.module.sass'
+import styler from './ElaForm.module.sass'
 import {Form, FormError, HiddenField, NumberField, SelectionField, Submit, TextField, useForm} from '@/ela-form'
 import postClient from '@/app/api/users/post_client'
 import putUser from '@/app/api/users/put_user'
 import getEnterprises from '@/app/api/enterprices/get_enterprices'
+import postElaUser from '@/app/api/users/post_elaUser'
+import getRoles from '@/app/api/users/get_roles'
 
 
-export default function ClientForm({user}:Readonly<{user?:User}>){
+export default function ElaForm({user}:Readonly<{user?:User}>){
     const form = useForm(user)
 
     return <>
@@ -45,13 +47,17 @@ export default function ClientForm({user}:Readonly<{user?:User}>){
             />
 
             <SelectionField
-                label='Empresa asociada'
-                name = 'idEnterprice'
+                label='Rol'
+                name = 'role'
                 form = {form}
                 require
-                options={getEnterprises}
-                title={'razonSocial'}
-                value={'nit'}
+                options={[
+                    ['Admin','Administrador'],
+                    ['Visualizador','Visualizador'],
+                    ['ELA Super Usuario','ELA Super Usuario'],
+                    ['Carga Información','Carga Información']
+
+                ]}
             />
             <FormError form={form}/>
             {user ?
@@ -63,7 +69,7 @@ export default function ClientForm({user}:Readonly<{user?:User}>){
                     success={{
                         title:'Usuario actualizado',
                         message: 'La información de '+(form.inputs.name && form.inputs.name.value)+' ha sido actualizada',
-                        redirect:'/usuarios/clientes'
+                        redirect:'/usuarios/ela'
                     }}
                 >
                     Actualizar
@@ -71,7 +77,7 @@ export default function ClientForm({user}:Readonly<{user?:User}>){
             </>:
             <>
                 <Submit
-                    action={postClient}
+                    action={postElaUser}
                     form={form}
                     success={{
                         title:'Usuario creado',
@@ -82,7 +88,7 @@ export default function ClientForm({user}:Readonly<{user?:User}>){
                 </Submit>
                 
                 <Submit
-                    action={postClient}
+                    action={postElaUser}
                     form={form}
                     className={styler.createExit_submit}
                     success={{

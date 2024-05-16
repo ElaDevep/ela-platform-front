@@ -6,38 +6,29 @@ import { useEffect, useState } from 'react'
 import getClients from '@/app/api/users/get_clients'
 import Column from '@/app/components/table/Column'
 import UserCard from '../UserCard'
-import Link from 'next/link'
-import getEnterprises from '@/app/api/enterprices/get_enterprices'
+import axios from 'axios'
+import useManager from '@/app/components/table/useManager'
 
 export default function UserManager(){
-    const [current,setCurrent] = useState<User>()
-
-    const getAllEnterprises = async() =>{
-        console.log(await getEnterprises())
-    }
-
-    useEffect(()=>{
-        getAllEnterprises()
-    })
-
+    
+    const clientManager = useManager<User>('users/clients')
 
     return <>
         <h1 className={styler.pageTitle_h}>Gestión de clientes<hr/></h1>
         <div className={styler.content_div}>
             <Table
                 className={styler.clients_table}
-                dataSetter={getClients}
-                getCurrent={setCurrent}
+                manager={clientManager}
                 createForm={'/usuarios/clientes/nuevo'}
             >
-                <Column field="_id">Id</Column>
+                <Column field="id">Id</Column>
                 <Column field="name">Nombre</Column>
                 <Column field="lastname">Apellidos</Column>
                 <Column field="email">Correo electrónico</Column>
                 <Column field="mobile">Celular</Column>
                 <Column field="idEnterprice">Empresa</Column>
             </Table>
-            <UserCard user={current}/>
+            <UserCard manager={clientManager}/>
         </div>
     </>
 }

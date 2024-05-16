@@ -62,13 +62,7 @@ export default function SelectionField({
         let optionsSet:Array<{value:string,title:string}>|undefined 
         if(typeof options == 'object'){
             optionsSet = options.map((op)=>{
-                if(op[2]){
-                    return {value:op[0],title:op[1],complement:op[2]}
-                }
-                else{
-                    return {value:op[0],title:op[1]}
-                }
-                
+                return {value:op[0],title:op[1]}
             })
         }
         else if(typeof options == 'function'){
@@ -106,7 +100,7 @@ export default function SelectionField({
             >
                 {optionsList && 
                     optionsList.map((op,index)=>{
-                        return <option key={index} value={op.value}>
+                        return <option key={index} value={op.value} {...form.defaultValues && (form.defaultValues[name] == op.value) && {selected:true}}>
                             {op.title}
                         </option>
                     })

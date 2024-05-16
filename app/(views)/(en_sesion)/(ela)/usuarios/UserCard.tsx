@@ -5,17 +5,36 @@ import styler from './UserCard.module.sass'
 
 import profile_d from '@/public/svg/profile_d.svg'
 import profile_w from '@/public/svg/profile_w.svg'
-import { Children } from 'react'
+import { Children, Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { PasswordField } from '@/app/components/form/ela-form'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { logIn } from '@/app/api/auth/log_in'
+import deleteUser from '@/app/api/users/delete_user'
+import { useManager } from '@/app/components/table/useManager'
 
 export default function UserCard({
-    user
+    manager
 }:Readonly<{
-    user:User|undefined
+    manager:useManager<User>
 }>){
-    const path = usePathname()
+    const pathname = usePathname()
+    const [user,setUser] = useState<User>()
+
+    const onDeleteUser = async() =>{
+        if(user){
+            const res = await deleteUser(user._id)
+            console.log(res)
+            console.log('🦅')
+            setUser(undefined)
+        }
+    }
+
+    
+    useEffect(()=>{
+        console.log(manager.current)
+        setUser(manager.current)
+    },[manager.current])
 
     return <>
         {user ?
@@ -35,8 +54,8 @@ export default function UserCard({
                 <h4>Role</h4>
                 <span>{user.role}</span>
                 <div className={styler.userActions_div}>
-                    <Link href={path+'/editar/'+user._id} className={styler.editUser_link}>Modificar</Link>
-                    <button className={styler.deleteUser_button}>Eliminar</button>
+                    <Link href={pathname+'/editar/'+user._id} className={styler.editUser_link}>Modificar</Link>
+                    <button className={styler.deleteUser_button} onClick={manager.deleteCurrent}>Eliminar</button>
                 </div>
             </div>
 

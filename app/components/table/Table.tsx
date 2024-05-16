@@ -9,24 +9,21 @@ import { Frame } from '../ela-components'
 import server_error_d from '@/public/svg/server_error_d.svg'
 import server_error_w from '@/public/svg/server_error_w.svg'
 import Link from 'next/link'
+import { useManager } from './useManager'
 
 export default function Table({
     children,
     className,
-    dataSetter,
-    getCurrent,
+    manager,
     createForm
 }:Readonly<{
     children:React.ReactNode
     className:string
-    dataSetter:any
+    manager:useManager<any>
     createForm?:string
-    getCurrent?:Dispatch<SetStateAction<any>>
 }>){
-    const [data,setData] = useState<{[key:string]:any}[]>()
-    const [error,setError] = useState<boolean>(false)
-    const [current,setCurrent] =useState<{[key:string]:any}>()
-    const [reRender,makeReRender] = useState<{}>()
+    const [reRender,makeReRender] = useState({})
+
     const table = useProps([
         {
             props:{className:styler.table_div}
@@ -42,19 +39,6 @@ export default function Table({
             mixClass:className
         }
     ])
-
-    const gettingData = async()=>{
-        const response = await dataSetter()
-        if(response){
-            if(response.status=='ok'){
-                setData(response.data)
-            }
-            else{
-                //console.log(response)
-                setError(true)
-            }
-        }
-    }
 
     const setTable = () =>{
         const fields =Children.toArray(children).map((child,key)=>{
@@ -78,20 +62,24 @@ export default function Table({
             }
         })
         
+        console.log(manager.data)
         //@ts-ignore
-        const records = data.map((record,index)=>{
+        const records = manager.data.map((record,index)=>{
+            console.log('🪦')
             return <Row
                 key={index}
+                record={record}
                 id={record._id}
-                selected={(current && current._id == record._id)?true:false}
-                onSelect={()=>setCurrent(record)}
+                selected={(manager.current && manager.current._id == record._id)?true:false}
+                manager={manager}
             >
                 {
                     fields.map((field)=>{
-                        if(field=='_id'){
+                        if(field=='id'){
                             return index
                         }
-                        else if(typeof record[field]=='boolean'){
+                        else 
+                        if(typeof record[field]=='boolean'){
                             return (record[field]?'v':'x')
                         }
                         else if(!record[field]){
@@ -111,6 +99,7 @@ export default function Table({
         return <>
             <Row 
                 header
+                manager={manager}
             >
                 {headers}
             </Row>
@@ -120,20 +109,12 @@ export default function Table({
         </>
     }
 
-    
     useEffect(()=>{
-        if(current && getCurrent){
-            getCurrent(current)
-        }
         makeReRender({})
-    },[current])
-
-    useEffect(()=>{
-        gettingData()
-    },[])
+    },[manager.current,manager.data])
 
     return <>
-        {data && <>
+        {manager.data && <>
             <div {...table.props}>
                 <div className={styler.scrollTable_div}>
                 {setTable()}
@@ -151,7 +132,7 @@ export default function Table({
             </div>
         </>
         }
-        {error &&
+        {manager.error &&
             <>
                 <div {...message.props}>
                     <Frame
@@ -165,7 +146,7 @@ export default function Table({
                 </div>
             </>
         }
-        {!data && !error && 
+        {!manager.data && !manager.error && 
             <>
                 <div {...message.props}>
                     <Animator

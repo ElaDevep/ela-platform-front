@@ -1,16 +1,17 @@
-'use server'
+import { NextResponse } from "next/server"
+import { axiosAPI } from "../../axiosAPI"
+import { get_cookie } from "../../cookier"
 
-import { axiosAPI } from "../axiosAPI"
-import { get_cookie } from "../cookier"
 
-export default async function getClients(){
+
+export async function GET(request: Request) {
     let response:APIResponse<[User]> = {
         status:'unknown',
         code:0
     }
     const userToken = get_cookie('userToken')
     
-    
+    console.log(userToken)
     await axiosAPI.get('/auth/admin/usuariosCliente',{
         headers:{
             Authorization: `Bearer ${userToken}`,
@@ -35,5 +36,6 @@ export default async function getClients(){
         console.log(error.response.data)
     })  
     
-    return response
+    return NextResponse.json(response)
 }
+

@@ -3,15 +3,24 @@
 import { axiosAPI } from "../axiosAPI"
 import { get_cookie } from "../cookier"
 
-export default async function getClients(){
-    let response:APIResponse<[User]> = {
-        status:'unknown',
+export default async function postElaUser(prevState: any,formData:FormData){
+    let response:APIResponse & Object = {
+        status:"unknown",
         code:0
     }
+    
+    const body = {
+        name:formData.get('name'),
+        lastname:formData.get('lastname'),
+        mobile:formData.get('mobile'),
+        idEnterprice:'Ela',
+        email:formData.get('email'),
+        role:formData.get('role')
+    }
+    
     const userToken = get_cookie('userToken')
-    
-    
-    await axiosAPI.get('/auth/admin/usuariosCliente',{
+    console.log(formData)
+    await axiosAPI.post('/auth/admin/registerEla',body,{
         headers:{
             Authorization: `Bearer ${userToken}`,
         }
@@ -19,7 +28,7 @@ export default async function getClients(){
     .then((res)=>{
         response = {
             status:'ok',
-            data:res.data.data,
+            data:res.data,
             code:200
         }
     }).catch((error)=>{
@@ -35,5 +44,6 @@ export default async function getClients(){
         console.log(error.response.data)
     })  
     
-    return response
+    return JSON.stringify(response)
 }
+

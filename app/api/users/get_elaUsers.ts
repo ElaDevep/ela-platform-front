@@ -3,7 +3,7 @@
 import { axiosAPI } from "../axiosAPI"
 import { get_cookie } from "../cookier"
 
-export default async function getClients(){
+export default async function getElaUsers(){
     let response:APIResponse<[User]> = {
         status:'unknown',
         code:0
@@ -11,7 +11,7 @@ export default async function getClients(){
     const userToken = get_cookie('userToken')
     
     
-    await axiosAPI.get('/auth/admin/usuariosCliente',{
+    await axiosAPI.get('/auth/admin/usuariosEla',{
         headers:{
             Authorization: `Bearer ${userToken}`,
         }

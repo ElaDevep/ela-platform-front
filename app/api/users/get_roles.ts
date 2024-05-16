@@ -3,19 +3,13 @@
 import { axiosAPI } from "../axiosAPI"
 import { get_cookie } from "../cookier"
 
-export default async function getClients(){
-    let response:APIResponse<[User]> = {
+export default async function getRoles(){
+    let response:APIResponse<User[]> = {
         status:'unknown',
         code:0
     }
-    const userToken = get_cookie('userToken')
     
-    
-    await axiosAPI.get('/auth/admin/usuariosCliente',{
-        headers:{
-            Authorization: `Bearer ${userToken}`,
-        }
-    })
+    await axiosAPI.get('/roles')
     .then((res)=>{
         response = {
             status:'ok',

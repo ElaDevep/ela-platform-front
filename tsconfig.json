@@ -24,7 +24,9 @@
       "@/public/*":["./public/*"],
       "@/ela-hooks":["./app/hooks/ela-hooks"],
       "@/ela-form":["./app/components/form/ela-form"],
-      "@/ela-table":["./app/components/table/ela-table"]
+      "@/ela-table":["./app/components/table/ela-table"],
+      "@/ela-axios":["./app/api/axiosAPI"],
+      "@/ela-api/*":["./app/api/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
