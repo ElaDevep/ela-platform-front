@@ -1,6 +1,6 @@
 'use client'
 
-import styler from './ElaForm.module.sass'
+import styler from './EnterpriseForm.module.sass'
 import {Form, FormError, HiddenField, NumberField, SelectionField, Submit, TextField, useForm} from '@/ela-form'
 import postClient from '@/app/api/users/post_client'
 import putUser from '@/app/api/users/put_user'
@@ -94,7 +94,7 @@ export default function ElaForm({user}:Readonly<{user?:User}>){
                     success={{
                         title:'Usuario creado',
                         message: (form.inputs.name && form.inputs.name.value) + ' ya puede ingresar al plataforma',
-                        redirect:'/usuarios/clientes'
+                        redirect:'/empresas'
                     }}
                 >
                     Crear y salir

@@ -1,6 +1,5 @@
 'use client'
 import ElaForm from '../EnterpriseForm'
-import ClientForm from '../EnterpriseForm'
 import styler from './page.module.sass'
 import Link from 'next/link'
 
