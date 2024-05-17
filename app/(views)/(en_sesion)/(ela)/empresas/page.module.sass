@@ -1,0 +1,31 @@
+@import '@/style_provider'
+
+.pageTitle_h
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+
+    color: palete(primary-light)
+    
+    @include pageTitleUnderline(palete(primary-light))
+
+.content_div
+    position: relative
+
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: center
+    //flex-wrap: wrap
+    gap: 2em
+    
+    width: 100%
+    height: 90%
+
+.clients_table
+    height: 100%
+
+
+    $colums:10em 12em 12em 15em 8em
+    @include tableColumns($colums)

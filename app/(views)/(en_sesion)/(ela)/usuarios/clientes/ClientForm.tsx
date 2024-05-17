@@ -4,7 +4,7 @@ import styler from './ClientForm.module.sass'
 import {Form, FormError, HiddenField, NumberField, SelectionField, Submit, TextField, useForm} from '@/ela-form'
 import postClient from '@/app/api/users/post_client'
 import putUser from '@/app/api/users/put_user'
-import getEnterprises from '@/app/api/enterprices/get_enterprices'
+import getEnterprises from '@/app/api/enterprises/get_enterprices'
 
 
 export default function ClientForm({user}:Readonly<{user?:User}>){

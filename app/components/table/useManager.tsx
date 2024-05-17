@@ -31,6 +31,7 @@ export default function useManager<ItemType>(endpoint:string){
             setData(res.data.data)
         })
         .catch((error)=>{
+            console.log(error)
             setError(true)
         })
     }
