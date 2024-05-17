@@ -7,10 +7,12 @@ import putUser from '@/app/api/users/put_user'
 import getEnterprises from '@/app/api/enterprises/get_enterprices'
 import postElaUser from '@/app/api/users/post_elaUser'
 import getRoles from '@/app/api/users/get_roles'
+import postEnterprise from '@/app/api/enterprises/post_enterprise'
+import putEnterprise from '@/app/api/enterprises/put_enterprise'
 
 
-export default function ElaForm({user}:Readonly<{user?:User}>){
-    const form = useForm(user)
+export default function EnterpriseForm({enterprise}:Readonly<{enterprise?:Enterprise}>){
+    const form = useForm(enterprise)
 
     return <>
         <Form
@@ -18,26 +20,26 @@ export default function ElaForm({user}:Readonly<{user?:User}>){
             form={form}
         >
             <TextField
-                label='Nombre'
-                name='name'
+                label='Razón social'
+                name='razonSocial'
+                form={form}
+                require
+            />
+            <NumberField
+                label='NIT'
+                name='nit'
                 form={form}
                 require
             />
             <TextField
-                label='Apellidos'
-                name='lastname'
-                form={form}
-                require
-            />
-            <TextField
-                label='Correo'
-                name='email'
+                label='Dirección'
+                name='direccion'
                 form={form}
                 require
             />
             <NumberField
                 label='Celular'
-                name='mobile'
+                name='celular'
                 form={form}
                 require
                 pattern={{
@@ -47,29 +49,32 @@ export default function ElaForm({user}:Readonly<{user?:User}>){
             />
 
             <SelectionField
-                label='Rol'
-                name = 'role'
+                label='Tipo'
+                name = 'tipo'
                 form = {form}
                 require
                 options={[
-                    ['Admin','Administrador'],
-                    ['Visualizador','Visualizador'],
-                    ['ELA Super Usuario','ELA Super Usuario'],
-                    ['Carga Información','Carga Información']
-
+                    ['Comercio','Comercio'],
+                    ['Alimentos','Alimentos'],
+                    ['Condominio','Condominio'],
+                    ['Enseñanza','Enseñanza'],
+                    ['Hospitalidad','Hospitalidad'],
+                    ['Industria','Industria'],
+                    ['Salud','Salud'],
+                    ['otro','otro'],
                 ]}
             />
             <FormError form={form}/>
-            {user ?
+            {enterprise ?
             <>  
                 <HiddenField name='_id' form={form}/>
                 <Submit
-                    action={putUser}
+                    action={putEnterprise}
                     form={form}
                     success={{
-                        title:'Usuario actualizado',
-                        message: 'La información de '+(form.inputs.name && form.inputs.name.value)+' ha sido actualizada',
-                        redirect:'/usuarios/ela'
+                        title:'Empresa actualizado',
+                        message: 'La información de '+(form.inputs.razonSocial && form.inputs.razonSocial.value)+' ha sido actualizada',
+                        redirect:'/empresas'
                     }}
                 >
                     Actualizar
@@ -77,23 +82,23 @@ export default function ElaForm({user}:Readonly<{user?:User}>){
             </>:
             <>
                 <Submit
-                    action={postElaUser}
+                    action={postEnterprise}
                     form={form}
                     success={{
-                        title:'Usuario creado',
-                        message: (form.inputs.name && form.inputs.name.value)+ ' ya puede ingresar al plataforma'
+                        title:'Empresa creada',
+                        message: (form.inputs.razonSocial && form.inputs.razonSocial.value)+ ' ya esta asociada con ELA'
                     }}
                 >
                     Crear
                 </Submit>
                 
                 <Submit
-                    action={postElaUser}
+                    action={postEnterprise}
                     form={form}
                     className={styler.createExit_submit}
                     success={{
-                        title:'Usuario creado',
-                        message: (form.inputs.name && form.inputs.name.value) + ' ya puede ingresar al plataforma',
+                        title:'Empresa creada',
+                        message: (form.inputs.name && form.inputs.name.value) + ' ya esta asociada con ELA',
                         redirect:'/empresas'
                     }}
                 >

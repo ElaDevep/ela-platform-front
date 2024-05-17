@@ -28,6 +28,6 @@ export default async function getEnterprises(){
         console.log(error.response.data)
     })  
     
-    console.log(response.data)
+    //console.log(response.data)
     return response
 }

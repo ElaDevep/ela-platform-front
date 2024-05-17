@@ -15,12 +15,16 @@ export default function Table({
     children,
     className,
     manager,
-    createForm
+    createForm,
+    editForm,
+    canDelete
 }:Readonly<{
     children:React.ReactNode
     className:string
     manager:useManager<any>
     createForm?:string
+    editForm?:string
+    canDelete:boolean
 }>){
     const [reRender,makeReRender] = useState({})
 
@@ -53,6 +57,10 @@ export default function Table({
 
         const headers = Children.toArray(children).map((child)=>{
             try{
+                //@ts-ignore
+                if(!child.props.children){
+                    return ''
+                }
                 
                 //@ts-ignore
                 return child.props.children
@@ -62,10 +70,8 @@ export default function Table({
             }
         })
         
-        console.log(manager.data)
         //@ts-ignore
         const records = manager.data.map((record,index)=>{
-            console.log('🪦')
             return <Row
                 key={index}
                 record={record}
@@ -78,17 +84,13 @@ export default function Table({
                         if(field=='id'){
                             return index
                         }
-                        else 
                         if(typeof record[field]=='boolean'){
                             return (record[field]?'v':'x')
                         }
-                        else if(!record[field]){
+                        if(!record[field]){
                             return ''
                         }
-                        else{
-                            //@ts-ignore
-                            return record[field]
-                        }
+                        return record[field]
                     })
                 }
             </Row>
@@ -119,16 +121,36 @@ export default function Table({
                 <div className={styler.scrollTable_div}>
                 {setTable()}
                 </div>
-                
-                {createForm && 
-                    <Link 
-                        className={styler.newItem_link}
-                        href={createForm}
-                    >
-                        Crear
-                    </Link>
-                }
-                
+                <div className={styler.actions_div}>
+                    {createForm && 
+                        <Link 
+                            className={styler.newItem_link}
+                            href={createForm}
+                        >
+                            Crear
+                        </Link>
+                    }
+                    {manager.current &&
+                    <>
+                    {editForm && 
+                        <Link 
+                            className={styler.editItem_link}
+                            href={editForm+'/'+manager.current._id}
+                        >
+                            Modificar
+                        </Link>
+                    }
+                    {canDelete && 
+                        <button
+                            className={styler.deleteItem_button}
+                            onClick={()=>{manager.deleteCurrent()}}
+                        >
+                            Eliminar
+                        </button>
+                    }
+                    </>
+                    }
+                </div>
             </div>
         </>
         }

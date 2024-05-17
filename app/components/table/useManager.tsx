@@ -3,6 +3,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import styler from './useTable.module.sass'
 import axios from 'axios'
+import { usePageContext } from '@/app/context/PageContext'
+import { title } from 'process'
 
 
 export interface useManager<ItemType>{
@@ -19,6 +21,7 @@ export default function useManager<ItemType>(endpoint:string){
     const [current,setCurrent] = useState<ItemTypeV<ItemType>>()
     const [data,setData] = useState<[ItemTypeV<ItemType>]>()
     const [error,setError] = useState<boolean>(false)
+    const {setLastAction} = usePageContext()
 
     const manageAxios = axios.create({
         baseURL:'/api/'
@@ -44,6 +47,11 @@ export default function useManager<ItemType>(endpoint:string){
                 console.log(res)
                 setCurrent(undefined)
                 getAllData()
+                setLastAction({
+                    type:'info',
+                    title:'Eliminación exitosa',
+                    message: current._id + ' ha sido eliminado'
+                })
             })
             .catch((error)=>{
                 console.error(error)

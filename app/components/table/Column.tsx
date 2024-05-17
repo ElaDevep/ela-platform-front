@@ -7,7 +7,7 @@ export default function Column({
     children
 }:Readonly<{
     field:string
-    children:string
+    children?:string
 }>){
     return <>
         {children}

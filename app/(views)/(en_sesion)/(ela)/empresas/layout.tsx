@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import styler from './layout.module.sass'
 
 export const metadata: Metadata = {
-    title: 'Gestión de clientes'
+    title: 'Gestión de empresas'
 };
 
 export default function RootLayout({

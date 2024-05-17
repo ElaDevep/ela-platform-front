@@ -6,20 +6,24 @@ import Link from 'next/link'
 import getUser from '@/app/api/users/get_user'
 import { usePageContext } from '@/app/context/PageContext'
 import { title } from 'process'
+import EnterpriseForm from '../../EnterpriseForm'
+import axios from 'axios'
+import getEnterprise from '@/app/api/enterprises/get_enterprise'
 
 
 export default function NewClient({params}:{params:{id:string}}){
-    const [user,setUser] = useState<User>()
+    const [enterprise,setEnterprise] = useState<Enterprise>()
     const {setLastAction} = usePageContext()
 
-    const gettingUser = async() =>{
-        const response = await getUser(params.id)
+    const gettingEnterprise = async() =>{
+        const response = await getEnterprise(params.id)
         if(response.status == 'ok'){
             console.log(response)
-            setUser(response.data)
+            setEnterprise(response.data)
         }
         else{
             setLastAction({
+                type:'error',
                 title:'Error de consulta',
                 message:response.data
             })
@@ -27,19 +31,19 @@ export default function NewClient({params}:{params:{id:string}}){
     }
 
     useEffect(()=>{
-        gettingUser()
+        gettingEnterprise()
     },[])
     
     return <>
         <Link
             className={styler.cancelForm_link}
-            href={'/usuarios/ela'}
+            href={'/empresas'}
         >
             <img src='/svg/cancel_form.svg'/>
         </Link>
         <h1 className={styler.pageTitle_h}>Editar colaborador<hr/></h1>
-        {user &&
-            <ClientForm user={user}/>
+        {enterprise &&
+            <EnterpriseForm enterprise={enterprise}/>
         }
         
     </>

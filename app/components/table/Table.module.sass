@@ -18,24 +18,44 @@
     width: 5em
     height: 4em
 
-.newItem_link
-    @include button(highlight)
-
+.actions_div
     position: absolute
     right: 1em
     bottom: 1em
     top: unset
 
-    padding: 0.5em 1em 0.5em 1em
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: 0.5em
 
-    height: min-content
-    width: min-content
+    width: auto
 
-    border-width: 4px
-    border-radius: 4em
 
-    font-weight: 700
-    font-size: 1.1em
+    .newItem_link
+        @include button(highlight)
+
+    .editItem_link
+        @include button(secondary)
+
+    .deleteItem_button
+        @include button(reject)
+    
+    .newItem_link, .editItem_link, .deleteItem_button
+        position: relative
+        top: 0
+        
+        padding: 0.5em 1em 0.5em 1em
+
+        height: min-content
+        width: min-content
+
+        border-width: 4px
+        border-radius: 4em
+
+        font-weight: 700
+        font-size: 1.1em
+
 
 
 
@@ -150,11 +170,17 @@
         border-bottom-right-radius: 1em
 
     *
+        position: relative
+
+        display: flex
+        justify-content: center
+        align-items: center
+
         height: 2em  
 
         overflow: hidden
 
-        padding-top: 0.3em
+        //padding-top: 0.3em
 
         text-align: center
         text-overflow: ellipsis
@@ -187,4 +213,5 @@
 .selected_row
     *
         background: palete(row-selected)
-    
+
+

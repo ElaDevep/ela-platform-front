@@ -24,6 +24,8 @@ export default function UserManager(){
                 className={styler.clients_table}
                 manager={enterpriseManager}
                 createForm={'/empresas/nuevo'}
+                editForm={'/empresas/editar'}
+                canDelete
             >
                 <Column field="nit">NIT</Column>
                 <Column field="razonSocial">Razón Social</Column>

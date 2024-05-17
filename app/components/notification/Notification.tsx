@@ -16,6 +16,8 @@ export default function Notification({
     
 
     useEffect(()=>{
+        console.log('Bv')
+        console.log(lastAction)
         if(lastAction){
             lastActionProps.mixClasses(styler.lastRightAction,{
                 allTrue:[lastAction?.type == 'right']
