@@ -33,6 +33,7 @@ declare global {
     }
 
     interface Enterprise{
+        _id:string
         nit: number
         razonSocial: string
         direccion: string

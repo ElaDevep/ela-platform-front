@@ -17,14 +17,16 @@ export default function Table({
     manager,
     createForm,
     editForm,
-    canDelete
+    canDelete,
+    extraActions
 }:Readonly<{
     children:React.ReactNode
     className:string
     manager:useManager<any>
     createForm?:string
     editForm?:string
-    canDelete:boolean
+    canDelete?:boolean,
+    extraActions?:React.ReactNode
 }>){
     const [reRender,makeReRender] = useState({})
 
@@ -122,6 +124,9 @@ export default function Table({
                 {setTable()}
                 </div>
                 <div className={styler.actions_div}>
+                    {
+                        extraActions
+                    }
                     {createForm && 
                         <Link 
                             className={styler.newItem_link}

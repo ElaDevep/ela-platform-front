@@ -26,6 +26,7 @@ export default function UserManager(){
                 createForm={'/empresas/nuevo'}
                 editForm={'/empresas/editar'}
                 canDelete
+                extraActions = {<></>}
             >
                 <Column field="nit">NIT</Column>
                 <Column field="razonSocial">Razón Social</Column>
