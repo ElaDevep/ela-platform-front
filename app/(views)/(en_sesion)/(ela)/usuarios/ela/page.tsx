@@ -22,7 +22,7 @@ export default function UserManager(){
             <Table
                 className={styler.clients_table}
                 manager={workerManager}
-                createForm={'/usuarios/clientes/nuevo'}
+                createForm={'/usuarios/ela/nuevo'}
             >
                 <Column field="id">Id</Column>
                 <Column field="name">Nombre</Column>

@@ -15,7 +15,8 @@ export default async function postElaUser(prevState: any,formData:FormData){
         mobile:formData.get('mobile'),
         idEnterprice:'Ela',
         email:formData.get('email'),
-        role:formData.get('role')
+        role:formData.get('role'),
+        imgProfile:'https://www.xtrafondos.com/wallpapers/resoluciones/23/rafael-teenage-mutant-ninja-turtles-mutant-mayhem_2560x1440_11670.jpg'
     }
     
     const userToken = get_cookie('userToken')
