@@ -43,6 +43,7 @@ export default function ClientForm({user}:Readonly<{user?:User}>){
                     message: 'El nuemero telefonico debe tener 10 digitos'
                 }}
             />
+            <HiddenField name='role' form={form}/>
 
             <SelectionField
                 label='Empresa asociada'

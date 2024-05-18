@@ -59,6 +59,7 @@ export default function ElaForm({user}:Readonly<{user?:User}>){
 
                 ]}
             />
+            <HiddenField name='idEmpresa' form={form}/>
             <FormError form={form}/>
             {user ?
             <>  

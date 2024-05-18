@@ -49,7 +49,7 @@ export default function Row({
         <div {...row.props} key={id} onClick={()=>manager.setCurrent(record)}>
             {
                 Children.toArray(children).map((child,index)=>{
-                    console.log(child)
+                    ///console.log(child)
                     return <span key={index} onClick={()=>{}}>{child}</span>
                 })
             }

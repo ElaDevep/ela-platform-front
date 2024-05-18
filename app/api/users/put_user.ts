@@ -20,7 +20,7 @@ export default async function putUser(prevState: any,formData:FormData){
         mobile:formData.get('mobile'),
         idEnterprice:formData.get('idEnterprice'),
         email:formData.get('email'),
-        role:'Cliente'
+        role:formData.get('role')
     }
 
     const userToken = get_cookie('userToken')

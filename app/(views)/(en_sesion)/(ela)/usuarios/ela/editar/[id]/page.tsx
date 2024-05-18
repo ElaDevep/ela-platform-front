@@ -6,6 +6,7 @@ import Link from 'next/link'
 import getUser from '@/app/api/users/get_user'
 import { usePageContext } from '@/app/context/PageContext'
 import { title } from 'process'
+import ElaForm from '../../ElaForm'
 
 
 export default function NewClient({params}:{params:{id:string}}){
@@ -39,7 +40,7 @@ export default function NewClient({params}:{params:{id:string}}){
         </Link>
         <h1 className={styler.pageTitle_h}>Editar colaborador<hr/></h1>
         {user &&
-            <ClientForm user={user}/>
+            <ElaForm user={user}/>
         }
         
     </>

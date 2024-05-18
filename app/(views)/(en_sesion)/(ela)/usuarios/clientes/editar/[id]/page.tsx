@@ -15,7 +15,6 @@ export default function NewClient({params}:{params:{id:string}}){
     const gettingUser = async() =>{
         const response = await getUser(params.id)
         if(response.status == 'ok'){
-            console.log(response)
             setUser(response.data)
         }
         else{
