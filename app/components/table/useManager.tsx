@@ -30,7 +30,7 @@ export default function useManager<ItemType>(endpoint:string){
     const getAllData = async()=>{
         await manageAxios.get(endpoint)
         .then((res)=>{
-            //console.log(res)
+            console.log(res)
             setData(res.data.data)
         })
         .catch((error)=>{
