@@ -18,19 +18,19 @@ export async function middleware(request: NextRequest) {
     }
     else{
         if(userInfo){
+            console.log(userInfo)
             if(pathname.match(/^\/home$/)){
                 switch(userInfo.role){
                     case 'Admin':
                         return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
+                    case 'Cliente':
+                        return NextResponse.redirect(new URL('/perfil',request.url))
                 }
             }
             if(pathname.match(/^\/(inicio_sesion|recuperacion_contrasena).*$/)){
                 return NextResponse.redirect(new URL('/home', request.url))
             }
         }
-            // else{
-            //     return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
-            // }
     }
     
 }

@@ -16,11 +16,13 @@ export default async function postElaUser(prevState: any,formData:FormData){
         idEnterprice:'Ela',
         email:formData.get('email'),
         role:formData.get('role'),
-        imgProfile:'https://www.xtrafondos.com/wallpapers/resoluciones/23/rafael-teenage-mutant-ninja-turtles-mutant-mayhem_2560x1440_11670.jpg'
+        password:'1234',
+        imgProfile:'https://th.bing.com/th/id/R.93e43ffc7b737358e983ab55c1e989c9?rik=ReLo9kiyPU1msA&pid=ImgRaw&r=0',
+        businessName:'__'
     }
     
     const userToken = get_cookie('userToken')
-    console.log(formData)
+    console.log(body)
     await axiosAPI.post('/auth/admin/registerEla',body,{
         headers:{
             Authorization: `Bearer ${userToken}`,

@@ -52,7 +52,7 @@ export default function ClientForm({user}:Readonly<{user?:User}>){
                 require
                 options={getEnterprises}
                 title={'razonSocial'}
-                value={'nit'}
+                value={'_id'}
             />
             <FormError form={form}/>
             {user ?

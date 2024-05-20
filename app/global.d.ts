@@ -59,11 +59,13 @@ declare global {
     //Current User Type
     interface CurrentUser {
         id:string,
-        name:string[],
-        lastName:string[],
+        name:string,
+        lastName:string,
         email:string,
+        mobile:string
         img:string,
         role:string
+        shortName:string
     }
 
     

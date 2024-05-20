@@ -48,12 +48,14 @@ export function PageProvider({
             if(res){
                 if(res.data){
                     setCurrentUser({
-                        name:res.data.name.split(' '),
-                        lastName:res.data.lastname.split(' '),
+                        shortName:(res.data.name.split(' '))[0]+' '+(res.data.lastname.split(' '))[0],
+                        name:res.data.name,
+                        lastName:res.data.lastname,
                         email:res.data.email,
                         id:res.data._id,
                         img:res.data.imgProfile,
-                        role:res.data.role
+                        role:res.data.role,
+                        mobile:res.data.mobile
                     })
                 }
             }

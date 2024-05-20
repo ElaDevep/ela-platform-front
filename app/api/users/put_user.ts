@@ -20,7 +20,8 @@ export default async function putUser(prevState: any,formData:FormData){
         mobile:formData.get('mobile'),
         idEnterprice:formData.get('idEnterprice'),
         email:formData.get('email'),
-        role:formData.get('role')
+        role:formData.get('role'),
+        imgProfile:'https://th.bing.com/th/id/R.93e43ffc7b737358e983ab55c1e989c9?rik=ReLo9kiyPU1msA&pid=ImgRaw&r=0'
     }
 
     const userToken = get_cookie('userToken')

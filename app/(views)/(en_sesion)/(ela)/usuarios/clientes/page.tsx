@@ -26,7 +26,7 @@ export default function UserManager(){
                 <Column field="lastname">Apellidos</Column>
                 <Column field="email">Correo electrónico</Column>
                 <Column field="mobile">Celular</Column>
-                <Column field="idEnterprice">Empresa</Column>
+                <Column field="businessName">Empresa</Column>
             </Table>
             <UserCard manager={clientManager}/>
         </div>
