@@ -120,6 +120,9 @@ export default function useForm(values?:{[key:string]:any}){
                         ...(response.success)?response.success:{}
                     })
                 }
+                if(response.success.function){
+                    response.success.function()
+                }
                 makeReRender({})
             }
         }

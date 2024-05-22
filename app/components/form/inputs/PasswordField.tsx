@@ -27,7 +27,7 @@ export default function PasswordField({
     value?:string
     placeholder?:string
     className?:string,
-    form?:UseForm
+    form:UseForm
     require?:boolean|{ message?:string}
     pattern?:{
         value:RegExp
@@ -72,11 +72,6 @@ export default function PasswordField({
             {label &&
                 <label htmlFor={name}>{label}{require && <span>*</span>}</label>
             }
-            <input 
-                type={visible?"text":"password"}
-                placeholder={placeholder}
-                {...inputState.props}
-            />
             <Frame
                 src={visible?"/svg/open_lock.svg":"/svg/close_lock.svg"} 
                 className={styler.image_button} 
@@ -84,6 +79,11 @@ export default function PasswordField({
                 onMouseDown={()=>changeVisibility(true)} 
                 onMouseUp={()=>changeVisibility(false)} 
                 onDrag={()=>changeVisibility(false)}
+            />
+            <input 
+                type={visible?"text":"password"}
+                placeholder={placeholder}
+                {...inputState.props}
             />
             {inputState.error &&
             <p className={styler.message}>{inputState.error.message}</p>

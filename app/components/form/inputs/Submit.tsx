@@ -21,7 +21,7 @@ export default function Submit({
     className?:string
     disable?:boolean
     action:(prevState: any, formData: FormData)=>Promise<string>
-    success?:{title?:string,message?:string,redirect?:string}
+    success?:{title:string,message:string,redirect?:string,function?:()=>any}
     form:UseForm
 }){
     const [response,submitAction] = useFormState(action,'')
@@ -48,6 +48,7 @@ export default function Submit({
     },[form])
 
     useEffect(()=>{
+        console.log(response)
         if(response){  
             form.setResponse({...JSON.parse(response),success:success})
             setClicked(false)

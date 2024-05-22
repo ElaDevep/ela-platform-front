@@ -8,21 +8,29 @@ export default async function putUser(prevState: any,formData:FormData){
         status:"unknown",
         code:0
     }
-    const userId = (formData.get('_id'))?.toString()
+    const userId = (formData.get('_id'))?.toString() ? (formData.get('_id'))?.toString() : (formData.get('id'))?.toString() 
 
-    console.log(';v')
-    console.log(formData)
-    console.log(userId)
+    const fields = [
+        'name',
+        'lastname',
+        'mobile',
+        'email',
+        'role',
+        'imgProfile',
+        'idEnterprice'
+    ]
     
-    const body = {
-        name:formData.get('name'),
-        lastname:formData.get('lastname'),
-        mobile:formData.get('mobile'),
-        idEnterprice:formData.get('idEnterprice'),
-        email:formData.get('email'),
-        role:formData.get('role'),
-        imgProfile:'https://th.bing.com/th/id/R.93e43ffc7b737358e983ab55c1e989c9?rik=ReLo9kiyPU1msA&pid=ImgRaw&r=0'
+    let body = {}
+    
+    console.log(formData)
+
+    for(let field of fields){
+        if(formData.get(field)){
+            Object.assign(body,{[field]:formData.get(field)})
+        }
     }
+
+    console.log(body)
 
     const userToken = get_cookie('userToken')
     if(userId){
@@ -34,7 +42,7 @@ export default async function putUser(prevState: any,formData:FormData){
         .then((res)=>{
             response = {
                 status:'ok',
-                data:res.data,
+                data:res.data.data,
                 code:200
             }
         }).catch((error)=>{

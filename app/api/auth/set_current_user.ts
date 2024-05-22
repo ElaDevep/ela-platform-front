@@ -45,3 +45,5 @@ export default async function setCurrentUser(){
     // }
     return response
 }
+
+export {setCurrentUser}

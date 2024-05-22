@@ -50,7 +50,7 @@ declare global {
     }
 
     interface SuccessAction{
-        success?:{title:string,message:string,redirect?:string}
+        success?:{title:string,message:string,redirect?:string,function?:()=>any}
     }
 
     //Type for Form Actions
@@ -65,7 +65,8 @@ declare global {
         mobile:string
         img:string,
         role:string
-        shortName:string
+        shortName:string,
+        businessName:string
     }
 
     

@@ -1,0 +1,63 @@
+@import '@/style_provider'
+
+
+.profile_div,.updateProfile_form
+    position: relative
+    display: flex
+    align-items: center
+    flex-direction: column
+    
+    width: 25em
+    height:  auto
+
+    margin-bottom: 4em
+
+    .profile_img
+        width: 10em
+        height: 10em
+        border-radius: 100%
+        border: 5px palete(primary) solid
+    h2
+        text-align: center
+    h4
+        color: palete(uncontrast)
+    h3
+        margin-top: 1em
+    @include setSomeTextColor(palete(primary),[h2,h3])
+    @include setSomeTextColor(palete(general-text),[p])
+
+.profile_div
+    button
+        margin-top: 1em
+
+        @include button(secondary)
+
+.updateProfile_form
+    width: 15em
+
+    button
+        margin-top: 1.5em
+
+    .updateProfile_submit
+        @include button(main)
+
+    .cancelUpdate_button
+        @include button(secondary)
+
+
+.changePass_form
+    position: relative
+
+    display: flex
+    flex-direction: column
+
+    height: auto
+    width: 20em
+
+
+    text-align: center
+
+    .changePass_submit
+        @include button(main)
+        
+    

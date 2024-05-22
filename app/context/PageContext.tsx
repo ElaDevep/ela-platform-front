@@ -9,6 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import role_access from '@/app/jsons/role_access.json';
 import { Notification } from "../components/ela-components";
 import path from "path";
+import {setCurrentUser as setCurrentUserCookie} from "../api/auth/set_current_user";
 
 interface UsePageContext{
     setLastAction:((action:LastAction)=>void)|undefined
@@ -55,11 +56,16 @@ export function PageProvider({
                         id:res.data._id,
                         img:res.data.imgProfile,
                         role:res.data.role,
-                        mobile:res.data.mobile
+                        mobile:res.data.mobile,
+                        businessName: res.data.bussinesName
                     })
                 }
             }
         })
+    }
+
+    const reSetCurrentUser = () =>{
+        setCurrentUserCookie()
     }
 
     const CloseSession = async () =>{
@@ -72,11 +78,11 @@ export function PageProvider({
     useEffect(()=>{
         const AllRoleAccess:RoleAccess =  role_access
         if(currentUser){
-            setLastAction({
-                type:'right',
-                title:'Bienvenido!',
-                message:'Sesión iniciada correctamente'
-            })
+            // setLastAction({
+            //     type:'right',
+            //     title:'Bienvenido!',
+            //     message:'Sesión iniciada correctamente'
+            // })
             if(currentUser.role){
                 setUserAccess((AllRoleAccess.roles[currentUser.role]).map((access:string)=>{
                     return AllRoleAccess.views[access]
@@ -109,7 +115,8 @@ export function PageProvider({
         lastAction,
         currentUser,
         userAccess,
-        CloseSession
+        CloseSession,
+        reSetCurrentUser
     }
     
     return <PageContext.Provider value={value} {...props}>

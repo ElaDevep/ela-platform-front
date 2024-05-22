@@ -8,35 +8,12 @@
     flex-direction: column
     gap: 1em
 
-    min-height: calc(100% - 7em)
+    height: calc(100% - 7em)
 
     padding-top: 2em
 
     background-color: palete(contrast)
 
-    .profile_form
-        position: relative
+    overflow-x: scroll
 
-        display: flex
-        align-items: center
-        flex-direction: column
-        
-        width: 70%
-        height:  auto
-
-        img 
-            width: 10em
-            height: 10em
-
-            border-radius: 100%
-            border: 5px palete(primary) solid
-
-        h2
-            text-align: center
-
-        h4
-            color: palete(uncontrast)
-
-        @include setSomeTextColor(palete(primary),[h2,h3])
-        @include setSomeTextColor(palete(general-text),[p])
 
