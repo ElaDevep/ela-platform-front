@@ -2,20 +2,34 @@
     "views":{
         "client_users":{
             "title":"Clientes",
-            "route":"/usuarios/clientes"
+            "route":"/usuarios/clientes",
+            "navAble":true
         },
         "ela_users":{
             "title":"Usuarios ELA",
-            "route":"/usuarios/ela"
+            "route":"/usuarios/ela",
+            "navAble":true
         },
         "enterprises":{
             "title":"Empresas",
-            "route":"/empresas"
+            "route":"/empresas",
+            "navAble":true
+        },
+        "profile":{
+            "title":"Perfil",
+            "route":"/perfil",
+            "navAble":false
+        }
+        ,
+        "covenant":{
+            "title":"Convenio",
+            "route":"/convenio",
+            "navAble":true
         }
     },
     "roles":{
-        "Admin":["client_users","ela_users","enterprises"],
-        "Cliente":[],
+        "Admin":["client_users","ela_users","enterprises","profile"],
+        "Cliente":["profile","covenant"],
         "Visualizador":[],
         "Super":[]
     }

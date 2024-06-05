@@ -40,7 +40,7 @@ export async function GET(request: Request, context: { params: {id:string}}) {
         code:0
     }
 
-    await axiosAPI.delete('/empresa/empresas/'+context.params.id,{
+    await axiosAPI.get('/empresa/empresas/'+context.params.id,{
         headers:{
             Authorization: `Bearer userToken`,
         }

@@ -6,6 +6,7 @@ export function get_cookie(name:string){
 
     if(cookie?.value){
         try{
+            console.log(cookie.value)
             return JSON.parse(cookie.value)
         }catch(e){
             return cookie.value
@@ -14,6 +15,8 @@ export function get_cookie(name:string){
 }
 
 export function set_cookie(name:string,value:string|undefined,expire?:string){
+    
+    console.log(value)
     if(value){
         if(expire){
             const expireArray = expire?.split(':')
@@ -49,10 +52,13 @@ export function set_cookie(name:string,value:string|undefined,expire?:string){
                     expireTime += time
                 }
             }
+            
             cookies().set(name,value,{maxAge:expireTime})
+            return true
         }
         else{
             cookies().set(name,value)
+            return true
         }
     }
     else{

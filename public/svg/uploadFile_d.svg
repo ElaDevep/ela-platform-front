@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="71.254028mm"
+   height="78.290688mm"
+   viewBox="0 0 71.254028 78.290688"
+   version="1.1"
+   id="svg1"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-56.209306,-88.825582)">
+    <path
+       style="fill:none;stroke:#a1a1a1;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
+       d="M 66.767442,153.87209 V 91.32558 h 50.267438 l 6.97351,12.07848 v 50.08431 h -18.48514"
+       id="path1"
+       inkscape:export-filename="uploadFile_w.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#a1a1a1;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
+       d="m 117.03488,91.32558 -10.74419,10.74418 17.7177,4.74745"
+       id="path2" />
+    <path
+       style="fill:none;stroke:#a1a1a1;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
+       d="m 109.36046,136.22093 -13.972544,-13.6221 -14.03908,13.6221 H 92.476744 V 163.0814 H 58.709302"
+       id="path3" />
+    <path
+       style="fill:none;stroke:#a1a1a1;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
+       d="m 105.52325,153.48837 v 11.12791 h 19.44009"
+       id="path4"
+       sodipodi:nodetypes="ccc" />
+  </g>
+</svg>

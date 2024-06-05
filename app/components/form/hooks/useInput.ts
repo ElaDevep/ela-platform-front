@@ -74,10 +74,6 @@ export default function useInput<InputType>(form:UseForm|undefined,params:InputP
             setError(undefined)
     }
 
-    useEffect(()=>{
-        makeReRender({})
-    },[error])
-
     
 
     const valueChanged = (value:string|void|undefined) =>{
@@ -86,11 +82,21 @@ export default function useInput<InputType>(form:UseForm|undefined,params:InputP
         }
         else{
             if(inputRef.current){
-
                 setValue(inputRef.current.value)
             }
         }
     }
+
+    const resetInput = () => {
+        setValue(undefined)
+        if(inputRef.current){
+            inputRef.current.value=''
+        }
+    }
+
+    useEffect(()=>{
+        makeReRender({})
+    },[error])
 
     const setIntoForm = () =>{
         if(inputRef.current && form){
@@ -159,12 +165,17 @@ export default function useInput<InputType>(form:UseForm|undefined,params:InputP
         value:value,
         props:{
             name:params.name,
+            id:params.name,
             ref:inputRef,
             onChange:()=>{
                 valueChanged()
             },
-            onBlur:()=>{setTouched(true);setIntoForm()}
+            onBlur:()=>{
+                setTouched(true);
+                setIntoForm()
+            }
         },
-        error:error
+        error:error,
+        reset:resetInput
     }
 }

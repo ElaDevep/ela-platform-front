@@ -50,7 +50,6 @@ export async function logIn(prevState: any,formData:FormData){
         }
     }
     if(response.status == 'ok'){
-        await setCurrentUser()
         redirect('/home')
     }
     return JSON.stringify(response)

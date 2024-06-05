@@ -10,11 +10,12 @@ export default async function postEnterprise(prevState: any,formData:FormData){
     }
     
     const body = {
-        nit:formData.get('nit'),
+        nNit:formData.get('nNit'),
         razonSocial:formData.get('razonSocial'),
         direccion:formData.get('direccion'),
         celular:formData.get('celular'),
         tipo:formData.get('tipo'),
+        sede:formData.get('sede')
     }
     
     const userToken = get_cookie('userToken')
@@ -34,7 +35,7 @@ export default async function postEnterprise(prevState: any,formData:FormData){
         response = {
             status:'error',
             code:400,
-            data:error.response.data.data,
+            data:error.response.data,
             error:{
                 status:error.response.status,
                 message:error.response.statusText

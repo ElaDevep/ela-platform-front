@@ -18,16 +18,16 @@ export default async function getEnterprise(userId:string){
                 code:200
             }
         }).catch((error)=>{
+            console.log(error.response)
             response = {
                 status:'error',
                 code:400,
-                data:error.response.data.data,
+                data:error.response.data,
                 error:{
                     status:error.response.status,
                     message:error.response.statusText
                 }
             }
-            console.log(error.response.data)
         })  
     }
     return response

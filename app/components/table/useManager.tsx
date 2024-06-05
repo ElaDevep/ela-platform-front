@@ -13,6 +13,7 @@ export interface useManager<ItemType>{
     current:ItemType|undefined,
     setCurrent:Dispatch<SetStateAction<ItemType | undefined>>
     deleteCurrent:() => Promise<void>
+    getAllData:()=>Promise<void>
 }
 
 type ItemTypeV<T> = T extends {_id:string} ? T : undefined
@@ -32,10 +33,13 @@ export default function useManager<ItemType>(endpoint:string){
         .then((res)=>{
             console.log(res)
             setData(res.data.data)
+            setError(false)
         })
         .catch((error)=>{
-            console.log(error)
-            setError(true)
+            //console.log(error)
+            if(!data){
+                setError(true)
+            }
         })
     }
 
@@ -69,6 +73,7 @@ export default function useManager<ItemType>(endpoint:string){
         error,
         current,
         setCurrent,
-        deleteCurrent
+        deleteCurrent,
+        getAllData
     }
 }

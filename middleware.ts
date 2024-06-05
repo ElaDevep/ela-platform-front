@@ -10,6 +10,7 @@ export async function middleware(request: NextRequest) {
     if(pathname.match(/^\/$/)){
         return NextResponse.redirect(new URL('/home', request.url))
     }
+    
 
     if(!userToken){
         if(pathname.match(/^\/(?!inicio_sesion|recuperacion_contrasena).*$/)){
@@ -18,7 +19,6 @@ export async function middleware(request: NextRequest) {
     }
     else{
         if(userInfo){
-            console.log(userInfo)
             if(pathname.match(/^\/home$/)){
                 switch(userInfo.role){
                     case 'Admin':

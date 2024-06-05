@@ -142,6 +142,114 @@
                 font-size: 2px
                 color: palete(contrast-light)
 
+//File Input
+.fileInput
+    position: relative
+
+    width: 90%
+    height: 90%
+
+    border: palete(contrast) 2px dashed
+    border-radius: inherit
+
+    label
+        position: relative
+
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        gap: 1em
+
+        width: 100%
+        height: 100%
+
+        .upload_frame
+            width: 5em
+            height: 5em
+
+        button
+            @include button(secondary)
+
+        p
+            width: 15em
+
+            text-align: center
+            color: palete(uncontrast)
+
+    input
+        display: none
+
+.fileSelected_div
+    position: relative
+
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    gap: 1em
+
+    width: 100%
+    height: 100%
+
+    border-style: solid
+
+
+    .upload_frame
+        width: 5em
+        height: 5em
+
+    button
+        @include button(secondary)
+
+//Image Input
+
+.imageInput
+    position: relative
+
+    height: 14em
+    width: 14em
+    
+
+    &>img
+        width: 100%
+        height: 100%
+
+
+        border: 5px palete(primary) solid
+        border-radius: 100%
+        
+        object-fit: cover
+    
+    input 
+        position: absolute
+
+        display: none
+        
+        width: 3em
+        height: 3em
+
+
+    label
+        position: absolute
+        bottom: 0
+        right: 0
+
+        margin: 1em
+
+        padding: 0.5em
+
+        background-color: palete(primary-light)
+
+        border-radius: 100%
+
+        color: palete(primary)
+
+        .uploadIcon
+            width: 2em
+            height: 2em
+
+
 
 //Submit button
 .submit

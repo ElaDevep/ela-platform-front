@@ -8,6 +8,7 @@ import logOut from "./log_out"
 import validateUserToken from "./validate_user_token"
 
 export default async function setCurrentUser(){
+
     const userToken = get_cookie('userToken')
     let response:APIResponse<User> = {
         status:'unknown',
@@ -17,6 +18,7 @@ export default async function setCurrentUser(){
     let userId
     if(userToken){
         userId = (await validateUserToken(userToken)).data
+
     }
     if(userId){
         await axiosAPI.get('/auth/user/'+userId)
@@ -41,7 +43,7 @@ export default async function setCurrentUser(){
         })  
     }
     // if(response.status == 'ok'){
-    //     redirect('/inicio_sesion')
+    //     redirect('/home')
     // }
     return response
 }

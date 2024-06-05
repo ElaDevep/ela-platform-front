@@ -14,7 +14,12 @@ export async function GET(request: Request) {
     .then((res)=>{
         response = {
             status:'ok',
-            data:res.data,
+            data:(res.data.map((record:Enterprise)=>{
+                const date = new Date(record.fechaSubida)
+                record.fechaSubida = date.getDay().toString()
+                console.log(record)
+                return record
+            })),
             code:200
         }
     }).catch((error)=>{

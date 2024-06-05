@@ -40,15 +40,19 @@
 
     .deleteItem_button
         @include button(reject)
+
+    *
+        @include button(secondary)
+
+        width: max-content
     
-    .newItem_link, .editItem_link, .deleteItem_button
+    .newItem_link, .editItem_link, .deleteItem_button,*
         position: relative
         top: 0
         
         padding: 0.5em 1em 0.5em 1em
 
         height: min-content
-        width: min-content
 
         border-width: 4px
         border-radius: 4em
@@ -156,11 +160,10 @@
     display: grid
     grid-template-columns: inherit
     grid-column: inherit
-    grid-row: 1
+    //grid-row: 1
     gap: 1px
 
     width: 100%
-    height: 2em  
 
     white-space: nowrap
 
@@ -187,6 +190,8 @@
         color: palete(general-text)
 
 .general_row
+    height: 2em  
+
     *
         padding: 0 1em
         padding-top: 0.3em
@@ -195,11 +200,16 @@
 .header_row
     position: sticky
     top:0
-    left: 0
+    left: -1em
     z-index: 1
 
-    height: 2em
+
+
+    min-height: 2em
+    height: auto
     width: min-content
+
+    margin-right: 0.5em
 
     overflow: hidden
 
@@ -208,7 +218,19 @@
     color: white
 
     *
+        display: block
+
+        overflow: visible
+
+        min-height: 2em
+        height: auto
+
+        
+        padding-top: 0.3em
+
         background: palete(primary)
+
+        text-align: center
 
 .selected_row
     *

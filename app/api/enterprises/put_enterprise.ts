@@ -12,7 +12,7 @@ export default async function putEnterprise(prevState: any,formData:FormData){
 
     
     const body = {
-        nit:formData.get('nit'),
+        nNit:formData.get('nNit'),
         razonSocial:formData.get('razonSocial'),
         direccion:formData.get('direccion'),
         celular:formData.get('celular'),

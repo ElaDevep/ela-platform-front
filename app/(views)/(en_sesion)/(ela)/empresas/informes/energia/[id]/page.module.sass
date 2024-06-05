@@ -1,0 +1,14 @@
+@import '@/style_provider'
+
+.info_div
+    position: relative
+
+    display: flex
+    flex-direction: column
+    gap: 1em
+
+    height: 100%
+
+.reports_table
+    $colums:5em 12em 16em 12em 12em 10em 16em 16em 15em 13em
+    @include tableColumns($colums)

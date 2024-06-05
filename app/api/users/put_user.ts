@@ -16,21 +16,16 @@ export default async function putUser(prevState: any,formData:FormData){
         'mobile',
         'email',
         'role',
-        'imgProfile',
         'idEnterprice'
     ]
     
     let body = {}
-    
-    console.log(formData)
 
     for(let field of fields){
         if(formData.get(field)){
             Object.assign(body,{[field]:formData.get(field)})
         }
     }
-
-    console.log(body)
 
     const userToken = get_cookie('userToken')
     if(userId){

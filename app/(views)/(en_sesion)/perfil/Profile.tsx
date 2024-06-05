@@ -3,7 +3,7 @@
 import Form from '@/app/components/form/Form'
 import styler from './Profile.module.sass'
 import { useForm } from '@/app/hooks/ela-hooks'
-import { FormError, HiddenField, PasswordField, Submit, TextField } from '@/app/components/form/ela-form'
+import { FormError, HiddenField, ImageUpload, PasswordField, Submit, TextField } from '@/app/components/form/ela-form'
 import { useState } from 'react'
 import putUser from '@/app/api/users/put_user'
 import RestorePassword from '../../(ingreso)/recuperacion_contrasena/[token]/page'
@@ -35,7 +35,7 @@ export default function Profile({user}:Readonly<{user:CurrentUser}>){
         {!updating ?
         <> 
             <div className={styler.profile_div}>
-                <img src={user.img} className={styler.profile_img}/>
+                <img src={user.imgProfile} className={styler.profile_img}/>
                 <h2>{user.name}</h2>
                 <h2>{user.lastName}</h2>
                 {user.role != 'Cliente' &&
@@ -106,7 +106,7 @@ export default function Profile({user}:Readonly<{user:CurrentUser}>){
                 form={updateForm}
                 className={styler.updateProfile_form}
             > 
-                <img src={user.img} className={styler.profile_img}/>
+                <img src={user.imgProfile} className={styler.profile_img}/>
                 <h2>{user.name}</h2>
                 <h2>{user.lastName}</h2>
                 {user.role != 'Cliente' &&

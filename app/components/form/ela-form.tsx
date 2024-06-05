@@ -9,5 +9,7 @@ import useInput from "./hooks/useInput";
 import NumberField from "./inputs/NumberField";
 import HiddenField from "./inputs/HiddenField";
 import SelectionField from "./inputs/SelectionField";
+import ImageUpload from "./inputs/ImageUpload";
+import FileInput from "./inputs/FileInput";
 
-export {PasswordField,TextField,Submit,NumberField,Form,FormError,useForm,useInput,HiddenField,SelectionField}
+export {PasswordField,TextField,Submit,NumberField,Form,FormError,useForm,useInput,HiddenField,SelectionField,ImageUpload,FileInput}

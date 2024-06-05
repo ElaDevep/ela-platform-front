@@ -4,7 +4,7 @@ import styler from './EnterpriseForm.module.sass'
 import {Form, FormError, HiddenField, NumberField, SelectionField, Submit, TextField, useForm} from '@/ela-form'
 import postClient from '@/app/api/users/post_client'
 import putUser from '@/app/api/users/put_user'
-import getEnterprises from '@/app/api/enterprises/get_enterprices'
+import getEnterprises from '@/app/api/enterprises/get_enterprises'
 import postElaUser from '@/app/api/users/post_elaUser'
 import getRoles from '@/app/api/users/get_roles'
 import postEnterprise from '@/app/api/enterprises/post_enterprise'
@@ -27,7 +27,7 @@ export default function EnterpriseForm({enterprise}:Readonly<{enterprise?:Enterp
             />
             <NumberField
                 label='NIT'
-                name='nit'
+                name='nNit'
                 form={form}
                 require
             />
@@ -63,6 +63,12 @@ export default function EnterpriseForm({enterprise}:Readonly<{enterprise?:Enterp
                     ['Salud','Salud'],
                     ['otro','otro'],
                 ]}
+            />
+            <TextField
+                label='Sede'
+                name = 'sede'
+                form = {form}
+                require
             />
             <FormError form={form}/>
             {enterprise ?

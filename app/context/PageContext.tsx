@@ -54,10 +54,11 @@ export function PageProvider({
                         lastName:res.data.lastname,
                         email:res.data.email,
                         id:res.data._id,
-                        img:res.data.imgProfile,
+                        imgProfile:res.data.imgProfile,
                         role:res.data.role,
                         mobile:res.data.mobile,
-                        businessName: res.data.bussinesName
+                        businessName: res.data.bussinesName,
+                        idEnterprise: res.data.idEnterprice
                     })
                 }
             }
@@ -97,9 +98,9 @@ export function PageProvider({
             validateLocalUser()
         }
         if(pathname.includes('home')){
-            if(window){
-                window.location.reload()
-            }
+            // if(window){
+            //     window.location.reload()
+            // }
         }
     })
 

@@ -7,7 +7,7 @@ import getClients from '@/app/api/users/get_clients'
 import Column from '@/app/components/table/Column'
 import UserCard from '../UserCard'
 import Link from 'next/link'
-import getEnterprises from '@/app/api/enterprises/get_enterprices'
+import getEnterprises from '@/app/api/enterprises/get_enterprises'
 import getElaUsers from '@/app/api/users/get_elaUsers'
 import useManager from '@/app/components/table/useManager'
 

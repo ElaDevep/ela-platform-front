@@ -11,7 +11,6 @@ export async function GET(request: Request) {
     }
     const userToken = get_cookie('userToken')
     
-    console.log(userToken)
     await axiosAPI.get('/auth/admin/usuariosEla',{
         headers:{
             Authorization: `Bearer ${userToken}`,

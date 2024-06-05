@@ -28,7 +28,7 @@ export default function Header({}:Readonly<{}>){
                 <>
                     <div className={styler.currentUser_div} onClick={()=>router.push('/perfil')}>
                         <img 
-                            src={currentUser.img} 
+                            src={currentUser.imgProfile} 
                             className={styler.currentUser_img}
                         />
                         <div className={styler.userInfo_div}>
@@ -43,25 +43,27 @@ export default function Header({}:Readonly<{}>){
                     <nav className={styler.mainMenu_nav}>
                         {
                             userAccess.map((access:View,index:number)=>{
-                                if(pathname.match('^'+access.route+'.*$')){
-                                    return <Link 
-                                        key={index} 
-                                        className={styler.currentRoute} 
-                                        href={access.route}
-                                    >
-                                        {access.title}
-                                    </Link>
+                                if(access.navAble){
+                                    if(pathname.match('^'+access.route+'.*$')){
+                                        return <Link 
+                                            key={index} 
+                                            className={styler.currentRoute} 
+                                            href={access.route}
+                                        >
+                                            {access.title}
+                                        </Link>
 
+                                    }
+                                    else{
+                                        return <Link 
+                                            key={index} 
+                                            href={access.route}
+                                        >
+                                            {access.title}
+                                        </Link>
+                                    }
                                 }
-                                else{
-                                    return <Link 
-                                        key={index} 
-                                        href={access.route}
-                                    >
-                                        {access.title}
-                                    </Link>
-
-                                }
+                                
                             })
                         }
                     </nav>

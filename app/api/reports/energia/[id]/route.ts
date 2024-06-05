@@ -1,15 +1,19 @@
-'use server'
+import { axiosAPI } from "@/app/api/axiosAPI"
+import { NextResponse } from "next/server"
 
-import { axiosAPI } from "../axiosAPI"
-
-export default async function getEnterprises(){
-    let response:APIResponse<User> = {
+export async function GET(request: Request, context: { params: {id:string}}) {
+    let response:APIResponse<User[]> = {
         status:'unknown',
         code:0
     }
-    //console.log(token)
-    await axiosAPI.get('/empresa/empresas')
+
+    await axiosAPI.get('/excelEnergia/historicoE/'+context.params.id,{
+        headers:{
+            Authorization: `Bearer userToken`,
+        }
+    })
     .then((res)=>{
+            console.log(res)
         response = {
             status:'ok',
             data:res.data,
@@ -27,7 +31,6 @@ export default async function getEnterprises(){
         }
         console.log(error.response.data)
     })  
-    
-    console.log(response.data)
-    return response
+
+    return NextResponse.json(response)
 }

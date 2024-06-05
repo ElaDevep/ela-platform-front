@@ -34,11 +34,19 @@ declare global {
 
     interface Enterprise{
         _id:string
-        nit: number
+        nNit: number
         razonSocial: string
         direccion: string
         celular: number
         tipo: string
+        fechaSubida:string
+        ultimoDocumento:string,
+        sede:string
+    }
+
+    interface Report{
+        _id:string,
+        nNit:string
     }
 
 
@@ -63,16 +71,18 @@ declare global {
         lastName:string,
         email:string,
         mobile:string
-        img:string,
+        imgProfile:string,
         role:string
         shortName:string,
-        businessName:string
+        businessName:string,
+        idEnterprise:string
     }
 
     
     export interface View{
         title:string
         route:string
+        navAble:boolean
     }
 
 }
