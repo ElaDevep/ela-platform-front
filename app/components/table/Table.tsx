@@ -77,8 +77,8 @@ export default function Table({
             return <Row
                 key={index}
                 record={record}
-                id={record._id}
-                selected={(manager.current && manager.current._id == record._id)?true:false}
+                id={record._id?record._id:index}
+                selected={((manager.current && (manager.current.index == record._id || manager.current.index == index)))?true:false}
                 manager={manager}
             >
                 {
@@ -115,11 +115,29 @@ export default function Table({
 
     useEffect(()=>{
         makeReRender({})
+        if(manager.data)
+        console.log(manager.data.length)
     },[manager.current,manager.data])
 
     return <>
         {manager.data && <>
-            <div {...table.props}>
+        
+        {//@ts-ignore
+            (manager.data.length==0)?<>
+        
+            <div {...message.props}>
+                <Frame
+                    src={server_error_w}
+                    darkSrc={server_error_d}
+                    alt={'server_error'}
+                    className={styler.serverError_img}
+                    contain
+                />
+                <span>Al parecer no hay registros</span>
+            </div>
+        </>: 
+        <>
+        <div {...table.props}>
                 <div className={styler.scrollTable_div}>
                 {setTable()}
                 </div>
@@ -157,6 +175,9 @@ export default function Table({
                     }
                 </div>
             </div>
+        </>
+        }
+            
         </>
         }
         {manager.error &&

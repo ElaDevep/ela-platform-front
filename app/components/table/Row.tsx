@@ -46,7 +46,7 @@ export default function Row({
 
 
     return <>
-        <div {...row.props} key={id} onClick={()=>manager.setCurrent(record)}>
+        <div {...row.props} key={id} onClick={()=>manager.setCurrent(Object.assign({index:id},record))}>
             {
                 Children.toArray(children).map((child,index)=>{
                     ///console.log(child)

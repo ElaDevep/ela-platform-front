@@ -46,7 +46,8 @@ declare global {
 
     interface Report{
         _id:string,
-        nNit:string
+        nNit:string,
+        [key:string]:any
     }
 
 
