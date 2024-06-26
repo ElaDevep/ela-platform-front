@@ -31,7 +31,10 @@ export default function useManager<ItemType>(endpoint:string){
     const getAllData = async()=>{
         await manageAxios.get(endpoint)
         .then((res)=>{
-            console.log(res)
+            console.log(res.data)
+            if(res.data.status == 'error'){
+                throw 'error'
+            }
             setData(res.data.data)
             setError(false)
         })
@@ -45,10 +48,10 @@ export default function useManager<ItemType>(endpoint:string){
 
     const deleteCurrent = async()=>{
         if(current){
-            console.log(endpoint+'/'+current._id)
+            //console.log(endpoint+'/'+current._id)
             await manageAxios.delete(endpoint+'/'+current._id)
             .then((res)=>{
-                console.log(res)
+                //console.log(res)
                 setCurrent(undefined)
                 getAllData()
                 setLastAction({

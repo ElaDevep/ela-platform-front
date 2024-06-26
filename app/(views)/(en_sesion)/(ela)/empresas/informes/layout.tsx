@@ -20,6 +20,7 @@ export default function RootLayout({
             <Link className={styler.energyModule_link} href={'/empresas/informes/energia/'+currentEnterpriseId}>Energía</Link>
             <Link className={styler.wasteModule_link} href={'/empresas/informes/residuos/'+currentEnterpriseId}>Residuos</Link>
             <Link className={styler.educationModule_link} href={'/empresas/informes/educacion/'+currentEnterpriseId}>Educación</Link>
+            <Link href={'/empresas/informes/notificaciones/'+currentEnterpriseId}>Notificaciones</Link>
         </nav>
         <div className={styler.reportManager_div}>
             {children}

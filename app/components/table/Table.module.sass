@@ -1,6 +1,8 @@
 @import '@/style_provider'
 
 .tableMessage_div
+    position: relative
+    
     display: flex
     align-items: center
     justify-content: center
@@ -173,7 +175,7 @@
         border-bottom-left-radius: 1em
         border-bottom-right-radius: 1em
 
-    *
+    &>*
         position: relative
 
         display: flex
@@ -189,6 +191,10 @@
         text-align: center
         text-overflow: ellipsis
         color: palete(general-text)
+
+        span
+            color: #aaaaaa
+            font-size: 0.8em
 
 .general_row
     height: 2em  

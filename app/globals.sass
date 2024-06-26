@@ -1,12 +1,20 @@
 @import '@/style_provider'
 
+:root
+    --secondary:#ca9d15
+    --error: #ff3030
+    --water: #3ebee6
+    --energy: #d3a306
+    --waste: #6eaf24
+    --education: #d68111
+
+
 @media (prefers-color-scheme: light) 
     :root
         --contrast: #f2f2f2ff
         --primary:#0597f2
         --primary-dark:#0275da
         --primary-light:#05aff2
-        --secondary:#ca9d15
         --general-text: #2F2F2F
         --uncontrast: #5c5c5c
         --contrast-light:#c0c0c0
@@ -15,7 +23,6 @@
         --info-notification: #1657e4c2
         --over-primary: #f2f2f2ff
         --row-selected:  #74cfeb    
-        --error: #ff3030
     
 
 @media (prefers-color-scheme: dark) 
@@ -24,7 +31,6 @@
         --primary:#118fd8
         --primary-dark:#0170d1
         --primary-light:#14aedd
-        --secondary:#c29100
         --general-text: #d8d8d8
         --uncontrast: #a1a1a1
         --contrast-light:#494949
@@ -32,8 +38,7 @@
         --error-notification: #fd2828b6
         --info-notification: #1657e4b4
         --over-primary: #FFFFFF
-        --row-selected:  #4992a8c7  
-        --error: #ff3030     
+        --row-selected:  #4992a8c7   
 *
     box-sizing: border-box
 
@@ -46,6 +51,8 @@
     font-family: inherit
     font-size: inherit
 
+    overflow: hidden
+
     &:-webkit-autofill
         all: unset
     
@@ -53,10 +60,10 @@
         position: absolute
         left: 50px
 
-        width: 0
+        width: 3px
         height: 0
 
-        background: transparent
+        background: #000
         border-radius: 100%
     
 
@@ -92,7 +99,7 @@ body
     width: 100vw
     height: 100vh
 
-    overflow: hidden
+    overflow: scroll
     
     background-color: transparent
 

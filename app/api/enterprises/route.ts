@@ -15,9 +15,7 @@ export async function GET(request: Request) {
         response = {
             status:'ok',
             data:(res.data.map((record:Enterprise)=>{
-                const date = new Date(record.fechaSubida)
-                record.fechaSubida = date.getDay().toString()
-                console.log(record)
+                record.fechaSubida = record.fechaSubida.toString().slice(0,10)
                 return record
             })),
             code:200

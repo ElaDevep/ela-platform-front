@@ -86,6 +86,14 @@ declare global {
         navAble:boolean
     }
 
+    export interface Notification{
+        _id:string
+        empresaId:string
+        titulo:string
+        mensaje:string
+        estado:'enviado'|'visto'|'confirmado'
+        fecha:string
+    }
 }
 
 

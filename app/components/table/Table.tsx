@@ -24,7 +24,7 @@ export default function Table({
     className:string
     manager:useManager<any>
     createForm?:string
-    editForm?:string
+    editForm?:stringfe
     canDelete?:boolean,
     extraActions?:React.ReactNode
 }>){
@@ -57,7 +57,7 @@ export default function Table({
             }
         })
 
-        const headers = Children.toArray(children).map((child)=>{
+        const headers = Children.toArray(children).map((child,index)=>{
             try{
                 //@ts-ignore
                 if(!child.props.children){
@@ -65,7 +65,21 @@ export default function Table({
                 }
                 
                 //@ts-ignore
-                return child.props.children
+                if(child.props.unit){
+                    return <div key={index}>
+                        {//@ts-ignore
+                        child.props.children}
+                        <span>(
+                        {//@ts-ignore
+                        child.props.unit})</span>
+                    </div>
+                }
+                else{
+                    return <div key={index}>
+                        {//@ts-ignore
+                        child.props.children}
+                    </div>
+                }
             }
             catch(e){
                 throw new Error('Table component can only have Column components as children')
@@ -77,7 +91,7 @@ export default function Table({
             return <Row
                 key={index}
                 record={record}
-                id={record._id?record._id:index}
+                id={record._id?record._id:index.toString()}
                 selected={((manager.current && (manager.current.index == record._id || manager.current.index == index)))?true:false}
                 manager={manager}
             >
@@ -86,7 +100,7 @@ export default function Table({
                         if(field=='id'){
                             return index
                         }
-                        if(typeof record[field]=='boolean'){
+                        if(typeof [field]=='boolean'){
                             return (record[field]?'v':'x')
                         }
                         if(!record[field]){
@@ -115,15 +129,15 @@ export default function Table({
 
     useEffect(()=>{
         makeReRender({})
-        if(manager.data)
-        console.log(manager.data.length)
+        //if(manager.data)
+        //console.log(manager.data.length)
     },[manager.current,manager.data])
 
     return <>
         {manager.data && <>
         
         {//@ts-ignore
-            (manager.data.length==0)?<>
+            (manager.data.length==0 || (!manager.data && !manager.error))?<>
         
             <div {...message.props}>
                 <Frame
@@ -133,7 +147,39 @@ export default function Table({
                     className={styler.serverError_img}
                     contain
                 />
-                <span>Al parecer no hay registros</span>
+                <span>Al parecer no hay registros</span><div className={styler.actions_div}>
+                    {
+                        extraActions
+                    }
+                    {createForm && 
+                        <Link 
+                            className={styler.newItem_link}
+                            href={createForm}
+                        >
+                            Crear
+                        </Link>
+                    }
+                    {manager.current &&
+                    <>
+                    {editForm && 
+                        <Link 
+                            className={styler.editItem_link}
+                            href={editForm+'/'+manager.current._id}
+                        >
+                            Modificar
+                        </Link>
+                    }
+                    {canDelete && 
+                        <button
+                            className={styler.deleteItem_button}
+                            onClick={()=>{manager.deleteCurrent()}}
+                        >
+                            Eliminar
+                        </button>
+                    }
+                    </>
+                    }
+                </div>
             </div>
         </>: 
         <>

@@ -2,9 +2,9 @@
 
 import styler from './EnterpriseCard.module.sass'
 
-export default function EnterpriseCard({enterprise}:Readonly<{enterprise:Enterprise}>){
+export default function EnterpriseCard({enterprise,className}:Readonly<{enterprise:Enterprise,className?:string}>){
     return <>
-        <div className={styler.enterpriseCard_div}>
+        <div className={styler.enterpriseCard_div+' '+className}>
             <h1>{enterprise.razonSocial }</h1>
             <p>NIT: {enterprise.nNit}</p>
             <h3>Sede</h3>

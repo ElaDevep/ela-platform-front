@@ -11,24 +11,60 @@
     width: 80%
     height: 80%
 
-        
+
+.aguaSelected_nav
+    .waterModule_link
+        @include button(main)
+
+        width: 10em
+
+        border-radius: 5em
+
+.energiaSelected_nav
+    .energyModule_link
+        @include button(main)
+
+        width: 10em
+
+        border-radius: 5em
+
+.residuosSelected_nav
+    .wasteModule_link
+        @include button(main)
+
+        width: 10em
+
+        border-radius: 5em
+
+.educacionSelected_nav
+    .educationModule_link
+        @include button(main)  
+
+        width: 10em
+
+        border-radius: 5em
+
 .reportModules_nav
     position: relative
 
     display: flex
-    flex-wrap: nowrap
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
     gap: 0.5em
+
+    padding-bottom: 1em
 
     *
         @include button(secondary)
 
-        width: 7em
+        width: 10em
 
         border-radius: 5em
 
 
     .waterModule_link
-        color: #3ebee6
+        color: palete(water)
         border-color: #3ebee6
 
     
@@ -46,29 +82,3 @@
         color: #d68111
         border-color: #d68111
 
-
-.aguaSelected_nav
-    .waterModule_link
-        @include button(main)
-        width: 7em
-        border-radius: 5em
-
-
-
-.energiaSelected_nav
-    .energyModule_link
-        @include button(main)
-        width: 7em
-        border-radius: 5em
-
-.residuosSelected_nav
-    .wasteModule_link
-        @include button(main)
-        width: 7em
-        border-radius: 5em
-
-.educacionSelected_nav
-    .educationModule_link
-        @include button(main)
-        width: 7em
-        border-radius: 5em

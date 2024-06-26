@@ -48,6 +48,7 @@ export function PageProvider({
         .then((res)=>{
             if(res){
                 if(res.data){
+
                     setCurrentUser({
                         shortName:(res.data.name.split(' '))[0]+' '+(res.data.lastname.split(' '))[0],
                         name:res.data.name,
@@ -57,7 +58,7 @@ export function PageProvider({
                         imgProfile:res.data.imgProfile,
                         role:res.data.role,
                         mobile:res.data.mobile,
-                        businessName: res.data.bussinesName,
+                        businessName: res.data.businessName,
                         idEnterprise: res.data.idEnterprice
                     })
                 }

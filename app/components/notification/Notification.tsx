@@ -45,6 +45,7 @@ export default function Notification({
         if(showLastAction){
             setTimeout(()=>{
                 setShowLastAction(undefined)
+                setLastAction(undefined)
             },6000)
         }
     },[showLastAction])

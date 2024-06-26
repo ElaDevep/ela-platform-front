@@ -36,6 +36,7 @@ export default function Row({
     ])
 
     useEffect(()=>{
+        
         if(!header){
             row.mixClasses(styler.selected_row,{
                 exist:[selected]

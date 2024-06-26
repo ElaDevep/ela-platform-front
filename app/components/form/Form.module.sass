@@ -4,7 +4,7 @@
     color: red
     text-align: center
 
-.textField, .passwordField, .numberField, .selectField
+.textField, .passwordField, .numberField, .selectField, .textAreaField
     position: relative
 
     width: 100%
@@ -23,7 +23,7 @@
         span
             color: palete('primary')
 
-    input,select
+    input,select,textarea
 
         all: unset
 
@@ -51,6 +51,14 @@
 
     select
         appearance: auto
+
+    textarea
+        max-width: 400px
+        min-height: 300px
+
+        padding: 1em
+
+        word-wrap: break-word
     
 .error_form 
     .textField

@@ -6,10 +6,12 @@
     display: flex
     align-items: center
     flex-direction: column
+    flex-wrap: nowrap
     gap: 1em
 
     width: 100%
-    height: calc(100vh - 7em)
+    min-height: calc(100vh - 7em)
+    height: auto
 
     overflow: hidden
 
@@ -27,7 +29,9 @@
 
     gap: 1em
 
-    width: 100%
+    width: min-content
+    max-width: 90%
+    height: max-content
 
         
 .resultsModules_nav
@@ -35,34 +39,40 @@
 
     display: flex
     flex-wrap: nowrap
+    align-items: center
     gap: 0.5em
+
+    height: auto
+
+    padding: 0 1em 1em 1em
+
 
     *
         @include button(secondary)
 
-        width: 7em
+        width: 9em
 
         border-radius: 5em
 
 
     .waterModule_link
-        color: #3ebee6
-        border-color: #3ebee6
+        color: palete(water)
+        border-color: palete(water)
 
     
     .energyModule_link
-        color: #e6bf3e
-        border-color: #e6bf3e
+        color: palete(energy)
+        border-color: palete(energy)
 
     
     .wasteModule_link
-        color: #6eaf24
-        border-color: #6eaf24
+        color: palete(waste)
+        border-color: palete(waste)
     
     
     .educationModule_link
-        color: #d68111
-        border-color: #d68111
+        color: palete(education)
+        border-color: palete(education)
 
 
 .aguaSelected_nav

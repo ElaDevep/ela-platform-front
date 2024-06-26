@@ -14,10 +14,6 @@ export default function UserManager(){
 
     const enterpriseManager = useManager<Enterprise>('enterprises')
 
-    const date = new Date('2024-05-23T15:4')
-
-    console.log(date.toString())
-
     const setExtraActions = ()=>{
         return <>
             {enterpriseManager.current &&
@@ -47,6 +43,7 @@ export default function UserManager(){
                 <Column field="celular">Celular</Column>
                 <Column field="tipo">Tipo</Column>
                 <Column field="sede">Sede</Column>
+                <Column field="fechaSubida">Ultima fecha actualizada</Column>
             </Table>
         </div>
     </>

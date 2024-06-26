@@ -13,7 +13,7 @@ import postEducationReport from '@/app/api/reports/agua/post_educationReport'
 
 export default function EducationReport({params}:{params:{id:string}}){
     const [enterprise,setEnterprise] = useState<Enterprise>() 
-    const historicWaterManager = useManager<Report>('reports/educacion/'+params.id)
+    const historicEducationManager = useManager<Report>('reports/educacion/'+params.id)
 
     const gettingEnterprise = async() =>{
         const response = await getEnterprise(params.id)
@@ -32,17 +32,17 @@ export default function EducationReport({params}:{params:{id:string}}){
         {enterprise && 
             <>
                 <Table
-                    manager={historicWaterManager}
+                    manager={historicEducationManager}
                     className={styler.reports_table}
                 >
                     <Column field='mes'>Mes</Column>
-                    <Column field='variacionPersonal'>Variacion de personal capacitado</Column>
+                    <Column field='variacionPersonal' unit='%'>Personal capacitado</Column>
                 </Table>
                 <div className={styler.info_div}>
                     <EnterpriseCard enterprise={enterprise}/>
                     <ReportReader 
                         id={params.id} 
-                        manager={historicWaterManager}
+                        manager={historicEducationManager}
                         action={postEducationReport}
                     />
                 </div>

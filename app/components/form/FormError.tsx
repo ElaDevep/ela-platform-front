@@ -53,7 +53,7 @@ export default function FormError({
                     setLastAction({
                         type:'error',
                         title:'Error en el formulario',
-                        message: response.data
+                        message: response.data  
                     })
                 }
                 else{

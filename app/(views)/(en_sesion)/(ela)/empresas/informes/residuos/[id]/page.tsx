@@ -35,14 +35,14 @@ export default function WasteReport({params}:{params:{id:string}}){
                     manager={historicWasteManager}
                     className={styler.reports_table}
                 >
-                <Column field='mes' >Variacion</Column>
-                
-                <Column field='variacionDesperdicios' >Variación de desperdicios</Column>
-                <Column field='variacionGeneracionResiduos'> Variación de generación de desperdicios</Column>
-                <Column field='variacionPersonal' >Variación de personal capacitado</Column>
-                <Column field='variacionRAEESI' >Variación de RAEESI</Column>
-                <Column field='variacionReciclaje'>Variación de reciclaje</Column>
-                <Column field='variacionResiduosPeligrosos'>Variación de residuos peligrosos</Column>
+                    <Column field="mes">Mes</Column>
+                    <Column field='variacionDesperdicios' unit='Unidad Materia/ Unidad de Producción'>Reducción de desperdicios</Column>
+                    <Column field='variacionGeneracionResiduos' unit='Kgs/Unidad de producción'>Generación de residuos</Column>
+                    <Column field='variacionPersonal' >Personal capacitado</Column>
+                    {/* <Column field='reduccionPGIRS'>Variación de residuos peligrosos</Column> */}
+                    <Column field='variacionRAEESI' unit='Kgs/Unidad de producción'>Generación de Residuos de Aparatos Eléctricos</Column>
+                    <Column field='reduccionRespel' unit='Kgs/Unidad de producción'>Generación de residuos peligroso</Column>
+                    <Column field='variacionReciclaje'>Reciclaje</Column>
                 </Table>
                 <div className={styler.info_div}>
                     <EnterpriseCard enterprise={enterprise}/>

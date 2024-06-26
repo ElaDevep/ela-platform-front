@@ -4,7 +4,7 @@ import Form from '@/app/components/form/Form'
 import styler from './Profile.module.sass'
 import { useForm } from '@/app/hooks/ela-hooks'
 import { FormError, HiddenField, ImageUpload, PasswordField, Submit, TextField } from '@/app/components/form/ela-form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import putUser from '@/app/api/users/put_user'
 import RestorePassword from '../../(ingreso)/recuperacion_contrasena/[token]/page'
 import changePassword from '@/app/api/users/change_password'
@@ -36,8 +36,7 @@ export default function Profile({user}:Readonly<{user:CurrentUser}>){
         <> 
             <div className={styler.profile_div}>
                 <img src={user.imgProfile} className={styler.profile_img}/>
-                <h2>{user.name}</h2>
-                <h2>{user.lastName}</h2>
+                <h2>{user.name} {user.lastName}</h2>
                 {user.role != 'Cliente' &&
                     <h4>{user.role}</h4>
                 }

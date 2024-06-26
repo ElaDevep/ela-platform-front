@@ -1,0 +1,21 @@
+@import '@/style_provider'
+
+.info_div
+    position: relative
+
+    display: flex
+    flex-direction: column
+    gap: 1em
+
+    height: 100%
+    width: min-content
+
+.reports_table
+    $colums:8em 20em 8em
+    @include tableColumns($colums)
+
+    height: 90%
+
+
+.enterpriseCard
+    height: 100% !important

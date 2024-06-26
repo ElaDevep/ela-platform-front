@@ -108,6 +108,8 @@ export default function useForm(values?:{[key:string]:any}){
     useEffect(()=>{
         if(response){
             setChanging(false)
+            console.log('👹')
+            console.log(response)
             if(response.status == 'ok' && response.success){
                 if(response.success.redirect){
                     // console.log('🦅')

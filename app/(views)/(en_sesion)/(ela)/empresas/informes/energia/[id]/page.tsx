@@ -36,15 +36,14 @@ export default function EnergyReport({params}:{params:{id:string}}){
                     className={styler.reports_table}
                 >
                     <Column field='mes'>Mes</Column>
-                    <Column field='variacionConsumoEnergia'>Variación de consumo</Column>
-                    <Column field='variacionConsumoNoAsociado'>Variación consumo no asociado</Column>
-                    <Column field='variacionCostosEnergia'>Variación de costos</Column>
-                    <Column field='variacionDiagnosticoEnergetico'>Variación Diagnostico</Column>
-                    <Column field='variacionGasesInvernadero'>Variación de GEI</Column>
-                    <Column field='variacionPersonalCapacitado'>Variación personal capacitado</Column>
-                    <Column field='variacionProduccionEnergetica'>Variación producción energética</Column>
-                    <Column field='variacionProporcionEnergia'>Variación producción energía</Column>
-                    <Column field='variacionPuntoMedicion'>Variación punto medición</Column>
+                    <Column field='variacionConsumoEnergia' unit='kWh/Tonelada producida'>Consumo en producción</Column>
+                    <Column field='variacionConsumoNoAsociado' unit='kWh/mes'>Consumo no asociado a producción</Column>
+                    <Column field='variacionCostosEnergia' unit='pesos/mes' >Costos</Column>
+                    <Column field='variacionDiagnosticoEnergetico'>Equipos con diagnostico</Column>
+                    <Column field='variacionGasesInvernadero' unit='Kg CO2/ Unidad producida' >Emisión de gases de efecto invernadero</Column>
+                    <Column field='variacionPersonalCapacitado' unit='%'>Personal capacitado</Column>
+                    <Column field='variacionProduccionEnergetica'>Producción energética</Column>
+                    <Column field='variacionPuntoMedicion'>Puntos medición</Column>
                 </Table>
                 <div className={styler.info_div}>
                     <EnterpriseCard enterprise={enterprise}/>

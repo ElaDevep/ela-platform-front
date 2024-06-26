@@ -1,0 +1,23 @@
+@import '@/style_provider'
+
+.reports_table
+    $colums:5em 15em
+    @include tableColumns($colums)
+
+.lastInfo_div
+    position: relative
+
+    display: flex
+    align-items: center
+    justify-content: center
+    // grid-template-columns: repeat(2,20em)
+    // row-template-columns: repeat(auto,2)
+    flex-wrap: wrap
+    gap: 1em
+
+    min-width: 400px
+    width: 90%
+
+    &>*
+        background: palete(education)
+

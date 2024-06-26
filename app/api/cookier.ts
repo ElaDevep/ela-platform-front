@@ -6,7 +6,7 @@ export function get_cookie(name:string){
 
     if(cookie?.value){
         try{
-            console.log(cookie.value)
+            //console.log(cookie.value)
             return JSON.parse(cookie.value)
         }catch(e){
             return cookie.value

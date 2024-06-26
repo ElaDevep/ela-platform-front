@@ -9,12 +9,14 @@ export default function LastInfoCard({
 }:Readonly<{
     title:string,
     data:string
-    unit:string
+    unit?:string
 }>){
     return <>
     <section className={styler.lastInfoCard_section}>
         <h4>{title}</h4>
-        <span>{data}</span><span className={styler.unit_span}>{unit}</span>
+        <div className={styler.data_div}>
+            <span>{data}</span><span className={styler.unit_span}>{unit}</span>
+        </div>
     </section>
     </>
 }

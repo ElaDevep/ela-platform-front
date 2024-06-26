@@ -1,0 +1,120 @@
+@import '@/style_provider'
+
+.notificationCard_div
+    position: relative
+
+
+    width: 100%
+    height: 7em
+
+    background: palete(contrast-light)
+
+    border-radius: 1em
+
+    
+
+    .noSelected_div
+        display: flex
+        align-items: center
+        justify-content: center
+        
+        width: 100%
+        height: 100%
+
+        padding: 2em
+
+        color: palete(general-text)
+        
+
+        span
+            text-align: center
+
+
+    .withCurrent_div
+        display: flex
+        
+        width: 100%
+        height: 100%
+
+        .status_enviado,.status_visto,.status_confirmado
+            position: relative
+
+            width: 2em
+            height: 100%
+        
+        .status_enviado
+            background: #11b483
+
+        .status_visto
+            background: #cca90e
+
+        .status_confirmado
+            background: #6eca05
+
+        .notificationText_div
+            position: relative
+
+            display: flex
+            flex-direction: column
+            
+            width: 70%
+
+            padding: 1em 1em
+
+            span
+                font-size: 1.1em
+                font-weight: 700
+            
+            p
+                color: palete(general-text)
+            
+            .notificationDate_span
+                position: absolute
+                top:1em
+                right: 0
+
+                color: palete(uncontrast)
+                font-size: 0.9em
+                font-weight: 500
+
+
+    .vistoButton_div, .confirmadoButton_div
+        position: absolute
+        right: 1em
+
+        display: flex
+        align-items: center
+        justify-content: center
+        
+        height: 100%
+        width: auto
+
+        padding: 2em
+
+        button
+            height: 3em
+            width: 3em
+
+            background: #74c708
+
+            border-radius: 100%
+
+            transition: transform 1s ease-in-out, background 1s ease-in-out
+
+            &:hover
+                transform: scale(1.2)
+
+            img
+                height: 50%
+                width: 50%
+
+    .confirmadoButton_div
+        button
+            background: #6ceee7
+
+            &:disabled
+                transform: scale(1)
+
+
+
+

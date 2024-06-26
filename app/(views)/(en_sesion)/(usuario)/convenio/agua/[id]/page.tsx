@@ -6,6 +6,7 @@ import useManager from '@/app/components/table/useManager'
 import Table from '@/app/components/table/Table'
 import Column from '@/app/components/table/Column'
 import LastInfoCard from '../../LastInfoCard'
+import ReportGraphic from '@/app/components/reportGraphic/ReportGraphic'
 
 export default function WaterResults({params}:{params:{id:string}}){
     
@@ -19,7 +20,7 @@ export default function WaterResults({params}:{params:{id:string}}){
     },[historicWaterManager.data])
 
     useEffect(()=>{
-        console.log(lastReport)
+        //console.log(lastReport)
     },[lastReport])
 
     return <>
@@ -34,13 +35,13 @@ export default function WaterResults({params}:{params:{id:string}}){
                     data={lastReport.reduccionAhorroHidrico}
                     />
                     <LastInfoCard 
-                    title='Variacion de consumo de recursos' 
+                    title='Consumo de recursos' 
                     unit='m3/Unidad Producida' 
                     data={lastReport.variacionConsumoRecursos
                     }
                     />
                     <LastInfoCard 
-                    title='Variacion de personal capacitado' 
+                    title='Personal capacitado' 
                     unit='%' 
                     data={lastReport.variacion}
                     />
@@ -54,9 +55,16 @@ export default function WaterResults({params}:{params:{id:string}}){
             className={styler.reports_table}
         >
             <Column field='mes'>Mes</Column>
-            <Column field='reduccionAhorroHidrico'>Reducción ahorro hídrico(%)</Column>
-            <Column field='variacion'>Variación de personal(%)</Column>
-            <Column field='variacionConsumoRecursos'>Variación de consumo de recursos(m3/u)</Column>
+            <Column field='reduccionAhorroHidrico' unit='%'>Reducción ahorro hídrico</Column>
+            <Column field='variacion' unit='m3/Unidad Producida' >Variación de personal</Column>
+            <Column field='variacionConsumoRecursos' unit='%'>Variación de consumo de recursos</Column>
         </Table>
+
+        <h2>Gráfica</h2>
+        <ReportGraphic data={historicWaterManager.data} labels={[
+            ['reduccionAhorroHidrico','Reducción ahorro hídrico','#0037ce'],
+            ['variacion','Variación de personal','#2394d6'],
+            ['variacionConsumoRecursos','Variación de consumo de recursos','#23bbd6'],
+        ]}></ReportGraphic>
     </>
 }

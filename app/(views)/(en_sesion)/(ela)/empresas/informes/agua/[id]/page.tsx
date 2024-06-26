@@ -35,9 +35,9 @@ export default function WaterReport({params}:{params:{id:string}}){
                     className={styler.reports_table}
                 >
                     <Column field='mes'>Mes</Column>
-                    <Column field='reduccionAhorroHidrico'>Reducción ahorro hídrico(%)</Column>
-                    <Column field='variacion'>Variación de personal(%)</Column>
-                    <Column field='variacionConsumoRecursos'>Variación de consumo de recursos(m3/u)</Column>
+                    <Column field='reduccionAhorroHidrico' unit='%'>Reducción ahorro hídrico</Column>
+                    <Column field='variacion' unit='m3/Unidad Producida' >Variación de personal</Column>
+                    <Column field='variacionConsumoRecursos' unit='%'>Variación de consumo de recursos</Column>
                 </Table>
                 <div className={styler.info_div}>
                     <EnterpriseCard enterprise={enterprise}/>
