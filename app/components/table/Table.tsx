@@ -24,7 +24,7 @@ export default function Table({
     className:string
     manager:useManager<any>
     createForm?:string
-    editForm?:stringfe
+    editForm?:string
     canDelete?:boolean,
     extraActions?:React.ReactNode
 }>){
