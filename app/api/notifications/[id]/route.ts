@@ -7,7 +7,7 @@ export async function GET(request: Request, context: { params: {id:string}}) {
         code:0
     }
 
-    console.log(context.params.id)
+   //console.log(context.params.id)
 
     await axiosAPI.get('/notificaciones/noti/'+context.params.id,{
         headers:{
@@ -25,7 +25,7 @@ export async function GET(request: Request, context: { params: {id:string}}) {
             code:200
         }
     }).catch((error)=>{
-        console.log(error.response.data)
+       //console.log(error.response.data)
         if(error.response.data.error=='No se encontraron notificaciones para esta empresa'){
             response = {
                 status:'ok',
@@ -43,10 +43,10 @@ export async function GET(request: Request, context: { params: {id:string}}) {
                     message:error.response.statusText
                 }
             }
-            console.log(error.response.data)
+           //console.log(error.response.data)
         }
     })  
-    console.log(response)
+   //console.log(response)
     return NextResponse.json(response)
 }
 

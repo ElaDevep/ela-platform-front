@@ -6,6 +6,7 @@ import useManager from '@/app/components/table/useManager'
 import Table from '@/app/components/table/Table'
 import Column from '@/app/components/table/Column'
 import LastInfoCard from '../../LastInfoCard'
+import ReportGraphic from '@/app/components/reportGraphic/ReportGraphic'
 
 export default function WaterResults({params}:{params:{id:string}}){
     
@@ -45,5 +46,15 @@ export default function WaterResults({params}:{params:{id:string}}){
                     <Column field='mes'>Mes</Column>
                     <Column field='variacionPersonal' unit='%'>Personal capacitado</Column>
                 </Table>
+        
+                <h2>Gráfica</h2>
+        <ReportGraphic
+        y={120}
+        template={'https://backend-ela-14.onrender.com/excelEducacion/pdf-templateEd/'+params.id}
+        scale={1.3}
+        data={historicEducationManager.data} 
+        labels={[
+            ['variacionPersonal','Personal capacitado','#F9A31A']
+        ]}></ReportGraphic>
     </>
 }

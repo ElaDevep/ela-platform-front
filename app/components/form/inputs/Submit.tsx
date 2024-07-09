@@ -48,7 +48,7 @@ export default function Submit({
     },[form])
 
     useEffect(()=>{
-        console.log(response)
+       //console.log(response)
         if(response){  
             form.setResponse({...JSON.parse(response),success:success})
             setClicked(false)

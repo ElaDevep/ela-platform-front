@@ -24,7 +24,7 @@ export default async function ValidateRestoreToken(restoreToken:string){
             code:200,
             data:error.response.data
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
     return response
 }

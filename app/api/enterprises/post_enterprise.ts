@@ -19,7 +19,7 @@ export default async function postEnterprise(prevState: any,formData:FormData){
     }
     
     const userToken = get_cookie('userToken')
-    console.log(formData)
+   //console.log(formData)
     await axiosAPI.post('/empresa/empresas',body,{
         headers:{
             Authorization: `Bearer ${userToken}`,
@@ -41,7 +41,7 @@ export default async function postEnterprise(prevState: any,formData:FormData){
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
     
     return JSON.stringify(response)

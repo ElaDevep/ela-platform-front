@@ -26,11 +26,24 @@
             "route":"/convenio",
             "navAble":true
         }
+        ,
+        "posts":{
+            "title":"Anuncios",
+            "route":"/anuncios",
+            "navAble":true
+        },
+        "review":{
+            "title":"Revision",
+            "route":"/revision",
+            "navAble":true
+        }
+        
     },
     "roles":{
         "Admin":["client_users","ela_users","enterprises","profile"],
-        "Cliente":["profile","covenant"],
-        "Visualizador":[],
-        "Super":[]
+        "Cliente":["profile","covenant","posts"],
+        "Visualizador":["posts"],
+        "Carga Información":["profile","posts"],
+        "ELA Super Usuario":["profile","posts","review"]
     }
 }

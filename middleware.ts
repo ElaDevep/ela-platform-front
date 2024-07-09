@@ -25,6 +25,11 @@ export async function middleware(request: NextRequest) {
                         return NextResponse.redirect(new URL('/usuarios/clientes', request.url))
                     case 'Cliente':
                         return NextResponse.redirect(new URL('/perfil',request.url))
+                    case 'Carga Información':
+                        return NextResponse.redirect(new URL('/perfil',request.url))
+                    case 'ELA Super Usuario':
+                        return NextResponse.redirect(new URL('/perfil',request.url))
+
                 }
             }
             if(pathname.match(/^\/(inicio_sesion|recuperacion_contrasena).*$/)){

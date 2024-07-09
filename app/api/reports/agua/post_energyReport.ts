@@ -7,7 +7,7 @@ export default async function postEnergyReport(prevState: any,formData:FormData)
         status:'unknown',
         code:0
     }
-    console.log(formData)
+   //console.log(formData)
     const id = formData.get('id')?.toString()
 
     
@@ -23,7 +23,7 @@ export default async function postEnergyReport(prevState: any,formData:FormData)
             code:200
         }
     }).catch((error)=>{
-        console.log(error)
+       //console.log(error)
         response = {
             status:'error',
             code:400,

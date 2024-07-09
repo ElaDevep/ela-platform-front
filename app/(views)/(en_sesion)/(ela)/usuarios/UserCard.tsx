@@ -24,15 +24,15 @@ export default function UserCard({
     const onDeleteUser = async() =>{
         if(user){
             const res = await deleteUser(user._id)
-            console.log(res)
-            console.log('🦅')
+           //console.log(res)
+           //console.log('🦅')
             setUser(undefined)
         }
     }
 
     
     useEffect(()=>{
-        console.log(manager.current)
+       //console.log(manager.current)
         setUser(manager.current)
     },[manager.current])
 

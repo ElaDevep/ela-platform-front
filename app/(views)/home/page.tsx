@@ -9,7 +9,7 @@ import setCurrentUser from '@/app/api/auth/set_current_user'
 export default function Home(){
     const setCurrent= async()=>{
         const response = await setCurrentUser()
-        console.log(response)
+       //console.log(response)
         if(response.status=='ok' && window){
             window.location.reload()
         }

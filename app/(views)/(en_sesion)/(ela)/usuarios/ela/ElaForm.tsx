@@ -95,7 +95,7 @@ export default function ElaForm({user}:Readonly<{user?:User}>){
                     success={{
                         title:'Usuario creado',
                         message: (form.inputs.name && form.inputs.name.value) + ' ya puede ingresar al plataforma',
-                        redirect:'/usuarios/clientes'
+                        redirect:'/usuarios/ela'
                     }}
                 >
                     Crear y salir

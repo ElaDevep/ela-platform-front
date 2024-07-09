@@ -7,7 +7,7 @@ export default async function postNotifications(prevState: any,formData:FormData
         status:'unknown',
         code:0
     }
-    console.log(formData)
+   //console.log(formData)
 
     const body = {
         empresaId: formData.get('empresaId'),
@@ -28,7 +28,7 @@ export default async function postNotifications(prevState: any,formData:FormData
             code:200
         }
     }).catch((error)=>{
-        console.log(error)
+       //console.log(error)
         response = {
             status:'error',
             code:400,

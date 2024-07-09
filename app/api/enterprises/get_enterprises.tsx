@@ -15,7 +15,7 @@ export default async function getEnterprises(){
             status:'ok',
             data:(res.data.map((record:Enterprise)=>{
                 record.fechaSubida = new Date(record.fechaSubida).getDate().toString()
-                console.log(record)
+               //console.log(record)
                 return record
             })),
             code:200
@@ -30,9 +30,9 @@ export default async function getEnterprises(){
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
     
-    console.log(response.data)
+   //console.log(response.data)
     return response
 }

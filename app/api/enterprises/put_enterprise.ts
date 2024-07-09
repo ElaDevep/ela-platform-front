@@ -42,7 +42,7 @@ export default async function putEnterprise(prevState: any,formData:FormData){
                     message:error.response.statusText
                 }
             }
-            console.log(error.response.data)
+           //console.log(error.response.data)
         })  
     }
     else{

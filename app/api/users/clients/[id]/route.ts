@@ -28,7 +28,7 @@ await axiosAPI.delete('/admin/user/'+context.params.id,{
             message:error.response.statusText
         }
     }
-    console.log(error.response.data)
+   //console.log(error.response.data)
 })  
 
 return NextResponse.json(response)

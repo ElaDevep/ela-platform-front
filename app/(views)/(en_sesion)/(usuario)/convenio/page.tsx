@@ -1,7 +1,6 @@
 import styler from './page.module.sass'
 
-export default function Results(){
+export default function Covenant(){
     return <>
-    
     </>
 }

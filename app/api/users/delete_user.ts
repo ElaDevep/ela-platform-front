@@ -29,7 +29,7 @@ export default async function deleteUser(userId:string){
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
 
     return response

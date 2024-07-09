@@ -50,7 +50,7 @@ export default async function putUser(prevState: any,formData:FormData){
                     message:error.response.statusText
                 }
             }
-            console.log(error.response.data)
+           //console.log(error.response.data)
         })  
     }
     else{
@@ -62,7 +62,7 @@ export default async function putUser(prevState: any,formData:FormData){
 
     }
 
-    console.log(response)
+   //console.log(response)
     
     return JSON.stringify(response)
 }

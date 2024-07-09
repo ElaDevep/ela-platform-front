@@ -13,7 +13,7 @@ export async function GET(request: Request, context: { params: {notificationId:s
         }
     })
     .then((res)=>{
-        console.log(res)
+       //console.log(res)
         response = {
             status:'ok',
             data:res.data,
@@ -29,7 +29,7 @@ export async function GET(request: Request, context: { params: {notificationId:s
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
 
     return NextResponse.json(response)
@@ -47,7 +47,7 @@ export async function DELETE(request: Request, context: { params: {notificationI
         }
     })
     .then((res)=>{
-        console.log(res)
+       //console.log(res)
         response = {
             status:'ok',
             data:res.data.data,
@@ -63,7 +63,7 @@ export async function DELETE(request: Request, context: { params: {notificationI
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
 
     return NextResponse.json(response)

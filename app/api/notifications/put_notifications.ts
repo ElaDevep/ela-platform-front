@@ -24,7 +24,7 @@ export default async function putNotification(id:string,state:string){
             code:200
         }
     }).catch((error)=>{
-        console.log(error)
+       //console.log(error)
         response = {
             status:'error',
             code:400,

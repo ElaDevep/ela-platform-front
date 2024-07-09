@@ -22,7 +22,7 @@ export default async function postElaUser(prevState: any,formData:FormData){
     }
     
     const userToken = get_cookie('userToken')
-    console.log(body)
+   //console.log(body)
     await axiosAPI.post('/auth/admin/registerEla',body,{
         headers:{
             Authorization: `Bearer ${userToken}`,
@@ -44,7 +44,7 @@ export default async function postElaUser(prevState: any,formData:FormData){
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
     
     return JSON.stringify(response)

@@ -16,7 +16,7 @@ export function get_cookie(name:string){
 
 export function set_cookie(name:string,value:string|undefined,expire?:string){
     
-    console.log(value)
+   //console.log(value)
     if(value){
         if(expire){
             const expireArray = expire?.split(':')

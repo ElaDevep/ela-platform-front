@@ -28,7 +28,7 @@ export async function DELETE(request: Request, context: { params: {id:string}}) 
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
 
     return NextResponse.json(response)
@@ -61,7 +61,7 @@ export async function GET(request: Request, context: { params: {id:string}}) {
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
 
     return NextResponse.json(response)

@@ -17,6 +17,7 @@ import { useEffect, useRef, useState } from 'react';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
 import fontkit from '@pdf-lib/fontkit'
 
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -29,74 +30,78 @@ ChartJS.register(
 
 export default function ReportGraphic({
     labels,
-    data
+    data,
+    template,
+    scale,
+    y
 }:Readonly<{
     labels:[string,string,string][]
     data:Report[]|undefined
+    template:string
+    scale:number
+    y: number
 }>){
     const chart = useRef(null)
     const [chartImage,setChartImage] = useState()
-    const [certificatePDF,setCertificatePDF]=useState<undefined|string>()
-    const certificateTemplateURL = 'https://pdf-lib.js.org/assets/with_update_sections.pdf'
-    const quicksandFontURL = '/public/fonts/quicksand.ttf'
+    const [certificatePDF,setCertificatePDF]=useState<undefined|Uint8Array>()
+    const certificateTemplateURL = template
 
-    const createCertificate = async() =>{
-        const certificateTemplateBlob = await fetch(certificateTemplateURL).
-        then(res => 
-            res.arrayBuffer()
-        )
-        const certificateTemplate = await PDFDocument.load(certificateTemplateBlob)
-        certificateTemplate.registerFontkit(fontkit)
+    
 
-        const quicksandFontBlob = await fetch(quicksandFontURL).then(res => res.arrayBuffer())
-        const quicksandFont = await certificateTemplate.embedFont(quicksandFontBlob )
-        const page = certificateTemplate.getPages()[0]
-
-        page.drawText(':v', {
-            x: 40,
-            y: 450,
-            size: 45,
-            font: quicksandFont,
-            color: rgb(0, 0.53, 0.71),
-        })
-        
-        const pdfBytes = await certificateTemplate.save()
-
-        setCertificatePDF(pdfBytes.toString())
-    }
-
-    const download = (e:any)=>{
+    const downloadHandle = async (e:any)=>{
+       //console.log(':v')
         if(chart.current){
             //@ts-ignore
-            console.log(chart.current.canvas)
-            //@ts-ignore
             const canvasChart = chart.current.canvas
-            const chartContest = canvasChart.getContext('2d')
-            setChartImage(canvasChart.toDataURL())
-            createCertificate()
+            const chartContext = canvasChart.getContext('2d')
+            const chartImage = canvasChart.toDataURL("image/png")
+            setChartImage(chartImage)
+
+            const certificateTemplateBytes = await fetch(certificateTemplateURL).
+            then(res => 
+                res.arrayBuffer()
+            )
+
+            const certificateTemplate = await PDFDocument.load(certificateTemplateBytes)
+
+            const page = certificateTemplate.getPages()[0]
+
+            const chartImagePng = await certificateTemplate.embedPng(chartImage)
+
+            const chartDims = chartImagePng.scale(scale)
+
+            page.drawImage(chartImagePng, {
+                x: page.getWidth() / 2 - chartDims.width / 2,
+                y: page.getHeight() / 2 - y,
+                width: chartDims.width,
+                height: chartDims.height,
+            })
+                
+            const pdfBytes = await certificateTemplate.save()
+
+            // // setCertificatePDF('data:application/pdf;charset=utf-8,'+new TextDecoder().decode(pdfBytes))
+            // //console.log(pdfBytes)
+            require("downloadjs")(pdfBytes,"certificado.pdf"," application/pdf");
         }
     }
 
     useEffect(()=>{
-        if(chart.current){
-            //@ts-ignore
-            //console.log(chart.current.canvas.toDataURL())
-            //@ts-ignore
-            const canvasChart = chart.current.canvas
-            const chartContext = canvasChart.getContext('2d')
-        }
-    },[])
+       //console.log(template)
+        //if(!certificatePDF)
+        //createCertificate()
+    })
 
     return <>
-        <a onClick={(e)=>download(e)} download={'chart'} href={certificatePDF}>Descarga</a>
+        <a onClick={(e)=>downloadHandle(e)}>Descarga</a>
+        <div className={styler.graphic_canvas}>
         {(data && labels) && <>
             <Line
                 data={{
                     labels: data.map((item)=>{
                         return item.mes
-                    }),
+                    }).reverse(),
                     datasets: labels.map((label,index)=>{
-                        console.log(label)
+                       //console.log(label)
                         return {
                             label: label[1],
                             data: data.map((item)=>{
@@ -119,8 +124,8 @@ export default function ReportGraphic({
                 ref={chart}
             ></Line>
         </>
-
         }
+        </div>
         
     </>
 }

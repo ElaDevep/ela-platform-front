@@ -18,7 +18,7 @@ export default function NewClient({params}:{params:{id:string}}){
     const gettingEnterprise = async() =>{
         const response = await getEnterprise(params.id)
         if(response.status == 'ok'){
-            console.log(response)
+           //console.log(response)
             setEnterprise(response.data)
         }
         else{

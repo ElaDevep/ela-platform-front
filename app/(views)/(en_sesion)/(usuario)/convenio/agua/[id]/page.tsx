@@ -15,6 +15,7 @@ export default function WaterResults({params}:{params:{id:string}}){
 
     useEffect(()=>{
         if(historicWaterManager.data){
+            
             setLastReport(historicWaterManager.data.reverse()[0])
         }
     },[historicWaterManager.data])
@@ -33,12 +34,12 @@ export default function WaterResults({params}:{params:{id:string}}){
                     title='Reducción de consumo hídrico' 
                     unit='%' 
                     data={lastReport.reduccionAhorroHidrico}
-                    />
-                    <LastInfoCard 
-                    title='Consumo de recursos' 
-                    unit='m3/Unidad Producida' 
-                    data={lastReport.variacionConsumoRecursos
-                    }
+                    // />
+                    // <LastInfoCard 
+                    // title='Consumo de recursos' 
+                    // unit='m3/Unidad Producida' 
+                    // data={lastReport.variacionConsumoRecursos
+                    // }
                     />
                     <LastInfoCard 
                     title='Personal capacitado' 
@@ -57,14 +58,20 @@ export default function WaterResults({params}:{params:{id:string}}){
             <Column field='mes'>Mes</Column>
             <Column field='reduccionAhorroHidrico' unit='%'>Reducción ahorro hídrico</Column>
             <Column field='variacion' unit='m3/Unidad Producida' >Variación de personal</Column>
-            <Column field='variacionConsumoRecursos' unit='%'>Variación de consumo de recursos</Column>
+            {/* <Column field='variacionConsumoRecursos' unit='%'>Variación de consumo de recursos</Column> */}
         </Table>
 
         <h2>Gráfica</h2>
-        <ReportGraphic data={historicWaterManager.data} labels={[
+        <ReportGraphic 
+        scale={1.1}
+        y={120}
+        data={historicWaterManager.data} 
+        labels={[
             ['reduccionAhorroHidrico','Reducción ahorro hídrico','#0037ce'],
             ['variacion','Variación de personal','#2394d6'],
-            ['variacionConsumoRecursos','Variación de consumo de recursos','#23bbd6'],
-        ]}></ReportGraphic>
+            // ['variacionConsumoRecursos','Variación de consumo de recursos','#23bbd6'],
+        ]}
+        template={'https://backend-ela-14.onrender.com/excel/pdf-template/'+params.id}
+        ></ReportGraphic>
     </>
 }

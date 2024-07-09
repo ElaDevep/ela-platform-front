@@ -13,7 +13,7 @@ export async function GET(request: Request, context: { params: {id:string}}) {
         }
     })
     .then((res)=>{
-            console.log(res)
+           //console.log(res)
         response = {
             status:'ok',
             data:res.data,
@@ -29,7 +29,7 @@ export async function GET(request: Request, context: { params: {id:string}}) {
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
 
     return NextResponse.json(response)

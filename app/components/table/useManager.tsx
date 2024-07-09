@@ -31,7 +31,7 @@ export default function useManager<ItemType>(endpoint:string){
     const getAllData = async()=>{
         await manageAxios.get(endpoint)
         .then((res)=>{
-            console.log(res.data)
+           //console.log(res.data)
             if(res.data.status == 'error'){
                 throw 'error'
             }

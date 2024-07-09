@@ -27,7 +27,7 @@ export default async function getUser(userId:string){
                     message:error.response.statusText
                 }
             }
-            console.log(error.response.data)
+           //console.log(error.response.data)
         })  
     }
     return response

@@ -32,7 +32,7 @@ export default async function getClients(){
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
     
     return response

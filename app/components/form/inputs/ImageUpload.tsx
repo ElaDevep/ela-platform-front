@@ -37,11 +37,11 @@ export default function ImageUpload({
 
     useEffect(()=>{
         if(inputRef){
-            console.log(inputRef)
+           //console.log(inputRef)
         }
         if(form.defaultValues){
             if(form.defaultValues[name]){
-                console.log(form.defaultValues[name])
+               //console.log(form.defaultValues[name])
                 setSrc(form.defaultValues[name])
             }
         }
@@ -50,10 +50,10 @@ export default function ImageUpload({
     const imageUploaded = (e:ChangeEvent<HTMLInputElement>) =>{
         if(e.target.files){
             if(e.target.files[0]){
-                console.log(e.target)
+               //console.log(e.target)
                 const reader = new FileReader()
                 reader.onload = (e)=>{
-                    console.log(e.target?.result)
+                   //console.log(e.target?.result)
                     if(typeof e.target?.result == 'string'){
                         setSrc(e.target?.result)
                     }

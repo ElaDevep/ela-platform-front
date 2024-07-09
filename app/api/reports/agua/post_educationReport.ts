@@ -7,7 +7,7 @@ export default async function postEducationReport(prevState: any,formData:FormDa
         status:'unknown',
         code:0
     }
-    console.log(formData)
+   //console.log(formData)
     const id = formData.get('id')?.toString()
 
     
@@ -23,7 +23,7 @@ export default async function postEducationReport(prevState: any,formData:FormDa
             code:200
         }
     }).catch((error)=>{
-        console.log(error)
+       //console.log(error)
         response = {
             status:'error',
             code:400,

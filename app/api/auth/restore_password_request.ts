@@ -31,7 +31,7 @@ export default async function RestorePasswordRequestAction(prevState: any,formDa
                 }
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
     return JSON.stringify(response)
 }

@@ -85,7 +85,7 @@ export default function useForm(values?:{[key:string]:any}){
     }
 
     const get = (name:string)=>{
-        console.log(inputs[name])
+       //console.log(inputs[name])
         return inputs[name]
     }
 
@@ -108,12 +108,12 @@ export default function useForm(values?:{[key:string]:any}){
     useEffect(()=>{
         if(response){
             setChanging(false)
-            console.log('👹')
-            console.log(response)
+           //console.log('👹')
+           //console.log(response)
             if(response.status == 'ok' && response.success){
                 if(response.success.redirect){
-                    // console.log('🦅')
-                    // console.log(response.success.redirect)
+                    ////console.log('🦅')
+                    ////console.log(response.success.redirect)
                     router.push(response.success.redirect)
                 }
                 if(response.success.message && response.success.title){

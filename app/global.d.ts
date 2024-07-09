@@ -94,6 +94,20 @@ declare global {
         estado:'enviado'|'visto'|'confirmado'
         fecha:string
     }
+
+    export interface Post{
+        id: string
+        title?: string
+        contenido: string
+        idAutor: string
+        fechaCreacion: string
+        idEnterprise: string
+        tipo: string,
+        calificacion: number,
+        nCalificacion: number,
+        imgFrontpage?: string,
+        resumen?:string|null
+    }
 }
 
 

@@ -87,14 +87,19 @@ export default function EnergyResults({params}:{params:{id:string}}){
         </Table>
         
         <h2>Gráfica</h2>
-        <ReportGraphic data={historicEnergyManager.data} labels={[
+        <ReportGraphic 
+        template={'https://backend-ela-14.onrender.com/excelEnergia/pdf-templateE/'+params.id}
+        scale={0.95}
+        y={55}
+        data={historicEnergyManager.data} 
+        labels={[
             ['variacionConsumoEnergia','Consumo en producción','#ffe59f'],
             ['variacionConsumoNoAsociado','Consumo no asociado a producción','#caa84a'],
             ['variacionCostosEnergia','Costos','#ffc933'],
-            ['variacionDiagnosticoEnergetico','Equipos con diagnostico','#d19a01'],
-            ['variacionGasesInvernadero','Emisión de gases de efecto invernadero','#fbff00'],
-            ['variacionPersonalCapacitado','Personal capacitado','#c8ca37'],
-            ['variacionProduccionEnergetica','Producción energética','#96810e'],
+            ['variacionDiagnosticoEnergetico','Equipos con diagnostico','#5EFD4D'],
+            ['variacionGasesInvernadero','Emisión de gases de efecto invernadero','#66E5B5'],
+            ['variacionPersonalCapacitado','Personal capacitado','#244DE5'],
+            ['variacionProduccionEnergetica','Producción energética','#24E5B2'],
             ['variacionPuntoMedicion','Puntos medición','#dd9f19'],
         ]}></ReportGraphic>
     </>

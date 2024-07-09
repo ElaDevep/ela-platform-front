@@ -15,10 +15,10 @@ export default function Notifications({params}:{params:{id:string}}){
 
     const gettingEnterprise = async() =>{
         const response = await getEnterprise(params.id)
-        console.log(response.data)
+       //console.log(response.data)
 
         if(response.status=='ok'){
-            console.log(response.data)
+           //console.log(response.data)
             setEnterprise(response.data)
         }
     }

@@ -1,0 +1,71 @@
+@import '@/style_provider'
+
+.postList_div
+    position: relative
+
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap:1em
+    
+    height: calc( 100% - 15em )
+
+.postCard
+    position: relative
+    width: 35em
+    height: 15em
+
+    flex-basis: 20em
+
+    margin-top: 2em
+
+    background: palete(contrast-light)
+    color: palete(primary)
+
+    border-radius: 2em
+
+    transition: transform 1s ease-in-out, box-shadow 1s ease-in-out
+
+    &>img
+        position: relative
+
+        height: 60%
+        width: 100%
+
+        object-fit: cover
+        object-position: center
+
+        box-shadow: palete(uncontrast) 0 0 10px 0
+
+    .postInfo
+        position: relative
+
+        height: 40%
+        width: 100%
+
+        padding: 0.5em 1em
+
+        img
+            position: absolute
+            height: 4rem
+            width: 4rem
+
+            margin-top: 0.5em
+
+            border-radius: 100%
+
+        h1,h2,h3,p,span
+            margin-left: 5rem
+        
+        h3
+            height:  1em
+            text-overflow: ellipsis
+
+        p
+            color: palete(general-text)
+        span
+            color: palete(uncontrast)
+
+    &:hover
+        transform: scale(1.05)
+        box-shadow: palete(primary-light) 0 0 20px 0px

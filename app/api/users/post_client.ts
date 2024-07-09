@@ -20,7 +20,7 @@ export default async function postClient(prevState: any,formData:FormData){
     }
     
     const userToken = get_cookie('userToken')
-    console.log(formData)
+   //console.log(formData)
     await axiosAPI.post('/auth/admin/registerCliente',body,{
         headers:{
             Authorization: `Bearer ${userToken}`,
@@ -42,7 +42,7 @@ export default async function postClient(prevState: any,formData:FormData){
                 message:error.response.statusText
             }
         }
-        console.log(error.response.data)
+       //console.log(error.response.data)
     })  
     
     return JSON.stringify(response)

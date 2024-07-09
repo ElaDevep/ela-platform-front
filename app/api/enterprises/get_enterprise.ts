@@ -18,7 +18,7 @@ export default async function getEnterprise(userId:string){
                 code:200
             }
         }).catch((error)=>{
-            console.log(error.response)
+           //console.log(error.response)
             response = {
                 status:'error',
                 code:400,
